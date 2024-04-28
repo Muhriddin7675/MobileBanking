@@ -1,4 +1,4 @@
-package com.example.mobilebanking.screen.transfer
+package com.example.mobilebanking.screen.pager.transfer
 
 import android.graphics.drawable.shapes.Shape
 import androidx.annotation.DrawableRes
@@ -40,8 +40,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.core.screen.Screen
 import com.example.mobilebanking.R
+import com.example.mobilebanking.data.TemplateData
 import com.example.mobilebanking.ui.theme.MobileBankingTheme
-import com.example.mobilebanking.ui.theme.aviaCardColor
 import com.example.mobilebanking.ui.theme.myCardColor
 import com.example.mobilebanking.ui.theme.paymentCard
 import com.example.mobilebanking.ui.theme.rosCardColor
@@ -61,7 +61,16 @@ class TransfersScreen : Screen {
     fun TransfersContent() {
         val items = List(1) { index -> "Item $index" }
         val ls = listOf(
-            TemplateData("Qo'shish", R.drawable.ic_add_black_cricl)
+            TemplateData("Qo'shish", R.drawable.ic_add_black_cricl),
+            TemplateData("Qo'shish", R.drawable.ic_add_black_cricl),
+            TemplateData("Qo'shish", R.drawable.ic_add_black_cricl),
+            TemplateData("Qo'shish", R.drawable.ic_add_black_cricl),
+            TemplateData("Qo'shish", R.drawable.ic_add_black_cricl),
+            TemplateData("Qo'shish", R.drawable.ic_add_black_cricl),
+            TemplateData("Qo'shish", R.drawable.ic_add_black_cricl),
+            TemplateData("Qo'shish", R.drawable.ic_add_black_cricl),
+            TemplateData("Qo'shish", R.drawable.ic_add_black_cricl),
+
         )
 //        var text by remember { mutableStateOf("") }
 
@@ -123,12 +132,12 @@ class TransfersScreen : Screen {
                         .padding(end = 12.dp)
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.ic_cencel),
+                        painter = painterResource(id = R.drawable.ic_contacts),
                         contentDescription = ""
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     Image(
-                        painter = painterResource(id = R.drawable.ic_cencel),
+                        painter = painterResource(id = R.drawable.ic_scan),
                         contentDescription = ""
                     )
                 }
@@ -304,8 +313,6 @@ class TransfersScreen : Screen {
             TransfersContent()
         }
     }
-
-    class TemplateData(val text: String, val icon: Int)
 
     @Composable
     fun CardStartTextEndImage(

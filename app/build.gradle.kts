@@ -91,4 +91,26 @@ dependencies {
     implementation("cafe.adriel.voyager:voyager-tab-navigator:$voyagerVersion") // TabNavigator
     implementation("cafe.adriel.voyager:voyager-transitions:$voyagerVersion") // Transitions
     implementation("cafe.adriel.voyager:voyager-hilt:$voyagerVersion") // Hilt integration
+
+
+    //Hilt
+    implementation("com.google.dagger:hilt-android:2.50")
+    kapt("com.google.dagger:hilt-compiler:2.50")
+
+    // Better Logging In Android Using Timber
+    implementation("com.jakewharton.timber:timber:5.0.1")
+
+    // kotlinx.coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
+
+    // MVI orbit
+    implementation("org.orbit-mvi:orbit-viewmodel:4.6.1")
+    implementation("org.orbit-mvi:orbit-compose:4.6.1")
+
+    /*
+           Lottie animation
+        */
+    implementation("com.airbnb.android:lottie-compose:4.0.0")
+
 }

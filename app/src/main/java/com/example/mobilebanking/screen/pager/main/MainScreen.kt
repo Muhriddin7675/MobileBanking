@@ -1,5 +1,6 @@
-package com.example.mobilebanking.screen.main
+package com.example.mobilebanking.screen.pager.main
 
+import CardAvia
 import android.widget.GridLayout.Spec
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
@@ -41,7 +42,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.core.screen.Screen
 import com.example.mobilebanking.R
-import com.example.mobilebanking.ui.CardAvia
 import com.example.mobilebanking.ui.CardMIB
 import com.example.mobilebanking.ui.CardMyHouse
 import com.example.mobilebanking.ui.theme.MobileBankingTheme
@@ -100,12 +100,12 @@ class MainScreen : Screen {
                 ) {
                     Row(modifier = Modifier.align(Alignment.CenterEnd)) {
                         Image(
-                            painter = painterResource(id = R.drawable.ic_cencel),
+                            painter = painterResource(id = R.drawable.ic_operation_support),
                             contentDescription = ""
                         )
                         Spacer(modifier = Modifier.width(8.dp))
                         Image(
-                            painter = painterResource(id = R.drawable.ic_cencel),
+                            painter = painterResource(id = R.drawable.ic_operations_bell_new),
                             contentDescription = ""
                         )
                     }
@@ -256,7 +256,7 @@ class MainScreen : Screen {
                                 .shadow(elevation = 3.dp, RoundedCornerShape(16.dp))
                                 .clip(RoundedCornerShape(16.dp))
                                 .background(white),
-                            icon = R.drawable.ic_add,
+                            icon = R.drawable.ic_action_transfers,
                             text = R.string.otkazish
                         )
                         Card(
@@ -267,7 +267,7 @@ class MainScreen : Screen {
                                 .shadow(elevation = 3.dp, RoundedCornerShape(16.dp))
                                 .clip(RoundedCornerShape(16.dp))
                                 .background(white),
-                            icon = R.drawable.ic_add,
+                            icon = R.drawable.ic_operations_wallet,
                             text = R.string.tolash
                         )
                     }

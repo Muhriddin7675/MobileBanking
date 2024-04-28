@@ -1,5 +1,6 @@
 package com.example.mobilebanking.screen.login
 
+import RegisterScreenContract
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -9,52 +10,66 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.rotate
-import androidx.compose.ui.draw.scale
 import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.modifier.modifierLocalConsumer
-import androidx.compose.ui.res.fontResource
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.core.screen.Screen
+import cafe.adriel.voyager.hilt.getViewModel
 import com.example.mobilebanking.R
+import com.example.mobilebanking.screen.comfirmation.ConfirmationContract
+import com.example.mobilebanking.ui.ButtonComponent
 import com.example.mobilebanking.ui.theme.MobileBankingTheme
-import com.example.mobilebanking.ui.theme.buttonVisibleColor
-import com.example.mobilebanking.ui.theme.circleEndColorGreen
-import com.example.mobilebanking.ui.theme.circleStartColorGreen
+import com.example.mobilebanking.ui.theme.disabledColor
 import com.example.mobilebanking.ui.theme.textColorBlue
 import com.example.mobilebanking.ui.theme.textInputColor
+import org.orbitmvi.orbit.compose.collectAsState
 
-class LoginScreen : Screen {
+class RegisterScreen : Screen {
     @Composable
     override fun Content() {
+
+        val model: RegisterScreenContract.RegisterScreenModel = getViewModel<RegisterScreenModel>()
+
+        val uiSate = model.collectAsState().value
+        val context = LocalContext.current
+
+        RegisterContent(model::onEventDispatcher)
 
     }
 
     @Composable
-    fun LoginContent() {
+    fun RegisterContent(
+        onEventDispatcher: (RegisterScreenContract.Intent) -> Unit = {}) {
+
+        val phoneNumber by remember { mutableStateOf("") }
+
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -107,7 +122,6 @@ class LoginScreen : Screen {
 //                            )
 //                        )
 //                ) {
-//
 //                }
                 Image(
                     painter = painterResource(id = R.drawable.image_crickle_green),
@@ -166,11 +180,24 @@ class LoginScreen : Screen {
                     fontFamily = FontFamily(Font(R.font.pnfont_semibold)),
                     fontSize = 20.sp
                 )
-                BasicTextField(
-                    value = "94 657 76 75",
-                    onValueChange = { },
-                    textStyle = TextStyle(color = Color.Black, fontSize = 20.sp) // Text size
-                )
+
+
+                    BasicTextField(
+                        value = phoneNumber,
+                        onValueChange = {},
+                        textStyle = TextStyle(color = LocalContentColor.current, fontSize = 18.sp),
+                        keyboardOptions = KeyboardOptions(
+                            keyboardType = KeyboardType.Phone,
+                            imeAction = ImeAction.Done
+                        ),
+                        keyboardActions = KeyboardActions(
+                            onDone = { /* Handle "Done" button press */ }
+                        ),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(start = 8.dp)
+                    )// Text size
+
                 Box(modifier = Modifier.fillMaxWidth()) {
                     Image(
                         painter = painterResource(id = R.drawable.ic_cencel),
@@ -179,29 +206,25 @@ class LoginScreen : Screen {
                     )
                 }
             }
+            val buttonSt by remember { mutableStateOf(false) }
+            val focusManager = LocalFocusManager.current
+
             Box(modifier = Modifier.fillMaxSize()) {
                 Column(
                     Modifier
                         .fillMaxWidth()
                         .align(Alignment.BottomCenter)
                 ) {
-                    Button(
-                        onClick = {},
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(56.dp)
-                            .padding(start = 16.dp, end = 16.dp),
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = buttonVisibleColor
-                        )
+                    ButtonComponent(
+                        text = "Davom etish",
+                        onClicked = {
+                            onEventDispatcher.invoke(RegisterScreenContract.Intent.ClickNextButton(phoneNumber))
+                        },
+                        enabledColor = Color.Green,
+                        disabledColor = disabledColor,
+                        enabled = buttonSt,
+                        modifier = Modifier.padding(horizontal = 16.dp)
                     )
-                    {
-                        Text(
-                            text = "Davom etish",
-                            fontFamily = FontFamily(Font(R.font.pnfont_semibold)),
-                            fontSize = 18.sp
-                        )
-                    }
 
                     Spacer(modifier = Modifier.height(24.dp))
                     Text(
@@ -235,7 +258,7 @@ class LoginScreen : Screen {
     @Composable
     fun PreviewLoginContent() {
         MobileBankingTheme {
-            LoginContent()
+            RegisterContent()
         }
 
     }

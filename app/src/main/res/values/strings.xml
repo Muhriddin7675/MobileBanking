@@ -1,7 +1,5 @@
 <resources>
-    <string name="app_name">MobileBanking</string>
     <string name="mening_pulim">"Mening pulim"</string>
-    <string name="som">so\'m</string>
     <string name="paynet_carta">Paynet karta</string>
     <string name="bu_nima">Bu nima?</string>
     <string name="toldirish">To\'ldirish</string>
@@ -35,4 +33,79 @@
     <string name="ozimning_kartamga">O\'zimning kartamga</string>
     <string name="paynet_kart">Paynet- kartamga</string>
     <string name="xalqaro_ot">Xalqaro o\'tkazmalar</string>
+
+
+
+
+    <string name="app_name">Mobile-Banking</string>
+    <string name="phone_number">Phone number</string>
+    <string name="empty"></string>
+    <string name="phone_prefix">+998</string>
+    <string name="register_user_policy">Davom etish etish tugmasini bosish orqali men Xizmatlar korsatish haqidagi oferta shartlarini qabul qilaman va shaxsiy malumotlarni qayta ishlashga rozilik beraman</string>
+    <string name="unknown_error">Unknown error</string>
+    <string name="register_phone_text_bottom">Mijoz bo\'lish yoki kirish uchun</string>
+    <string name="register_phone_text">Raqamingizni kiriting</string>
+    <string name="enter_sms_code">SMSdagi kodni kiriting</string>
+    <string name="search_operation">Operatsiya Qidirish</string>
+    <string name="search_hint_beeline">Masalan\, Beeline</string>
+    <string name="enter_pin">PIN-kodni kiriting</string>
+    <string name="yout_phone_number">Telefon raqamingiz</string>
+    <string name="_2006">+998 95 917 9730</string>
+    <string name="forget_pin">PIN-kodni\nunutdngiz\nmi?</string>
+
+    <!--     MAIN SCREEN  -->
+    <string name="my_money">Mening pulim</string>
+    <string name="som">so\'m</string>
+    <string name="what_is_it">Bu nima?</string>
+    <string name="pay_net_card">Paynet karta</string>
+    <string name="fill">To\'ldirish</string>
+    <string name="transact">O\'tkazish</string>
+    <string name="pay">To\'lash</string>
+    <string name="your_level">Sizning darajangiz:</string>
+    <string name="starter">Boshlang\'ich</string>
+    <string name="coin">tanga</string>
+    <string name="exchange">Ayirboshlash</string>
+    <string name="left_after_next_level">qoldi keyingi bosqichgacha</string>
+    <string name="transfers">O\'tkazmalar</string>
+    <string name="card_or_phone">Karta yoki telefon</string>
+    <string name="mine_card">O\'zimning</string>
+    <string name="template">Shablonlar</string>
+    <string name="add">Qo\'shish</string>
+    <string name="international_transfers">Xalqaro o\'tkazmalar</string>
+    <string name="rus_to_uzb">Rossiya Uzbekiston</string>
+    <string name="uzb_to_rus">Uzbekiston Rossiya</string>
+    <string name="rust_to_uzb_description">Rossiyada qabul qiluvchinig RF karta raqamini kiriting</string>
+    <string name="card_number">Karta raqami</string>
+
+    <!--    Payment Screen-->
+
+    <string name="qr_code">QR kod</string>
+    <string name="payment">To\'lov</string>
+    <string name="search">Izlash</string>
+    <string name="quick_payment">Tezkor to\'lovlar</string>
+    <string name="train_ticket">Poyezd chiptasi</string>
+    <string name="comfort_quick">qulay va tez</string>
+    <string name="buy">Sotib olish</string>
+    <string name="useful_and">Foydali va ishonchli</string>
+    <string name="buy_ticket">Chipta sotib olish</string>
+    <string name="payment_types">To\'lov turlari</string>
+
+
+    <!--    create PIN code -->
+    <string name="create_pin_code">PIN-kod yarating</string>
+    <string name="add_code_in_sms">SMSdagi kodni kiriting</string>
+    <string name="sent_to_number">raqamiga yubordik</string>
+    <string name="send_new_code">Yangi kodni yuborish</string>
+    <string name="sec">sek</string>
+    <string name="incorrect_code_error_text">Noto\'g\'ri kod.\nKodni qayta oling yoki telefon raqamini o\'zgartiring</string>
+
+
+    <!--    PIN CODE SCREEN-->
+    <string name="enter_the_pin_code">PIN-kodni kiriting</string>
+    <string name="your_phone_number">Telefon raqamingiz</string>
+    <string name="forget_pin_code">PIN kodni unitdingizmi ?</string>
+    <string name="incorrect_pin_code">PIN-kod noto\'g\'ri</string>
+    <string name="count_attempt_left">ta urinish qoldi</string>
+
+
 </resources>
