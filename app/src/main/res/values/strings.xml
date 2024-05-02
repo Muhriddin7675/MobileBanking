@@ -35,11 +35,9 @@
     <string name="xalqaro_ot">Xalqaro o\'tkazmalar</string>
 
 
-
-
     <string name="app_name">Mobile-Banking</string>
     <string name="phone_number">Phone number</string>
-    <string name="empty"></string>
+    <string name="empty"> </string>
     <string name="phone_prefix">+998</string>
     <string name="register_user_policy">Davom etish etish tugmasini bosish orqali men Xizmatlar korsatish haqidagi oferta shartlarini qabul qilaman va shaxsiy malumotlarni qayta ishlashga rozilik beraman</string>
     <string name="unknown_error">Unknown error</string>
@@ -89,7 +87,18 @@
     <string name="useful_and">Foydali va ishonchli</string>
     <string name="buy_ticket">Chipta sotib olish</string>
     <string name="payment_types">To\'lov turlari</string>
-
+    <string name="call">Aloqa</string>
+    <string name="request">Rekvizit bo\'yicha to\'lov</string>
+    <string name="communal">Komunal to\'lovlar</string>
+    <string name="InternetTV">Internet va TV</string>
+    <string name="education">Ta\'lim</string>
+    <string name="public_Services">Davlat xizmatlari va shtraflar</string>
+    <string name="term_payment">Muddatli to\'lovlar</string>
+    <string name="credit_payment">Kredit to\'lovlar</string>
+    <string name="mik_credit">Mikrokredit lombardlar</string>
+    <string name="transport_taxi">Transport va taksi</string>
+    <string name="medicine">Tibbiyot</string>
+    <string name="another_payment">Boshqa to\'lovlar</string>
 
     <!--    create PIN code -->
     <string name="create_pin_code">PIN-kod yarating</string>

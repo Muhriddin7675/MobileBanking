@@ -55,7 +55,6 @@ android {
 }
 
 dependencies {
-
     implementation("androidx.core:core-ktx:1.13.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
     implementation("androidx.activity:activity-compose:1.9.0")
@@ -74,43 +73,73 @@ dependencies {
 
     // Better Logging In Android Using Timber
     implementation("com.jakewharton.timber:timber:5.0.1")
-    // Gson
-    implementation("com.google.code.gson:gson:2.10.1")
 
     // Hilt
     implementation("com.google.dagger:hilt-android:2.50")
     kapt("com.google.dagger:hilt-compiler:2.50")
 
-    val voyagerVersion = "1.0.0"
 
+    val voyagerVersion = "1.0.0"
     // Multiplatform
 
-    implementation("cafe.adriel.voyager:voyager-navigator:$voyagerVersion") // Navigator
-    implementation("cafe.adriel.voyager:voyager-screenmodel:$voyagerVersion") // Screen Model
-    implementation("cafe.adriel.voyager:voyager-bottom-sheet-navigator:$voyagerVersion") // BottomSheetNavigator
-    implementation("cafe.adriel.voyager:voyager-tab-navigator:$voyagerVersion") // TabNavigator
-    implementation("cafe.adriel.voyager:voyager-transitions:$voyagerVersion") // Transitions
-    implementation("cafe.adriel.voyager:voyager-hilt:$voyagerVersion") // Hilt integration
+    // Navigator
+    implementation("cafe.adriel.voyager:voyager-navigator:$voyagerVersion")
+
+    // Screen Model
+    implementation("cafe.adriel.voyager:voyager-screenmodel:$voyagerVersion")
+
+    // BottomSheetNavigator
+    implementation("cafe.adriel.voyager:voyager-bottom-sheet-navigator:$voyagerVersion")
+
+    // TabNavigator
+    implementation("cafe.adriel.voyager:voyager-tab-navigator:$voyagerVersion")
+
+    // Transitions
+    implementation("cafe.adriel.voyager:voyager-transitions:$voyagerVersion")
+
+    // Hilt integration
+    implementation("cafe.adriel.voyager:voyager-hilt:$voyagerVersion")
 
 
-    //Hilt
-    implementation("com.google.dagger:hilt-android:2.50")
-    kapt("com.google.dagger:hilt-compiler:2.50")
 
-    // Better Logging In Android Using Timber
-    implementation("com.jakewharton.timber:timber:5.0.1")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
 
-    // kotlinx.coroutines
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
+    implementation("androidx.compose.material:material:1.6.6")
 
+    implementation ("com.google.accompanist:accompanist-coil:0.11.1")
+
+    implementation("io.coil-kt:coil-compose:2.6.0")
+
+    implementation ("io.github.grizzi91:bouquet:1.1.2")
+
+    //orbit
     // MVI orbit
     implementation("org.orbit-mvi:orbit-viewmodel:4.6.1")
     implementation("org.orbit-mvi:orbit-compose:4.6.1")
 
-    /*
-           Lottie animation
-        */
+    implementation ("com.google.accompanist:accompanist-systemuicontroller:0.27.0")
+
+    // lottie
     implementation("com.airbnb.android:lottie-compose:4.0.0")
+
+
+    /**
+     * REST API: Adding retrofit to the mainLayer
+     */
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.3")
+
+    /**
+     *  Chuck
+     */
+    debugImplementation("com.github.chuckerteam.chucker:library:4.0.0")
+    releaseImplementation("com.github.chuckerteam.chucker:library-no-op:3.5.2")
+
+    /**
+     * Gson
+     * */
+    implementation("com.google.code.gson:gson:2.10.1")
 
 }

@@ -2,19 +2,19 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
+      <entry key="PaymentContentPreview">
+        <State />
+      </entry>
+      <entry key="PaymentContentPreview (1)">
+        <State />
+      </entry>
       <entry key="PinCheckPreview">
         <State />
       </entry>
-      <entry key="PreviewLoginContent">
-        <State />
-      </entry>
-      <entry key="PreviewMainScreen">
+      <entry key="Preview">
         <State />
       </entry>
       <entry key="RegisterPreview">
-        <State />
-      </entry>
-      <entry key="TransfersPreview">
         <State />
       </entry>
       <entry key="app">

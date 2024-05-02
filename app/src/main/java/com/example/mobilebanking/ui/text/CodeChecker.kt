@@ -19,7 +19,6 @@ import androidx.compose.ui.unit.dp
 import com.example.mobilebanking.R
 import com.example.mobilebanking.ui.theme.errorColor
 import com.example.mobilebanking.ui.theme.primaryColor
-import uz.gita.mobilebanking.ui.components.custom_writers.PinCodeNumberItem
 
 @Composable
 fun CodeChecker(

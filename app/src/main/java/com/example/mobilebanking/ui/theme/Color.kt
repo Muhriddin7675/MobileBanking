@@ -65,11 +65,23 @@ val primaryColor = Color(0xFF15A13A)
 val cardColor = Color(0xFFFEFEFE)
 val grayColor = Color(0xFFD1CFCF)
 val grayIcon = Color(0xFF6C7177)
-
+val selectItemColor = Color(0xFF18A136)
+val unSelectedItemColor = Color(0xFF7E8183)
 
 //Transfer
 val pinkLight = Color(0xFFFEDEF4)
 val pinkExtraLight = Color(0xFFF3EFFE)
 val greenLight = Color(0xFFACFEE2)
 val blueLight = Color(0xFFD3F3FE)
+
+//PaymentScreen
+val qrCodCardColor = Color(0xFFECF0F2)
+val factPaymentCardColor = Color(0xFFF2EDFD)
+val trainTicketCardColor = Color(0xFFDAF8E3)
+val callCardColor = Color(0xFFFBEDB5)
+val requisiteCardColor = Color(0xFFEDF1F3)
+val internetTVCardColor = Color(0xFFD0F3FC)
+val communalPaymentCardColor = Color(0xFFD6F8E8)
+val educationCardColor = Color(0xFFFCE4DE)
+val publicServicesCardColor = Color(0xFFECE6FD)
 
