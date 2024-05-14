@@ -20,6 +20,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.mobilebanking.R
 import com.example.mobilebanking.ui.theme.MobileBankingTheme
+import com.example.mobilebanking.ui.theme.disableContentColor
+import com.example.mobilebanking.ui.theme.disabledColors
+import com.example.mobilebanking.ui.theme.primaryColor
 
 @Composable
 fun ButtonComponent(
@@ -27,38 +30,38 @@ fun ButtonComponent(
     onClicked: (() -> Unit),
     modifier: Modifier,
     isLoading: Boolean = false,
-    enabled: Boolean = true,
-    enabledColor: Color = Color.Green,
-    disabledColor: Color = Color.Blue.copy(alpha = 0.5f)
+    enabled: Boolean = false,
+    enabledColor: Color = primaryColor,
+    disabledColor: Color = disabledColors
 ) {
 
     Button(
         onClick = onClicked,
         enabled = enabled,
-        colors = ButtonDefaults.buttonColors(
-            contentColor = enabledColor,
-            disabledContentColor = disabledColor
-        ),
-        content = {
-            if (isLoading) {
-                CircularProgressIndicator(
-                    color = Color.White,
-                    modifier = Modifier
-                        .padding(12.dp)
-                        .size(24.dp),
-                    strokeWidth = 2.dp
-                )
-            } else {
-                Row {
-                    Text(text, fontSize = 18.sp, fontFamily = FontFamily(Font(R.font.pnfont_semibold)))
-                }
-            }
-        },
         modifier = modifier
             .fillMaxWidth()
             .height(56.dp),
-        shape = RoundedCornerShape(28.dp)
-    )
+        shape = RoundedCornerShape(28.dp),
+        colors = ButtonDefaults.buttonColors(
+            containerColor = enabledColor,
+            disabledContainerColor = disabledColor,
+            disabledContentColor = disableContentColor
+        )
+    ) {
+        if (isLoading) {
+            CircularProgressIndicator(
+                color = Color.White,
+                modifier = Modifier
+                    .padding(12.dp)
+                    .size(24.dp),
+                strokeWidth = 2.dp
+            )
+        } else {
+            Row {
+                Text(text, fontSize = 18.sp, fontFamily = FontFamily(Font(R.font.pnfont_semibold)))
+            }
+        }
+    }
 }
 
 @Preview(showBackground = true)
@@ -69,7 +72,7 @@ private fun ButtonComponentPreview() {
             text = "Save",
             onClicked = { },
             isLoading = false,
-            enabled = true,
+            enabled = false,
             modifier = Modifier.padding(vertical = 16.dp)
         )
     }

@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.mobilebanking.R
 import com.example.mobilebanking.ui.theme.MobileBankingTheme
+import com.example.mobilebanking.ui.theme.black
 import com.example.mobilebanking.ui.theme.callCardColor
 
 @Composable
@@ -41,6 +42,7 @@ fun CardTopTextBottomImage(
             text = textTitle,
             modifier = Modifier.padding(top = 12.dp, start = 12.dp, end = 20.dp),
             fontSize = 18.sp,
+            color = black,
             fontFamily = FontFamily(Font(R.font.pnfont_regular))
         )
         Image(

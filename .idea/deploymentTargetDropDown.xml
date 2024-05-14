@@ -2,19 +2,32 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="PaymentContentPreview">
+      <entry key="AppSettingPreview">
+        <State>
+          <runningDeviceTargetSelectedWithDropDown>
+            <Target>
+              <type value="RUNNING_DEVICE_TARGET" />
+              <deviceKey>
+                <Key>
+                  <type value="SERIAL_NUMBER" />
+                  <value value="2368f8027c08" />
+                </Key>
+              </deviceKey>
+            </Target>
+          </runningDeviceTargetSelectedWithDropDown>
+          <timeTargetWasSelectedWithDropDown value="2024-05-11T12:13:21.786223100Z" />
+        </State>
+      </entry>
+      <entry key="ConditionsPreview">
         <State />
       </entry>
-      <entry key="PaymentContentPreview (1)">
+      <entry key="DataEntryPreview">
         <State />
       </entry>
-      <entry key="PinCheckPreview">
+      <entry key="PinPreview">
         <State />
       </entry>
-      <entry key="Preview">
-        <State />
-      </entry>
-      <entry key="RegisterPreview">
+      <entry key="WhatIsPreview">
         <State />
       </entry>
       <entry key="app">

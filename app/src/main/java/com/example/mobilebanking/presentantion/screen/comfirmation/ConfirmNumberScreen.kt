@@ -37,7 +37,8 @@ import com.example.mobilebanking.R
 import com.example.mobilebanking.ui.componnent.ButtonComponent
 import com.example.mobilebanking.ui.componnent.CodeTextField
 import com.example.mobilebanking.ui.theme.MobileBankingTheme
-import com.example.mobilebanking.ui.theme.disabledColor
+import com.example.mobilebanking.ui.theme.disabledColors
+import com.example.mobilebanking.ui.theme.primaryColor
 import org.orbitmvi.orbit.compose.collectAsState
 import org.orbitmvi.orbit.compose.collectSideEffect
 
@@ -120,20 +121,21 @@ private fun ConfirmPhoneContent(
             overflow = TextOverflow.Ellipsis,
             maxLines = 1
         )
-        var phoneSt by remember { mutableStateOf("") }
+        var codeSt by remember { mutableStateOf("") }
         var buttonSt by remember { mutableStateOf(false) }
         val focusManager = LocalFocusManager.current
         Spacer(modifier = Modifier.height(16.dp))
         CodeTextField(
-            value = phoneSt,
+            value = codeSt,
             length = 6,
             onValueChange = {
-                phoneSt = it
+                codeSt = it
                 if (it.length < 6) {
                     buttonSt = false
                 } else {
                     buttonSt = true
                     focusManager.clearFocus()
+                    onEventDispatcher.invoke(ConfirmationContract.Intent.ClickButton(codeSt))
                 }
             },
             modifier = Modifier
@@ -145,10 +147,10 @@ private fun ConfirmPhoneContent(
         ButtonComponent(
             text = "Davom etish",
             onClicked = {
-                onEventDispatcher.invoke(ConfirmationContract.Intent.ClickButton(phoneSt))
+                onEventDispatcher.invoke(ConfirmationContract.Intent.ClickButton(codeSt))
             },
-            enabledColor = Color.Green,
-            disabledColor = disabledColor,
+            enabledColor = primaryColor,
+            disabledColor = disabledColors,
             enabled = buttonSt,
             modifier = Modifier.padding(horizontal = 16.dp)
         )

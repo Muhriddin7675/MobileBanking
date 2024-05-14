@@ -44,13 +44,13 @@ fun CardMyHouse() {
             Column(modifier = Modifier.weight(1f)) {
                 Text(
                     modifier = Modifier.padding(top = 12.dp, start = 12.dp),
-                    text = stringResource(id = R.string.paynet_xaf),
+                    text = stringResource(id = R.string.paymentSecurity),
                     color = Color.Black,
                     fontSize = 18.sp,
                     fontFamily = FontFamily(Font(R.font.pnfont_semibold))
                 )
                 Text(
-                    text = stringResource(id = R.string.elektr_gaz_va_aloqa),
+                    text = stringResource(id = R.string.electric_gas_connection),
                     modifier = Modifier.padding(start = 12.dp),
                     color = Color.Black,
                     fontSize = 12.sp,
@@ -63,7 +63,7 @@ fun CardMyHouse() {
                         .background(textButtonGreenColor)
                         .padding(start = 6.dp, end = 6.dp, bottom = 4.dp, top = 4.dp)
                     ,
-                    text = stringResource(id = R.string.uyni_yaratish),
+                    text = stringResource(id = R.string.create_home),
                     color = white,
                     fontSize = 12.sp,
                     fontFamily = FontFamily(Font(R.font.pnfont_regular)

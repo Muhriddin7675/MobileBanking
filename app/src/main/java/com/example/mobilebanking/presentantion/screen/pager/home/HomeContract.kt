@@ -9,14 +9,19 @@ interface HomeContract {
     }
 
     sealed interface UIState {
-        object InitState : UIState
+        data object InitState : UIState
     }
 
     sealed interface SideEffect {
-
+        data object OpenAddCardBottomDialog : SideEffect
     }
 
     sealed interface Intent {
-        object OpenDetailScreen : Intent
+        data object OpenAddCardBottomDialog : Intent
+        data object OpenAddCardScreen : Intent
+        data object OpenProfilScreen : Intent
+        data object OpenPaymentCardScreen : Intent
+        data object OpenWhatIsPaymentCard : Intent
+        data object OpenIdentityVerificationScreen : Intent
     }
 }

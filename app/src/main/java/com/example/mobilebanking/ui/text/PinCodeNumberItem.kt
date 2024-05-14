@@ -12,16 +12,19 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.mobilebanking.R
 
 
 @Composable
 fun PinCodeNumberItem(
     modifier: Modifier,
     number: String,
-    fontSize: Int = 18,
+    fontSize: Int = 24,
     onClick: (String) -> Unit,
     shape: CornerBasedShape = RoundedCornerShape(900.dp),
 ) {
@@ -42,7 +45,8 @@ fun PinCodeNumberItem(
             text = number,
             fontSize = fontSize.sp,
             color = Color.Black,
-            textAlign = TextAlign.Center
+            textAlign = TextAlign.Center,
+            fontFamily = FontFamily(Font(R.font.pnfont_semibold))
         )
     }
 }

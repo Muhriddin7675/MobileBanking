@@ -18,6 +18,7 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import com.example.mobilebanking.R
+import com.example.mobilebanking.ui.theme.black
 import com.example.mobilebanking.ui.theme.textInputColor
 
 @Composable
@@ -50,6 +51,7 @@ fun AddItem(
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
                 .weight(0.3f),
+            color = black,
             fontFamily = FontFamily(Font(R.font.pnfont_regular))
         )
     }

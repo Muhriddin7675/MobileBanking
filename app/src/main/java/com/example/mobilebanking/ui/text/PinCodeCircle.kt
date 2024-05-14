@@ -1,4 +1,4 @@
-package uz.gita.mobilebanking.ui.components.custom_writers
+package com.example.mobilebanking.ui.text
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.padding

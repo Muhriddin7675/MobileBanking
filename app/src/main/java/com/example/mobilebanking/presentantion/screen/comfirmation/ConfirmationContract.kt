@@ -14,7 +14,7 @@ interface ConfirmationContract {
 
     sealed interface Intent {
         data class ShowToast(val msg: String) : Intent
-        data class ClickButton(val phoneNumber:String) : Intent
+        data class ClickButton(val code:String) : Intent
         data object ClickBackButton : Intent
     }
 

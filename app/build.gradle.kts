@@ -3,6 +3,8 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin") version "2.0.0"
+
 }
 
 android {
@@ -63,6 +65,8 @@ dependencies {
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
+    implementation("androidx.navigation:navigation-runtime-ktx:2.7.7")
+    implementation("androidx.glance:glance-appwidget:1.0.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -141,5 +145,19 @@ dependencies {
      * Gson
      * */
     implementation("com.google.code.gson:gson:2.10.1")
+
+    // Map
+    implementation("com.google.maps.android:maps-compose:2.5.3")
+    implementation("com.google.android.gms:play-services-maps:18.2.0")
+    implementation("com.google.android.gms:play-services-location:21.2.0")
+    implementation("com.google.maps.android:android-maps-utils:2.4.0")
+
+    //biometric
+    implementation("androidx.biometric:biometric-ktx:1.2.0-alpha05")
+
+    //widgets
+    implementation("androidx.glance:glance:1.0.0")
+    implementation("androidx.glance:glance-appwidget-preview:1.0.0-alpha06")
+
 
 }

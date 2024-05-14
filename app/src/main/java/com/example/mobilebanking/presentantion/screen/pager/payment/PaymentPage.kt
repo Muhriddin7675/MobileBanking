@@ -30,7 +30,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.res.painterResource
@@ -56,6 +55,7 @@ import com.example.mobilebanking.ui.componnent.CardTextEndIcon
 import com.example.mobilebanking.ui.componnent.CardTopTextBottomImage
 import com.example.mobilebanking.ui.componnent.TrainTicked
 import com.example.mobilebanking.ui.theme.MobileBankingTheme
+import com.example.mobilebanking.ui.theme.black
 import com.example.mobilebanking.ui.theme.callCardColor
 import com.example.mobilebanking.ui.theme.communalPaymentCardColor
 import com.example.mobilebanking.ui.theme.educationCardColor
@@ -135,15 +135,15 @@ private fun PaymentContent(
             Text(
                 text = stringResource(id = R.string.payment),
                 fontSize = 32.sp,
-                color = Color.Black,
+                color = black,
                 fontFamily = FontFamily(Font(R.font.pnfont_semibold)),
                 modifier = Modifier.weight(1f)
             )
 
             Text(
-                text = stringResource(id = R.string.bekor_qilish),
+                text = stringResource(id = R.string.cancellation),
                 fontFamily = FontFamily(Font(R.font.pnfont_regular)),
-                color = Color.Black,
+                color = black,
                 modifier = Modifier
                     .padding(end = 16.dp)
                     .shadow(elevation = 2.dp, RoundedCornerShape(16.dp))
@@ -165,7 +165,7 @@ private fun PaymentContent(
                     telefonAndCardNumber = it
                 },
                 textStyle = TextStyle(
-                    color = Color.Black,
+                    color = black,
                     fontSize = 20.sp,
                     fontFamily = FontFamily(Font(R.font.pnfont_semibold))
                 ),
@@ -195,9 +195,10 @@ private fun PaymentContent(
         Spacer(modifier = Modifier.height(24.dp))
 
         Text(
-            text = stringResource(R.string.shablonglar),
+            text = stringResource(R.string.templates),
             fontFamily = FontFamily(Font(R.font.pnfont_semibold)),
             fontSize = 20.sp,
+            color = black,
             modifier = Modifier.padding(start = 16.dp)
         )
 
@@ -270,6 +271,7 @@ private fun PaymentContent(
             text = stringResource(R.string.payment_types),
             fontFamily = FontFamily(Font(R.font.pnfont_semibold)),
             fontSize = 20.sp,
+            color = black,
             modifier = Modifier.padding(start = 16.dp)
         )
         Spacer(modifier = Modifier.height(16.dp))
@@ -340,6 +342,7 @@ private fun PaymentContent(
                         .background(requisiteCardColor)
                         .padding(12.dp),
                     fontSize = 18.sp,
+                    color = black,
                     fontFamily = FontFamily(Font(R.font.pnfont_regular))
                 )
 

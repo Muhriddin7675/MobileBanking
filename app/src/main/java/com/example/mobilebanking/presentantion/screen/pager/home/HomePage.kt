@@ -1,9 +1,12 @@
 package com.example.mobilebanking.presentantion.screen.pager.home
 
+import android.annotation.SuppressLint
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -34,6 +37,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
@@ -43,27 +47,34 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.hilt.getViewModel
+import cafe.adriel.voyager.navigator.bottomSheet.LocalBottomSheetNavigator
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabOptions
 import com.example.mobilebanking.R
+import com.example.mobilebanking.presentantion.dialog.AddCardBottomDialog
 import com.example.mobilebanking.ui.componnent.CardAvia
 import com.example.mobilebanking.ui.componnent.CardMIB
 import com.example.mobilebanking.ui.componnent.CardMyHouse
 import com.example.mobilebanking.ui.theme.MobileBankingTheme
 import com.example.mobilebanking.ui.theme.appBackgroundColorWhite
+import com.example.mobilebanking.ui.theme.black
 import com.example.mobilebanking.ui.theme.circleStartColorGreen
+import com.example.mobilebanking.ui.theme.primaryColor
 import com.example.mobilebanking.ui.theme.securityCardEndColor
 import com.example.mobilebanking.ui.theme.securityCardStartColor
 import com.example.mobilebanking.ui.theme.textColor
 import com.example.mobilebanking.ui.theme.white
+import com.example.mobilebanking.util.openWebsite
 import org.orbitmvi.orbit.compose.collectAsState
+import org.orbitmvi.orbit.compose.collectSideEffect
 
 object HomePage : Tab {
     override val options: TabOptions
         @Composable
         get() {
             val title = "Asosiy"
-            val icon = rememberVectorPainter(image = ImageVector.vectorResource(id = R.drawable.ic_operations_home))
+            val icon =
+                rememberVectorPainter(image = ImageVector.vectorResource(id = R.drawable.ic_operations_home))
 
             return remember {
                 TabOptions(
@@ -83,14 +94,36 @@ object HomePage : Tab {
 
             val uiState = screenModel.collectAsState().value
             HomeScreenContent(uiState = uiState, onEventDispatcher = screenModel::onEventDispatcher)
+
+            val bottomNavigator = LocalBottomSheetNavigator.current
+            screenModel.collectSideEffect { sideEffect ->
+                when (sideEffect) {
+                    HomeContract.SideEffect.OpenAddCardBottomDialog -> {
+                        bottomNavigator.show(
+                            AddCardBottomDialog(
+                                clickUzCard = {
+                                    bottomNavigator.hide()
+                                     screenModel.onEventDispatcher(HomeContract.Intent.OpenAddCardScreen)
+                                              },
+                                clickRuCard = {
+                                    bottomNavigator.hide()
+                                }
+                            )
+                        )
+                    }
+                }
+
+            }
         }
     }
 
+    @SuppressLint("UnrememberedMutableInteractionSource")
     @Composable
     fun HomeScreenContent(
         uiState: HomeContract.UIState,
         onEventDispatcher: (HomeContract.Intent) -> Unit
     ) {
+        val context = LocalContext.current
         Column(modifier = Modifier.fillMaxSize()) {
 
             Row(
@@ -98,6 +131,14 @@ object HomePage : Tab {
                     .fillMaxWidth()
                     .height(56.dp)
                     .background(appBackgroundColorWhite)
+                    .clickable(interactionSource = MutableInteractionSource(),
+                        indication = null,
+                        enabled = true,
+                        onClickLabel = null,
+                        onClick = {
+                            onEventDispatcher.invoke(HomeContract.Intent.OpenProfilScreen)
+                        })
+
             ) {
                 Box(
                     modifier = Modifier
@@ -113,7 +154,8 @@ object HomePage : Tab {
                 Text(
                     text = "+998 94 657 76 75", Modifier.align(Alignment.CenterVertically),
                     fontFamily = FontFamily(Font(R.font.pnfont_semibold)),
-                    fontSize = 20.sp
+                    fontSize = 16.sp,
+                    color = black
                 )
                 Image(
                     painter = painterResource(id = R.drawable.ic_chevron_right),
@@ -131,7 +173,12 @@ object HomePage : Tab {
                     Row(modifier = Modifier.align(Alignment.CenterEnd)) {
                         Image(
                             painter = painterResource(id = R.drawable.ic_operation_support),
-                            contentDescription = ""
+                            contentDescription = "",
+                            modifier = Modifier
+                                .clip(CircleShape)
+                                .clickable {
+                                    openWebsite(context, "http://chat.paynet.uz")
+                                }
                         )
                         Spacer(modifier = Modifier.width(8.dp))
                         Image(
@@ -155,7 +202,7 @@ object HomePage : Tab {
                         .padding(start = 16.dp, top = 16.dp)
                 ) {
                     Text(
-                        text = stringResource(id = R.string.mening_pulim), fontSize = 16.sp,
+                        text = stringResource(id = R.string.my_money), fontSize = 16.sp,
                         fontFamily = FontFamily(Font(R.font.pnfont_regular)),
                         color = textColor
                     )
@@ -195,14 +242,23 @@ object HomePage : Tab {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(start = 16.dp, end = 16.dp, top = 16.dp)
-                        .shadow(elevation = 5.dp, RoundedCornerShape(16.dp))
+                        .shadow(elevation = 2.dp, RoundedCornerShape(16.dp))
                         .clip(RoundedCornerShape(16.dp))
                         .background(white)
+                        .clickable(
+                            interactionSource = MutableInteractionSource(),
+                            indication = null,
+                            enabled = true,
+                            onClickLabel = null,
+                            onClick = {
+                                onEventDispatcher.invoke(HomeContract.Intent.OpenPaymentCardScreen)
+                            }
+                        )
                 ) {
                     Row(modifier = Modifier.fillMaxWidth()) {
                         Text(
                             modifier = Modifier.padding(start = 12.dp, top = 12.dp),
-                            text = stringResource(id = R.string.paynet_carta),
+                            text = stringResource(id = R.string.pay_net_card),
                             fontFamily = FontFamily(Font(R.font.pnfont_semibold)),
                             color = Color.Black
                         )
@@ -210,8 +266,17 @@ object HomePage : Tab {
                             Text(
                                 modifier = Modifier
                                     .padding(end = 12.dp, top = 12.dp)
-                                    .align(Alignment.CenterEnd),
-                                text = stringResource(id = R.string.bu_nima),
+                                    .align(Alignment.CenterEnd)
+                                    .clickable(
+                                        interactionSource = MutableInteractionSource(),
+                                        indication = null,
+                                        enabled = true,
+                                        onClickLabel = null,
+                                        onClick = {
+                                            onEventDispatcher.invoke(HomeContract.Intent.OpenWhatIsPaymentCard)
+                                        }
+                                    ),
+                                text = stringResource(id = R.string.what_is_it),
                                 fontFamily = FontFamily(Font(R.font.pnfont_semibold)),
                                 color = circleStartColorGreen
                             )
@@ -238,7 +303,7 @@ object HomePage : Tab {
                         ) {
 
                             Text(
-                                text = stringResource(id = R.string.paynet_carta),
+                                text = stringResource(id = R.string.pay_net_card),
                                 fontSize = 16.sp,
                                 fontFamily = FontFamily(Font(R.font.pnfont_regular)),
                                 color = textColor
@@ -250,6 +315,7 @@ object HomePage : Tab {
                                 Text(
                                     text = "0", fontSize = 20.sp,
                                     fontFamily = FontFamily(Font(R.font.pnfont_semibold)),
+                                    color = black
                                 )
                                 Spacer(modifier = Modifier.width(8.dp))
                                 Text(
@@ -276,7 +342,7 @@ object HomePage : Tab {
                                 .clip(RoundedCornerShape(16.dp))
                                 .background(white),
                             icon = R.drawable.ic_add,
-                            text = R.string.toldirish
+                            text = R.string.fill
                         )
                         Card(
                             modifier = Modifier
@@ -287,7 +353,7 @@ object HomePage : Tab {
                                 .clip(RoundedCornerShape(16.dp))
                                 .background(white),
                             icon = R.drawable.ic_action_transfers,
-                            text = R.string.otkazish
+                            text = R.string.transact
                         )
                         Card(
                             modifier = Modifier
@@ -298,7 +364,7 @@ object HomePage : Tab {
                                 .clip(RoundedCornerShape(16.dp))
                                 .background(white),
                             icon = R.drawable.ic_operations_wallet,
-                            text = R.string.tolash
+                            text = R.string.payment
                         )
                     }
                 }
@@ -308,7 +374,7 @@ object HomePage : Tab {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(16.dp)
-                        .shadow(elevation = 5.dp, RoundedCornerShape(16.dp))
+                        .shadow(elevation = 2.dp, RoundedCornerShape(16.dp))
                         .clip(RoundedCornerShape(16.dp))
                         .background(white)
                 ) {
@@ -332,7 +398,7 @@ object HomePage : Tab {
                         ) {
 
                             Text(
-                                text = "Sizning darajangiz:Boshlangich",
+                                text = stringResource(id = R.string.your_level),
                                 fontSize = 14.sp,
                                 fontFamily = FontFamily(Font(R.font.pnfont_regular)),
                                 color = textColor
@@ -344,10 +410,11 @@ object HomePage : Tab {
                                 Text(
                                     text = "0", fontSize = 20.sp,
                                     fontFamily = FontFamily(Font(R.font.pnfont_semibold)),
+                                    color = black
                                 )
                                 Spacer(modifier = Modifier.width(8.dp))
                                 Text(
-                                    text = stringResource(id = R.string.tanga),
+                                    text = stringResource(id = R.string.coin),
                                     fontSize = 16.sp,
                                     fontFamily = FontFamily(Font(R.font.pnfont_semibold)),
                                     color = textColor,
@@ -358,12 +425,11 @@ object HomePage : Tab {
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .padding(top = 4.dp, end = 16.dp, bottom = 4.dp)
-                                    .background(appBackgroundColorWhite)
-                                    .clip(
-                                        CircleShape
-                                    ),
+                                    .clip(CircleShape),
                                 progress = 0f,
-                            )
+                                color = primaryColor,
+                                trackColor = white,
+                                )
                             Text(
                                 text = "100 qoldi keyingi boshqichga",
                                 fontSize = 14.sp,
@@ -381,12 +447,11 @@ object HomePage : Tab {
                             .padding(start = 12.dp, end = 12.dp, bottom = 10.dp, top = 4.dp)
                     ) {
                         Text(
-                            text = "Ayirboshlash",
+                            text = stringResource(id = R.string.exchange),
                             fontFamily = FontFamily(Font(R.font.pnfont_semibold)),
                             fontSize = 18.sp,
                             color = Color.Black
                         )
-
                     }
                 }
 
@@ -394,7 +459,7 @@ object HomePage : Tab {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(start = 16.dp, end = 16.dp)
-                        .shadow(elevation = 5.dp, RoundedCornerShape(16.dp))
+                        .shadow(elevation = 2.dp, RoundedCornerShape(16.dp))
                         .clip(RoundedCornerShape(16.dp))
                         .background(
                             brush = Brush.horizontalGradient(
@@ -406,20 +471,20 @@ object HomePage : Tab {
                         Column(modifier = Modifier.weight(1f)) {
                             Text(
                                 modifier = Modifier.padding(top = 12.dp, start = 12.dp),
-                                text = stringResource(id = R.string.paynet_xaf),
+                                text = stringResource(id = R.string.paymentSecurity),
                                 color = Color.Black,
                                 fontSize = 18.sp,
                                 fontFamily = FontFamily(Font(R.font.pnfont_semibold))
                             )
                             Text(
-                                text = stringResource(id = R.string.xaf_oshi),
+                                text = stringResource(id = R.string.increasingPoverty),
                                 modifier = Modifier.padding(start = 12.dp),
                                 color = Color.Black,
                                 fontSize = 14.sp,
                                 fontFamily = FontFamily(Font(R.font.pnfont_regular))
                             )
                             Text(
-                                text = stringResource(id = R.string.xoxlaysizmi),
+                                text = stringResource(id = R.string.do_you_want),
                                 modifier = Modifier.padding(start = 12.dp),
                                 color = Color.Black,
                                 fontSize = 14.sp,
@@ -438,7 +503,7 @@ object HomePage : Tab {
 
                                 ) {
                                 Text(
-                                    text = stringResource(id = R.string.shaxingizni_tas),
+                                    text = stringResource(id = R.string.verify_your_identity),
                                     color = Color.Black,
                                     fontSize = 12.sp,
                                     fontFamily = FontFamily(Font(R.font.pnfont_regular))
@@ -470,15 +535,24 @@ object HomePage : Tab {
                             .weight(1f)
                             .fillMaxHeight()
                             .padding(end = 6.dp)
-                            .shadow(elevation = 5.dp, RoundedCornerShape(16.dp))
+                            .shadow(elevation = 2.dp, RoundedCornerShape(16.dp))
                             .clip(RoundedCornerShape(16.dp))
                             .background(white)
+                            .clickable(
+                                interactionSource = MutableInteractionSource(),
+                                indication = null,
+                                enabled = true,
+                                onClickLabel = "",
+                                onClick = {
+                                    onEventDispatcher.invoke(HomeContract.Intent.OpenAddCardBottomDialog)
+                                })
                     ) {
                         Text(
                             modifier = Modifier.padding(top = 12.dp, start = 8.dp),
-                            text = stringResource(id = R.string.mening_kar),
+                            text = stringResource(id = R.string.my_cards),
                             fontSize = 16.sp,
-                            fontFamily = FontFamily(Font(R.font.pnfont_semibold))
+                            fontFamily = FontFamily(Font(R.font.pnfont_semibold)),
+                            color = black
                         )
                         Box(
                             modifier = Modifier
@@ -498,7 +572,7 @@ object HomePage : Tab {
                                 )
                                 Spacer(modifier = Modifier.height(16.dp))
                                 Text(
-                                    text = stringResource(id = R.string.kart_qosh),
+                                    text = stringResource(id = R.string.add_card),
                                     color = Color.Black,
                                     fontSize = 12.sp,
                                     fontFamily = FontFamily(
@@ -514,19 +588,21 @@ object HomePage : Tab {
                             .weight(1f)
                             .fillMaxHeight()
                             .padding(start = 6.dp)
-                            .shadow(elevation = 5.dp, RoundedCornerShape(16.dp))
+                            .shadow(elevation = 2.dp, RoundedCornerShape(16.dp))
                             .clip(RoundedCornerShape(16.dp))
                             .background(color = white)
                     ) {
                         Text(
                             modifier = Modifier.padding(top = 12.dp, start = 8.dp),
-                            text = stringResource(id = R.string.keshbek_his),
+                            text = stringResource(id = R.string.cashback_account),
                             fontSize = 16.sp,
-                            fontFamily = FontFamily(Font(R.font.pnfont_semibold))
+                            fontFamily = FontFamily(Font(R.font.pnfont_semibold)),
+                            color = black
+
                         )
                         Text(
                             modifier = Modifier.padding(top = 12.dp, start = 8.dp),
-                            text = stringResource(id = R.string.balans),
+                            text = stringResource(id = R.string.balance),
                             fontSize = 14.sp,
                             fontFamily = FontFamily(Font(R.font.pnfont_regular)),
                             color = textColor,
@@ -570,9 +646,10 @@ object HomePage : Tab {
                             ) {
                                 Text(
                                     modifier = Modifier.align(Alignment.CenterVertically),
-                                    text = stringResource(R.string.bugun),
+                                    text = stringResource(R.string.today),
                                     fontSize = 10.sp,
-                                    fontFamily = FontFamily(Font(R.font.pnfont_regular))
+                                    fontFamily = FontFamily(Font(R.font.pnfont_regular)),
+                                    color = black
                                 )
                                 Box(
                                     modifier = Modifier
@@ -605,7 +682,9 @@ object HomePage : Tab {
 
                 CardAvia(clickButton = {}, clickAviaCard = {})
                 CardMyHouse()
-                CardMIB()
+                CardMIB(clickRoot = {
+                    onEventDispatcher(HomeContract.Intent.OpenIdentityVerificationScreen)
+                })
                 Spacer(modifier = Modifier.height(56.dp))
 
 
@@ -615,9 +694,8 @@ object HomePage : Tab {
     }
 
 
-
-
 }
+
 @Composable
 fun Card(
     modifier: Modifier,
@@ -647,6 +725,7 @@ fun Card(
         }
     }
 }
+
 @Composable
 @Preview(showBackground = true)
 fun PreviewMainScreen() {

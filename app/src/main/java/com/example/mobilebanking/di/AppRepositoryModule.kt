@@ -1,7 +1,7 @@
 package com.example.mobilebanking.di
 
 import com.example.mobilebanking.domain.AppRepository
-import com.example.mobilebanking.domain.AppRepositoryImpl
+import com.example.mobilebanking.domain.impl.AppRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

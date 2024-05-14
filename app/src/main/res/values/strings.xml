@@ -1,39 +1,4 @@
 <resources>
-    <string name="mening_pulim">"Mening pulim"</string>
-    <string name="paynet_carta">Paynet karta</string>
-    <string name="bu_nima">Bu nima?</string>
-    <string name="toldirish">To\'ldirish</string>
-    <string name="otkazish">O\'tkazish</string>
-    <string name="tolash">To\'lash</string>
-    <string name="tanga">tanga</string>
-    <string name="paynet_xaf">Paynet xafsizlik</string>
-    <string name="xaf_oshi">Xafsizlikni oshirishni</string>
-    <string name="xoxlaysizmi">xoxlaysizmi?</string>
-    <string name="shaxingizni_tas">Shaxsingizni tasdiqlang</string>
-    <string name="keshbek_his">Keshbek-hisob</string>
-    <string name="mening_kar">Mening kartalarim</string>
-    <string name="kart_qosh">Karta qo\'shish</string>
-    <string name="balans">Balans</string>
-    <string name="bugun">Bugun</string>
-    <string name="foydali_ishonchli">Foydali va ishonchli</string>
-    <string name="chipta_sotib">Chipta sotib olish</string>
-    <string name="mening_uyim">Mening uyim</string>
-    <string name="elektr_gaz_va_aloqa">Elektr gaz va aloqa o\'z vaqtida to\'lang</string>
-    <string name="uyni_yaratish">Uyni yaratish</string>
-    <string name="qarzdorlikni_bilib">Qarzdorlikni bilib oling</string>
-    <string name="ilovada_soliq_va">ilovada Soliq va MIB dan</string>
-    <string name="shaxsni_tasdiqlang">Shaxsni tasdiqlang</string>
-    <string name="otkazmalar">O\'tkazmalar</string>
-    <string name="karta_yoki_telefon">Karta yoki telefon</string>
-    <string name="shablonglar">Shablonlar</string>
-    <string name="qoshish">Qo\'shish</string>
-    <string name="rossiya">Rossiyaga</string>
-    <string name="ozbekiston">O\'zbekistonga</string>
-    <string name="bekor_qilish">Bekor qilish</string>
-    <string name="ozimning_kartamga">O\'zimning kartamga</string>
-    <string name="paynet_kart">Paynet- kartamga</string>
-    <string name="xalqaro_ot">Xalqaro o\'tkazmalar</string>
-
 
     <string name="app_name">Mobile-Banking</string>
     <string name="phone_number">Phone number</string>
@@ -50,6 +15,32 @@
     <string name="yout_phone_number">Telefon raqamingiz</string>
     <string name="_2006">+998 95 917 9730</string>
     <string name="forget_pin">PIN-kodni\nunutdngiz\nmi?</string>
+
+    <!--    Dialog text-->
+    <string name="howToAddCard">Qanday  kartani qo\'shish kerak?</string>
+    <string name="uzCard">O\'zbekiston kartasi</string>
+    <string name="ruCard">Rossiya kartasi</string>
+    <string name="paynetInfo"> "UZPAYNET kompaniyasi O'zbekiston bozorida 2005-yildan buyon faoliyat yuritib kelmoqda. Shudavr ichida 1500 dan ziyod turli xizmatlarprovayderlari ulangan boʻ'lib, ularnig xizmatlariuchun to'lovlarni "Paynet Qulay Pul" mobil ilovasiorqali hamda butun mamlakatimiz bo'ylab 24 000ta toʻlovni qabul qilish punktlaridan amalga oshirish mumkin.\n\nKompaniya erishilgan natijalar bilan cheklanibqolmaydi, koʻrsatilayotgan xizmatlar turlarinirivojlantiradi va kengaytirib boradi".\n\nVersiya: 7.2.10.202404234</string>
+    <string name="paynetLink">www.paynet.uz</string>
+    <string name="publicOffering">Ommaviy oferta</string>
+    <string name="paymentBonusCard">Paynet bonus karta ofertasi</string>
+    <string name="paymentElectronMoneyOffering">Paynet elektron pul tizimidan foydalanish bo\'yicha oferta</string>
+    <string name="paymentYouLove">Paynet sizga yoqadimi?</string>
+    <string name="paymentYouLoveAbout">Biz ilovani yaxshilash maqsadida barcha izohlarni diqqat bilan o\'qib chiqamiz.</string>
+    <string name="btn_everything_is_fine">Hammmasi yaxshi</string>
+    <string name="btn_something">Nimadir to\'g\'ri emas</string>
+
+
+    <!--    App Setting Screen-->
+    <string name="app_setting">Ilova sozlamalari</string>
+    <string name="app_language">Ilova tili</string>
+    <string name="safety">Xavfsizlik</string>
+    <string name="changePinCode">PIN-kodni o\'zgartirish</string>
+    <string name="FaceId">Face ID (Touch ID)</string>
+    <string name="devices">Qurilmalar</string>
+    <string name="addition">Qo\'shimcha</string>
+    <string name="services_directory">Xizmatlar katalogini yangilash</string>
+    <string name="updated">Yangilandi</string>
 
     <!--     MAIN SCREEN  -->
     <string name="my_money">Mening pulim</string>
@@ -73,10 +64,17 @@
     <string name="rus_to_uzb">Rossiya Uzbekiston</string>
     <string name="uzb_to_rus">Uzbekiston Rossiya</string>
     <string name="rust_to_uzb_description">Rossiyada qabul qiluvchinig RF karta raqamini kiriting</string>
-    <string name="card_number">Karta raqami</string>
+    <string name="paymentSecurity">Paynet xavfsizlik</string>
+    <string name="increasingPoverty">Xavsizlikni oshirish</string>
+    <string name="do_you_want">Xoxlaysizmi</string>
+    <string name="verify_your_identity">Shaxsingizni tasdiqlang</string>
+    <string name="my_cards">Mening kartalarim</string>
+    <string name="cashback_account">Kashbak-hisob</string>
+    <string name="balance">Balans</string>
+    <string name="today">Bugun</string>
+
 
     <!--    Payment Screen-->
-
     <string name="qr_code">QR kod</string>
     <string name="payment">To\'lov</string>
     <string name="search">Izlash</string>
@@ -99,9 +97,29 @@
     <string name="transport_taxi">Transport va taksi</string>
     <string name="medicine">Tibbiyot</string>
     <string name="another_payment">Boshqa to\'lovlar</string>
+    <string name="know_your_debt">Qarzdorlikni bilib oling</string>
+    <string name="app_tax_mib">ilovada Soliq va MIB dan</string>
+    <string name="paynet_carta">Paynet karta</string>
+    <string name="useful_and_reliable">Foydali va ishonchli</string>
+    <string name="buy_a_ticket">Chipta sotib olish</string>
+    <string name="electric_gas_connection">Elektr gaz va aloqa o\'z vaqtida to\'lang</string>
+    <string name="create_home">Uyni yaratish</string>
+    <string name="cancellation">Bekor qilish</string>
+    <string name="templates">Shablonlar</string>
+    <string name="payment_card">Paynet- kartamga</string>
+    <string name="uzbekistan">O\'zbekiston</string>
+
+    <!--    Add Card Screen-->
+    <string name="add_card">Karta qo\'shish</string>
+    <string name="card_number">Karta raqami</string>
+    <string name="ooYY">oo/yy</string>
+    <string name="btn_continue">Davom etish</string>
+
 
     <!--    create PIN code -->
+
     <string name="create_pin_code">PIN-kod yarating</string>
+    <string name="create_pin_code_reset">PIN-kod takrorlang</string>
     <string name="add_code_in_sms">SMSdagi kodni kiriting</string>
     <string name="sent_to_number">raqamiga yubordik</string>
     <string name="send_new_code">Yangi kodni yuborish</string>
@@ -115,6 +133,120 @@
     <string name="forget_pin_code">PIN kodni unitdingizmi ?</string>
     <string name="incorrect_pin_code">PIN-kod noto\'g\'ri</string>
     <string name="count_attempt_left">ta urinish qoldi</string>
+
+
+    <!--    Profil Screen-->
+    <string name="profil">Profil</string>
+    <string name="buttonVerifyIdentity">Shaxsni tasdiqlang</string>
+    <string name="support">Qo\'llab-quvvatlash</string>
+    <string name="chat_Assistant">Chat yordamchisi</string>
+    <string name="toCall">Qo\'ng\'iroq qilish</string>
+    <string name="emailWrite">Email yozish</string>
+    <string name="usefulInformation">Foydali ma\'lumot</string>
+    <string name="paynetAbaut">Paynet haqida</string>
+    <string name="reference">Ma\'lumotnoma</string>
+    <string name="location">Joylashuv</string>
+    <string name="appSetting">Ilova sozlamalari</string>
+    <string name="appRate">Ilovani baholang</string>
+    <string name="logAutProfil">Profildan chiqish</string>
+
+
+    <!--    Register Screen-->
+    <string name="appLanguage">Ilova tili</string>
+    <string name="russia">Русский</string>
+    <string name="uzbek">O\'zbek</string>
+    <string name="language_ru">Язык</string>
+    <string name="language_uz">Til</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="configure">Configure</string>
+    <string name="add_widget">Add widget</string>
+    <string name="app_widget_description">This is an app widget description</string>
+    <string name="_1_eur">€1 EUR</string>
+    <string name="_1_usd">$1 USD</string>
+    <string name="_1_rub">₽1 RUB</string>
+
+    <!--    Payment card screen-->
+    <string name="paymentCard">Paynet karta</string>
+    <string name="wallet">Wallet</string>
+    <string name="spending_more_money_on_paynet_card">Paynet kartasida ko\'proq pul sarflash</string>
+    <string name="spending_more_money_on_paynet_card2">va saqlash uchun</string>
+    <string name="cash_withdrawal">Naqd pul yechish</string>
+    <string name="payment_agent">Paynet agent orqali</string>
+    <string name="for_transfer_qrCod">O\'tkazmalar uchun qr-kod</string>
+    <string name="there_is_no_payment_yet">Hozircha to\lovlar mavjud emas</string>
+    <string name="offer">Oferta</string>
+    <string name="conditions_and_restrictions">Shartlar va cheklovlar</string>
+    <string name="payments">To\'lovlar</string>
+
+    <!--    What is payment Card Screen-->
+    <string name="what_is_payment_card">Paynet karta nima?</string>
+    <string name="the_funds">Mablag\'ni </string>
+    <string name="without_commission">komissiyasiz</string>
+    <string name="fill_and_transfer">to\'ldiring va o\'tkazing</string>
+    <string name="toFill">To\'ldirish uchun 0%</string>
+    <string name="payment_agent_infokiosk">Paynet agentida, infokioskda yoki ilovadagi</string>
+    <string name="on_a_bank_card">bank kartasida</string>
+    <string name="toTransfer">O\'tkazmalar  uchun 0%</string>
+    <string name="to_other_paynet_cards">Boshqa Paynet kartalariga</string>
+    <string name="inPaymentAgent">Paynet agentida</string>
+    <string name="card_payments">Karta yordamidagi to\'lovlar</string>
+    <string name="services_of_paynet_1000">Paynetning 1000 ta xizmatidan istalgani uchun</string>
+    <string name="using_a_paynet_card">Paynet kartasi yordamida to\'lov qilish mumkin</string>
+    <string name="up_to_22_cashback">2.2% gacha keshbek</string>
+    <string name="pay_by_paynet_card">Paynet kartasi orqali to\'lovni amalga</string>
+    <string name="cashback_to_your">oshirganingizda keshbek hisobingizga keshbek</string>
+    <string name="fillWith">bilan to\'ldiring</string>
+    <string name="btn_restrictions_and_conditions">Cheklovlar va shartalarni bilish</string>
+
+    <!--    Conditions Screen-->
+    <string name="confirm_your_identity_paynet_card">Paynet kartangizdan pul sarflash va saqlash uchun</string>
+    <string name="verifyYourIdentity">shaxsingizni tasdiqlang</string>
+    <string name="your_situation">Sizning holatingiz</string>
+    <string name="anonymous">Anonim</string>
+    <string name="improve_the_situation">Holatni yaxshilang</string>
+    <string name="confirmed">Tasdiqlangan</string>
+    <string name="how_much_can_stored">Qancha saqlash mumkin</string>
+    <string name="sum_1700_000">1 700 000</string>
+    <string name="sum_170_000_000">170 000 000</string>
+    <string name="sum_340_000">340 000</string>
+    <string name="sum_34_000_000">34 000 000</string>
+    <string name="yes">Ha</string>
+    <string name="no">Yo\'q</string>
+    <string name="how_much_spend_month">Oyiga qancha sarflash mumkin</string>
+    <string name="payments_transfers_and_cash">(to\'lovlar, o\'tkazmalar va naqd pul)</string>
+    <string name="how_much_you_spend">Bir vaqtning o\'zida qancha pul sarflashingiz</string>
+    <string name="possible">mumkin</string>
+    <string name="maximum_amount_for_payment">(to\'lov o\'tkazmalar uchun maksimal miqdor)</string>
+    <string name="cash_can_withdrawn">Naqd pul yechib olish mumkin</string>
+    <string name="transferToUzCard_HUMO">Uzcard,HUMO kartalariga o\'tkazish mumkinmi</string>
+    <string name="can_transferred_Paynet_cards">Paynet kartalariga o\'tkazish mumkin</string>
+    <string name="detailed_conditions">Batafsil shartlar</string>
+    <string name="commission09">Komissiya 0.9%</string>
+    <string name="no_commission">Komissiyasiz</string>
+    <string name="useful">Foydali</string>
+
+
+    <!--    IdentityVerificationScreen-->
+
+    <string name="identityVerification">Shaxsni tasdiqlash</string>
+    <string name="your_document">Hujjatingizni</string>
+    <string name="scan">skanerlang</string>
+    <string name="increase_these_limits">Bu limitlarni oshirish va Paynet kartadan naqd pul</string>
+    <string name="required_for_unlocking">yechib olish uchun zarur.</string>
+    <string name="you_few_minutes">Bir necha daqiqa vaqtingizni oladi.</string>
+    <string name="you_are_document_selfie">Hujjatingizni skanerlashingiz va keyin selfi olishingiz</string>
+    <string name="will_be_needed">kerak bo\'ladi.</string>
+    <string name="passport_scan">Pasportni skanerlash</string>
+    <string name="id_card_scan">ID-kartani skanerlash</string>
+    <string name="manual_data_entry">Ma\'lumotlarni qo\'lda kiritish</string>
+
+
+
+
+
+
+
+    
 
 
 </resources>

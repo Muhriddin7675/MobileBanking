@@ -53,6 +53,7 @@ import com.example.mobilebanking.presentantion.screen.pager.transfer.TransfersPa
 import com.example.mobilebanking.ui.componnent.AddItem
 import com.example.mobilebanking.ui.componnent.CardStartTextEndImage
 import com.example.mobilebanking.ui.theme.MobileBankingTheme
+import com.example.mobilebanking.ui.theme.black
 import com.example.mobilebanking.ui.theme.myCardColor
 import com.example.mobilebanking.ui.theme.paymentCard
 import com.example.mobilebanking.ui.theme.rosCardColor
@@ -126,7 +127,7 @@ object TransfersPage : Tab {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = stringResource(id = R.string.otkazmalar),
+                    text = stringResource(id = R.string.transfers),
                     fontSize = 32.sp,
                     color = Color.Black,
                     fontFamily = FontFamily(Font(R.font.pnfont_semibold)),
@@ -134,7 +135,7 @@ object TransfersPage : Tab {
                 )
 
                 Text(
-                    text = stringResource(id = R.string.bekor_qilish),
+                    text = stringResource(id = R.string.cancellation),
                     fontFamily = FontFamily(Font(R.font.pnfont_regular)),
                     color = Color.Black,
                     modifier = Modifier
@@ -194,7 +195,7 @@ object TransfersPage : Tab {
             Spacer(modifier = Modifier.height(24.dp))
 
             Text(
-                text = stringResource(R.string.shablonglar),
+                text = stringResource(R.string.templates),
                 fontFamily = FontFamily(Font(R.font.pnfont_semibold)),
                 fontSize = 20.sp,
                 modifier = Modifier.padding(start = 16.dp)
@@ -229,7 +230,7 @@ object TransfersPage : Tab {
                         .clip(RoundedCornerShape(16.dp))
                         .background(myCardColor)
                         .clickable {},
-                    text = R.string.ozimning_kartamga, image = R.drawable.self_transfer_to_card
+                    text = R.string.my_cards, image = R.drawable.self_transfer_to_card
                 )
 
                 CardStartTextEndImage(
@@ -240,7 +241,7 @@ object TransfersPage : Tab {
                         .weight(1f)
                         .clip(RoundedCornerShape(16.dp))
                         .background(paymentCard),
-                    text = R.string.paynet_kart,
+                    text = R.string.payment_card,
                     image = R.drawable.self_transfer_to_wallet
                 )
             }
@@ -248,9 +249,10 @@ object TransfersPage : Tab {
             Spacer(modifier = Modifier.height(24.dp))
 
             Text(
-                text = stringResource(R.string.shablonglar),
+                text = stringResource(R.string.templates),
                 fontFamily = FontFamily(Font(R.font.pnfont_semibold)),
                 fontSize = 20.sp,
+                color = black,
                 modifier = Modifier.padding(start = 16.dp)
             )
 
@@ -270,9 +272,10 @@ object TransfersPage : Tab {
 
             Text(
                 modifier = Modifier.padding(start = 16.dp),
-                text = stringResource(R.string.xalqaro_ot),
+                text = stringResource(R.string.international_transfers),
                 fontFamily = FontFamily(Font(R.font.pnfont_semibold)),
-                fontSize = 20.sp
+                fontSize = 20.sp,
+                color = black
             )
             Row(
                 modifier = Modifier
@@ -280,17 +283,6 @@ object TransfersPage : Tab {
                     .height(150.dp)
                     .padding(top = 16.dp, start = 16.dp, end = 16.dp)
             ) {
-//                CardStartTextEndImage(
-//                    modifier = Modifier
-//                        .fillMaxHeight()
-//                        .padding(end = 6.dp)
-//                        .shadow(elevation = 3.dp, RoundedCornerShape(16.dp))
-//                        .weight(1f)
-//                        .clip(RoundedCornerShape(16.dp))
-//                        .background(myCardColor),
-//                    text = R.string.rossiya, image = R.drawable.self_transfer_to_card
-//                )
-
                 Column(
                     modifier = Modifier
                         .fillMaxHeight()
@@ -301,11 +293,12 @@ object TransfersPage : Tab {
                         .background(rosCardColor)
                 ) {
                     Text(
-                        text = stringResource(R.string.rossiya),
+                        text = stringResource(R.string.russia),
                         modifier = Modifier.padding(
                             start = 12.dp,
                             top = 12.dp
                         ),
+                        color = black,
                         fontFamily = FontFamily(Font(R.font.pnfont_regular)),
                         fontSize = 20.sp
                     )
@@ -329,11 +322,12 @@ object TransfersPage : Tab {
                         .background(uzCardColor)
                 ) {
                     Text(
-                        text = stringResource(R.string.ozbekiston),
+                        text = stringResource(R.string.uzbekistan),
                         modifier = Modifier.padding(
                             start = 12.dp,
                             top = 12.dp
                         ),
+                        color = black,
                         fontFamily = FontFamily(Font(R.font.pnfont_regular)),
                         fontSize = 20.sp
                     )
@@ -347,9 +341,8 @@ object TransfersPage : Tab {
 
                     )
                 }
-                Spacer(modifier = Modifier.height(56.dp))
-
             }
+            Spacer(modifier = Modifier.height(72.dp))
 
 
         }

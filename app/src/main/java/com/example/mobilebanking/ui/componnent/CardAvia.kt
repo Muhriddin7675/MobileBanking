@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -31,7 +30,6 @@ import androidx.compose.ui.unit.sp
 import com.example.mobilebanking.R
 import com.example.mobilebanking.ui.theme.MobileBankingTheme
 import com.example.mobilebanking.ui.theme.aviaCardColor
-import com.example.mobilebanking.ui.theme.aviaTextColor
 import com.example.mobilebanking.ui.theme.white
 
 @Composable
@@ -57,29 +55,15 @@ fun CardAvia(
                         .padding(start = 12.dp, top = 12.dp)
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.paynet),
+                        painter = painterResource(id = R.drawable.ic_paynet_avia_logo),
                         contentDescription = null,
                         modifier = Modifier
-                            .size(24.dp)
                             .align(Alignment.Bottom)
                     )
-                    Text(
-                        text = "paynet",
-                        color = Color.Black,
-                        fontSize = 24.sp,
-                        fontFamily = FontFamily(Font(R.font.pnfont_semibold))
-                    )
-                    Text(
-                        text = " avia",
-                        color = aviaTextColor,
-                        fontSize = 24.sp,
-                        fontFamily = FontFamily(Font(R.font.pnfont_semibold))
-                    )
-
 
                 }
                 Text(
-                    text = stringResource(id = R.string.foydali_ishonchli),
+                    text = stringResource(id = R.string.useful_and_reliable),
                     modifier = Modifier.padding(start = 12.dp, top = 4.dp),
                     color = Color.Black,
                     fontSize = 14.sp,
@@ -101,7 +85,7 @@ fun CardAvia(
 
                     ) {
                     Text(
-                        text = stringResource(id = R.string.chipta_sotib),
+                        text = stringResource(id = R.string.buy_a_ticket),
                         color = Color.Black,
                         fontSize = 13.sp,
                         fontFamily = FontFamily(Font(R.font.pnfont_regular))

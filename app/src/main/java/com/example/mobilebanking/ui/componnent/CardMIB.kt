@@ -1,7 +1,10 @@
 package com.example.mobilebanking.ui.componnent
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -31,8 +34,9 @@ import com.example.mobilebanking.ui.theme.MobileBankingTheme
 import com.example.mobilebanking.ui.theme.aviaCardColor
 import com.example.mobilebanking.ui.theme.white
 
+@SuppressLint("UnrememberedMutableInteractionSource")
 @Composable
-fun CardMIB() {
+fun CardMIB(clickRoot: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -40,20 +44,27 @@ fun CardMIB() {
             .shadow(elevation = 3.dp, RoundedCornerShape(16.dp))
             .clip(RoundedCornerShape(16.dp))
             .background(aviaCardColor)
+            .clickable(interactionSource = MutableInteractionSource(),
+                indication = null,
+                enabled = true,
+                onClickLabel = null,
+                onClick = {
+                    clickRoot.invoke()
+                })
     )
     {
         Row(Modifier.fillMaxWidth()) {
             Column(modifier = Modifier.weight(1f)) {
                 Text(
                     modifier = Modifier.padding(top = 12.dp, start = 12.dp),
-                    text = stringResource(id = R.string.qarzdorlikni_bilib),
+                    text = stringResource(id = R.string.know_your_debt),
                     color = Color.Black,
                     fontSize = 18.sp,
                     fontFamily = FontFamily(Font(R.font.pnfont_semibold))
                 )
 
                 Text(
-                    text = stringResource(id = R.string.ilovada_soliq_va),
+                    text = stringResource(id = R.string.app_tax_mib),
                     modifier = Modifier.padding(start = 12.dp, top = 4.dp),
                     color = Color.Black,
                     fontSize = 14.sp,
@@ -73,7 +84,7 @@ fun CardMIB() {
 
                     ) {
                     Text(
-                        text = stringResource(id = R.string.shaxsni_tasdiqlang),
+                        text = stringResource(id = R.string.buttonVerifyIdentity),
                         color = Color.Black,
                         fontSize = 13.sp,
                         fontFamily = FontFamily(Font(R.font.pnfont_regular))
@@ -103,7 +114,7 @@ fun CardMIB() {
 @Composable
 fun FunctionPreview() {
     MobileBankingTheme {
-        CardMIB()
+        CardMIB({})
     }
 
 }

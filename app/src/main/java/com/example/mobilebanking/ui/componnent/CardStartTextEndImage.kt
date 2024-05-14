@@ -17,6 +17,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.mobilebanking.R
+import com.example.mobilebanking.ui.theme.black
 
 
 @Composable
@@ -35,6 +36,7 @@ fun CardStartTextEndImage(
                 .weight(1f)
                 .padding(start = 12.dp),
             fontSize = 16.sp,
+            color = black,
             fontFamily = FontFamily(Font(R.font.pnfont_regular))
 
         )

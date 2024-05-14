@@ -30,22 +30,21 @@ val homeCardColor = Color(0xFFD5F2E4)
 val mibCardColor = Color(0xFFE6F1FC)
 val aviaTextColor = Color(0xFF9BBBBC)
 val textButtonGreenColor = Color(0xFF13A539)
+val textLinkColor = Color(0xFF2196F3)
 
+val disableContentColor = Color(0xFF9DDCC4)
 val myCardColor = Color(0xFFFCDDF1)
 val paymentCard = Color(0xFFAAFEE2)
 val rosCardColor = Color(0xFFD0F3FC)
 val uzCardColor = Color(0xFFF2EDFD)
 val addIconColor = Color(0xFF88898C)
 val circleDefaultColor = Color(0xFF8A9297)
-
-
-
 val errorColorX = Color(0xFFF44336)
 val backgroundColorX = Color(0xFFDFD8D8)
 val textColorX = Color(0xFF1D1C1C)
 val iconColorX = Color(0xFF87CC37)
-val gray = Color(0xFFECEDEF)
-val disabledColor = Color(0xFFDFFBE4)
+val gray = Color(0xFFBBBBBB)
+val disabledColors = Color(0xFFDFFBE4)
 val appColor = Color(0xFFFFFFFF)
 val textColorLight = Color(0xFF000000)
 val textColorLight70 = Color(0xFF6f7579)
@@ -53,6 +52,7 @@ val textColorLight80 = Color(0xFF515563)
 val textColorLight90 = Color(0xFF242424)
 val pinComponentGray = Color(0xFFf2f4f9)
 val whiteLight = Color(0xFFF6F6F8)
+
 
 // PIN SCREEN
 val pinScreenBgLight = Color(0xFFFEFEFE)
@@ -84,4 +84,11 @@ val internetTVCardColor = Color(0xFFD0F3FC)
 val communalPaymentCardColor = Color(0xFFD6F8E8)
 val educationCardColor = Color(0xFFFCE4DE)
 val publicServicesCardColor = Color(0xFFECE6FD)
+
+//AddCardScreen
+val addCardStartColor = Color(0xFF0B5FAD)
+val addCardEndColor = Color(0xFF42E4C7)
+val btnInvisibleColor = Color(0xFF8AD6A1)
+val iconColor = Color(0xFF6E7279)
+
 

@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.mobilebanking.R
 import com.example.mobilebanking.ui.theme.MobileBankingTheme
+import com.example.mobilebanking.ui.theme.black
 import com.example.mobilebanking.ui.theme.requisiteCardColor
 
 @Composable
@@ -46,6 +47,7 @@ fun CardTextEndIcon(
                 .padding(start = 12.dp)
                 .padding(end = 56.dp),
             fontSize = 18.sp,
+            color = black,
             fontFamily = FontFamily(Font(R.font.pnfont_regular))
         )
         Image(
