@@ -11,8 +11,10 @@ import androidx.lifecycle.lifecycleScope
 import cafe.adriel.voyager.navigator.CurrentScreen
 import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.navigator.bottomSheet.BottomSheetNavigator
+import com.example.mobilebanking.domain.uscase.GetAllCardUseCase
 import com.example.mobilebanking.presentantion.screen.splash.SplashScreen
 import com.example.mobilebanking.ui.theme.MobileBankingTheme
+import com.example.mobilebanking.util.MyDataLoader
 import com.example.mobilebanking.util.NetworkStatusValidator
 import com.example.mobilebanking.util.changeColorStatusBar
 import com.example.mobilebanking.util.navigation.NavigationHandler
@@ -26,11 +28,14 @@ import javax.inject.Inject
 class MainActivity : FragmentActivity() {
     @Inject
     lateinit var networkStatusValidator: NetworkStatusValidator
-
+    @Inject
+    lateinit var useCase: GetAllCardUseCase
     @Inject
     lateinit var handler: NavigationHandler
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        MyDataLoader.init(useCase)
+
 
         changeColorStatusBar(color = R.color.bg_app, true)
         networkStatusValidator.init(

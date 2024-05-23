@@ -28,7 +28,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.core.screen.Screen
 import com.example.mobilebanking.R
-import com.example.mobilebanking.data.MarkerData
+import com.example.mobilebanking.data.model.MarkerData
 import com.example.mobilebanking.ui.theme.MobileBankingTheme
 import com.example.mobilebanking.ui.theme.gray
 import com.example.mobilebanking.ui.theme.textColor

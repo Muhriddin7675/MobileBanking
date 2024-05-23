@@ -17,6 +17,8 @@ interface DataEntryContract {
     }
 
     sealed interface Intent {
+        data class SendPassportIdAndJshshir(val passportId: String,val jshshir: String) : Intent
+
         data object PopBackStack : Intent
     }
 }

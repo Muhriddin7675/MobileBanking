@@ -37,7 +37,7 @@ import androidx.compose.ui.unit.sp
 import com.example.mobilebanking.R
 import com.example.mobilebanking.ui.theme.MobileBankingTheme
 import com.example.mobilebanking.ui.theme.Typography
-import com.example.mobilebanking.ui.theme.gray
+import com.example.mobilebanking.ui.theme.textInputColor
 
 @Composable
 fun CodeTextField(
@@ -91,8 +91,8 @@ fun CodeTextField(
                                 .clip( shape = RoundedCornerShape(16.dp))
                                 .border(
                                     width = 1.dp,
-                                    color = if (currentChar != null) Color.White else gray,
-                                ) .background(gray)
+                                    color = if (currentChar != null) Color.White else textInputColor,
+                                ) .background(textInputColor)
                                 .align(Alignment.CenterVertically),
                         ) {
                             if (currentChar != null) {

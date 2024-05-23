@@ -264,8 +264,7 @@ class IdentityVerificationScreen : Screen {
                             enabled = true,
                             onClickLabel = null,
                             onClick = {
-
-
+                                onEventDispatcher.invoke(IdentityVerificationContract.Intent.OpenDataEntryScreen)
                             }),
                 ) {
                     Text(

@@ -4,6 +4,7 @@ plugins {
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
     id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin") version "2.0.0"
+    id("kotlin-parcelize")
 
 }
 
@@ -33,31 +34,44 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
     buildFeatures {
         compose = true
     }
+
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
     }
+
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+
     buildFeatures {
         viewBinding = true
     }
+
+    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+        kotlinOptions {
+            freeCompilerArgs += "-Xcontext-receivers"
+        }
+    }
+    android{}
 }
 
 dependencies {
-    implementation("androidx.core:core-ktx:1.13.0")
+    implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
     implementation("androidx.activity:activity-compose:1.9.0")
     implementation(platform("androidx.compose:compose-bom:2023.08.00"))
@@ -67,6 +81,12 @@ dependencies {
     implementation("androidx.compose.material3:material3")
     implementation("androidx.navigation:navigation-runtime-ktx:2.7.7")
     implementation("androidx.glance:glance-appwidget:1.0.0")
+    implementation("com.google.android.gms:play-services-wallet:19.3.0")
+    implementation("androidx.camera:camera-core:1.3.3")
+    implementation("com.google.mlkit:barcode-scanning-common:17.0.0")
+    implementation("com.google.android.gms:play-services-mlkit-barcode-scanning:18.3.0")
+    implementation("com.google.android.gms:play-services-mlkit-text-recognition-common:19.0.0")
+    implementation("com.google.android.gms:play-services-mlkit-text-recognition:19.0.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -158,6 +178,30 @@ dependencies {
     //widgets
     implementation("androidx.glance:glance:1.0.0")
     implementation("androidx.glance:glance-appwidget-preview:1.0.0-alpha06")
+
+
+    // CameraX
+    implementation ("androidx.camera:camera-camera2:1.3.3")
+    implementation ("androidx.camera:camera-lifecycle:1.3.3")
+    implementation ("androidx.camera:camera-view:1.3.3")
+
+    // Jetpack Compose
+    implementation ("androidx.compose.ui:ui:1.6.7")
+    implementation ("androidx.compose.material:material:1.6.7")
+    implementation ("androidx.activity:activity-compose:1.9.0")
+
+    // ML Kit Barcode Skanneri
+    implementation ("com.google.mlkit:barcode-scanning:17.2.0")
+
+    //gson
+    implementation ("com.google.code.gson:gson:2.10.1")
+
+    //room
+    val room_version = "2.6.1"
+    implementation("androidx.room:room-runtime:$room_version")
+    annotationProcessor("androidx.room:room-compiler:$room_version")
+    kapt("androidx.room:room-compiler:$room_version")
+
 
 
 }

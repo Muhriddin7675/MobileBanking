@@ -2,10 +2,15 @@ package com.example.mobilebanking.presentantion.screen.register
 
 import RegisterScreenContract
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import cafe.adriel.voyager.core.model.ScreenModel
 import com.example.mobilebanking.data.local.pref.MyShared
+import com.example.mobilebanking.data.remote.request.SignUpUserDataRequest
 import com.example.mobilebanking.domain.AppRepository
+import com.example.mobilebanking.util.myLog
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.postSideEffect
 import org.orbitmvi.orbit.syntax.simple.reduce
@@ -28,8 +33,8 @@ class RegisterScreenModel @Inject constructor(
                 val password = intent.phoneNumber
                 val phone = "+998$password"
                 myShared.setPassword(password)
-                direction.openConfirmationScreen()
-         /*       repository.signIn(phone = phone, password = password).onEach {
+//                direction.openConfirmationScreen()
+                repository.signIn(phone = phone, password = password).onEach {
                     it.onSuccess {
                         myShared.setSingInSignUpState(true)
                         direction.openConfirmationScreen()
@@ -53,7 +58,7 @@ class RegisterScreenModel @Inject constructor(
                             }
                         }.launchIn(viewModelScope)
                     }
-                }.launchIn(viewModelScope)*/
+                }.launchIn(viewModelScope)
             }
 
             is RegisterScreenContract.Intent.ShowToast -> {

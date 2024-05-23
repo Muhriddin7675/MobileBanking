@@ -2,6 +2,12 @@ package com.example.mobilebanking.di
 
 import com.example.mobilebanking.presentantion.screen.addcard.AddCardDirection
 import com.example.mobilebanking.presentantion.screen.addcard.AddCardDirectionImpl
+import com.example.mobilebanking.presentantion.screen.allcard.AllCardDirection
+import com.example.mobilebanking.presentantion.screen.allcard.AllCardDirectionImpl
+import com.example.mobilebanking.presentantion.screen.card_details.CardDetailsDirections
+import com.example.mobilebanking.presentantion.screen.card_details.CardDetailsDirectionsImp
+import com.example.mobilebanking.presentantion.screen.card_theme.CardThemeDirections
+import com.example.mobilebanking.presentantion.screen.card_theme.CardThemeDirectionsImp
 import com.example.mobilebanking.presentantion.screen.coditions.ConditionsDirection
 import com.example.mobilebanking.presentantion.screen.coditions.ConditionsDirectionImpl
 import com.example.mobilebanking.presentantion.screen.comfirmation.ConfirmDirection
@@ -102,7 +108,16 @@ interface DirectionModule {
     fun identityVerificationDirection(impl: IdentityVerificationDirectionImpl): IdentityVerificationDirection
 
     @Binds
-    fun dataEntryDirection(impl: DataEntryDirectionImpl):DataEntryDirection
+    fun dataEntryDirection(impl: DataEntryDirectionImpl): DataEntryDirection
+
+    @Binds
+    fun cardDetailDirection(impl: CardDetailsDirectionsImp): CardDetailsDirections
+
+    @Binds
+    fun cardThemeDirection(impl:CardThemeDirectionsImp): CardThemeDirections
+
+    @Binds
+    fun allCardDirection(impl: AllCardDirectionImpl): AllCardDirection
 
 
 }

@@ -1,3 +1,5 @@
+package com.example.mobilebanking.ui.transformation
+
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.input.OffsetMapping
 import androidx.compose.ui.text.input.TransformedText
@@ -7,6 +9,7 @@ object CardYearTransformation : VisualTransformation {
     override fun filter(text: AnnotatedString): TransformedText {
         return maskFilter(text)
     }
+
     private fun maskFilter(text: AnnotatedString): TransformedText {
         val trimmed = if (text.text.length >= 9) text.text.substring(0..8) else text.text
         var out = ""
@@ -33,6 +36,7 @@ object CardYearTransformation : VisualTransformation {
             }
         }
 
-        return TransformedText(AnnotatedString(out), numberOffsetTranslator)
+
+        return TransformedText(AnnotatedString(out.toString()), numberOffsetTranslator)
     }
 }

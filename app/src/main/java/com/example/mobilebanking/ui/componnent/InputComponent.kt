@@ -37,8 +37,8 @@ import androidx.compose.ui.unit.sp
 import com.example.mobilebanking.R
 import com.example.mobilebanking.ui.theme.MobileBankingTheme
 import com.example.mobilebanking.ui.theme.errorColorX
-import com.example.mobilebanking.ui.theme.gray
 import com.example.mobilebanking.ui.theme.textColorX
+import com.example.mobilebanking.ui.theme.textInputColor
 import com.example.mobilebanking.ui.transformation.PhoneMaskTransformation
 import com.example.mobilebanking.util.PHONE_NUMBER_LENGTH
 
@@ -85,11 +85,11 @@ fun PhoneInputComponent(
                     modifier = Modifier
                         .padding(horizontal = 16.dp)
                         .clip(RoundedCornerShape(16.dp))
-                        .background(getColorX(colorName = gray))
+                        .background(getColorX(colorName = textInputColor))
                         .border(
                             width = 1.dp,
                             color = if (isError) getColorX(colorName = errorColorX) else getColorX(
-                                colorName = gray
+                                colorName = textInputColor
                             ),
                             shape = RoundedCornerShape(8.dp)
                         )

@@ -1,4 +1,4 @@
-package com.example.mobilebanking.data
+package com.example.mobilebanking.data.model
 
 data class MarkerData(
     val lat: Double,

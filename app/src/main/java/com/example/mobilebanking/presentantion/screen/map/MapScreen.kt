@@ -8,7 +8,7 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.hilt.getViewModel
 import cafe.adriel.voyager.navigator.bottomSheet.LocalBottomSheetNavigator
 import com.example.mobilebanking.R
-import com.example.mobilebanking.data.MarkerData
+import com.example.mobilebanking.data.model.MarkerData
 import com.example.mobilebanking.presentantion.dialog.MapInfoBottomDialog
 import com.example.mobilebanking.ui.theme.MobileBankingTheme
 import com.google.android.gms.maps.model.CameraPosition

@@ -48,7 +48,7 @@ import cafe.adriel.voyager.hilt.getViewModel
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabOptions
 import com.example.mobilebanking.R
-import com.example.mobilebanking.data.TemplateData
+import com.example.mobilebanking.data.model.TemplateData
 import com.example.mobilebanking.presentantion.screen.pager.transfer.TransfersPage.TransfersContent
 import com.example.mobilebanking.ui.componnent.AddItem
 import com.example.mobilebanking.ui.componnent.CardStartTextEndImage

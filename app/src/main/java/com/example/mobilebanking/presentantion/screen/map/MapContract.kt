@@ -1,6 +1,6 @@
 package com.example.mobilebanking.presentantion.screen.map
 
-import com.example.mobilebanking.data.MarkerData
+import com.example.mobilebanking.data.model.MarkerData
 import org.orbitmvi.orbit.ContainerHost
 
 interface MapContract {
@@ -21,7 +21,7 @@ interface MapContract {
     }
 
     sealed interface Intent {
-        data class OpenMapDialog (val markerData:MarkerData):Intent
+        data class OpenMapDialog (val markerData: MarkerData):Intent
 
     }
 }

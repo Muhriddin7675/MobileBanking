@@ -19,6 +19,10 @@ class IdentityVerificationModel @Inject constructor(
             IdentityVerificationContract.Intent.PopBackStack -> {
                 direction.popBackStack()
             }
+
+            IdentityVerificationContract.Intent.OpenDataEntryScreen -> {
+                direction.openDataEntryScreen()
+            }
         }
     }
 

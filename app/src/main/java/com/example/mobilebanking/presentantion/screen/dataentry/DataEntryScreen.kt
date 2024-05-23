@@ -1,6 +1,5 @@
 package com.example.mobilebanking.presentantion.screen.dataentry
 
-import CardNumberTransformation
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -17,13 +16,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.BasicTextField
-import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -33,12 +31,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
@@ -52,7 +50,7 @@ import com.example.mobilebanking.ui.theme.appBackgroundColorWhite
 import com.example.mobilebanking.ui.theme.black
 import com.example.mobilebanking.ui.theme.btnInvisibleColor
 import com.example.mobilebanking.ui.theme.primaryColor
-import com.example.mobilebanking.ui.theme.textInputColor
+import com.example.mobilebanking.ui.theme.textLinkColor
 import com.example.mobilebanking.ui.theme.white
 
 class DataEntryScreen : Screen {
@@ -69,7 +67,7 @@ class DataEntryScreen : Screen {
     @SuppressLint("UnrememberedMutableInteractionSource")
     @Composable
     fun DataEntryContent(onEventDispatcher: (DataEntryContract.Intent) -> Unit) {
-        var pasportId by remember { mutableStateOf("") }
+        var passportId by remember { mutableStateOf("") }
         var jshshr by remember { mutableStateOf("") }
 
 
@@ -99,7 +97,7 @@ class DataEntryScreen : Screen {
                 Spacer(modifier = Modifier.width(16.dp))
 
                 Text(
-                    text = stringResource(id = R.string.add_card),
+                    text = stringResource(id = R.string.manual_data_entry),
                     fontFamily = FontFamily(Font(R.font.pnfont_semibold)),
                     color = black,
                     fontSize = 18.sp,
@@ -110,81 +108,194 @@ class DataEntryScreen : Screen {
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp)
-                    .height(210.dp)
                     .shadow(
                         1.dp,
                         RoundedCornerShape(16.dp)
                     )
                     .background(white)
 
-            ) {
-                Box(
-                    modifier = Modifier
-                        .padding(horizontal = 12.dp)
-                        .padding(top = 12.dp)
-                )
-                {
 
-                    BasicTextField(
-                        value = pasportId,
-                        onValueChange = {
-                            if (it.length <= 16) {
-                                pasportId = it
-                            }
-                        },
-                        textStyle = TextStyle(
-                            color = black,
-                            fontSize = 18.sp,
-                            fontFamily = FontFamily(Font(R.font.pnfont_regular))
-                        ),
-                        singleLine = true,
+            ) {
+
+
+                Row(
+                    Modifier
+                        .fillMaxWidth()
+                        .height(68.dp)
+                        .padding(horizontal = 16.dp)
+                        .padding(top = 16.dp)
+                        .shadow(elevation = 2.dp, shape = RoundedCornerShape(12.dp))
+                        .clip(RoundedCornerShape(12.dp))
+                        .background(white)
+                ) {
+
+                    Image(
+                        painter = painterResource(id = R.drawable.ic_assist),
+                        contentDescription = "",
+                        colorFilter = ColorFilter.tint(textLinkColor),
                         modifier = Modifier
-                            .fillMaxWidth()
-                            .background(color = textInputColor, shape = RoundedCornerShape(12.dp))
-                            .padding(16.dp)
-                            .padding(end = 42.dp),
-                        keyboardOptions = KeyboardOptions(
-                            keyboardType = KeyboardType.Number,
-                            imeAction = ImeAction.Done
-                        ),
-                        visualTransformation = CardNumberTransformation,
-                        keyboardActions = KeyboardActions(
-                            onDone = {
-                            }
-                        ),
+                            .align(Alignment.CenterVertically)
+                            .padding(horizontal = 16.dp)
                     )
-                    if (!pasportId.isEmpty()) {
-                        Image(
-                            painter = painterResource(id = R.drawable.ic_cencel_cricl),
-                            contentDescription = "search",
+                    Column(modifier = Modifier.align(Alignment.CenterVertically)) {
+                        Text(
+                            text = stringResource(id = R.string.your_passport_number_id),
+                            fontFamily = FontFamily(Font(R.font.pnfont_regular)),
+                            color = black,
+                            fontSize = 12.sp,
                             modifier = Modifier
-                                .align(Alignment.CenterEnd)
-                                .padding(end = 16.dp)
-                                .size(16.dp)
-                                .clickable(interactionSource = MutableInteractionSource(),
-                                    indication = null,
-                                    enabled = true,
-                                    onClickLabel = null,
-                                    onClick = {
-                                        pasportId = ""
-                                    }),
+                        )
+
+                        Text(
+                            text = stringResource(id = R.string.and_enter_jshshir),
+                            fontFamily = FontFamily(Font(R.font.pnfont_regular)),
+                            color = black,
+                            fontSize = 12.sp,
+                            modifier = Modifier
                         )
                     }
 
-
                 }
-                Spacer(modifier = Modifier.height(8.dp))
+                /*  Box(
+                      modifier = Modifier
+                          .padding(horizontal = 12.dp)
+                          .padding(top = 12.dp)
+                  )
+                  {
+
+                      BasicTextField(
+                          value = passportId,
+                          onValueChange = {
+                              if (it.length <= 16) {
+                                  passportId = it
+                              }
+                          },
+                          textStyle = TextStyle(
+                              color = black,
+                              fontSize = 18.sp,
+                              fontFamily = FontFamily(Font(R.font.pnfont_regular))
+                          ),
+                          singleLine = true,
+                          modifier = Modifier
+                              .fillMaxWidth()
+                              .background(color = textInputColor, shape = RoundedCornerShape(12.dp))
+                              .padding(16.dp)
+                              .padding(end = 42.dp),
+                          keyboardOptions = KeyboardOptions(
+                              keyboardType = KeyboardType.Number,
+                              imeAction = ImeAction.Done
+                          ),
+                          visualTransformation = CardNumberTransformation,
+                          keyboardActions = KeyboardActions(
+                              onDone = {
+                              }
+                          ),
+                      )
+                      if (!passportId.isEmpty()) {
+                          Image(
+                              painter = painterResource(id = R.drawable.ic_cencel_cricl),
+                              contentDescription = "search",
+                              modifier = Modifier
+                                  .align(Alignment.CenterEnd)
+                                  .padding(end = 16.dp)
+                                  .size(16.dp)
+                                  .clickable(interactionSource = MutableInteractionSource(),
+                                      indication = null,
+                                      enabled = true,
+                                      onClickLabel = null,
+                                      onClick = {
+                                          passportId = ""
+                                      }),
+                          )
+                      }
+
+
+                  }*/
+                Spacer(modifier = Modifier.height(24.dp))
+                TextField(
+                    value = passportId,
+                    onValueChange = {
+                        if (it.length <= 9) {
+                            passportId = it
+                        }
+                    },
+                    textStyle = TextStyle(
+                        fontFamily = FontFamily(Font(R.font.pnfont_regular))
+                    ),
+                    label = { Text(stringResource(id = R.string.passport_number_id_card),
+                        fontFamily = FontFamily(Font(R.font.pnfont_regular))
+                    ) },
+                    shape = RoundedCornerShape(12.dp),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp)
+                        .background(white),
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+                    trailingIcon = {
+                        if (passportId.isNotEmpty()) {
+                            Image(
+                                painter = painterResource(id = R.drawable.ic_cencel_cricl),
+                                contentDescription = "search",
+                                modifier = Modifier
+                                    .size(16.dp)
+                                    .clickable(interactionSource = MutableInteractionSource(),
+                                        indication = null,
+                                        enabled = true,
+                                        onClickLabel = null,
+                                        onClick = {
+                                            passportId = ""
+                                        }),
+                            )
+                        }
+                    },
+                    colors = TextFieldDefaults.colors(white),
+
+                    )
+                Spacer(modifier = Modifier.height(28.dp))
 
                 TextField(
                     value = jshshr,
-                    onValueChange = { jshshr = it },
-                    label = { Text("Label") },
-                    modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
+                    onValueChange = {
+                        if (it.length <= 14) {
+                            jshshr = it
+                        }
+                    },
+                    textStyle = TextStyle(
+                        fontFamily = FontFamily(Font(R.font.pnfont_regular))
+                    ),
+
+                    label = {
+                        Text(stringResource(id = R.string.jshshir),
+                        fontFamily = FontFamily(Font(R.font.pnfont_regular)))
+                    },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp)
+                        .padding(bottom = 16.dp),
                     shape = RoundedCornerShape(12.dp),
                     visualTransformation = VisualTransformation.None,
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                     singleLine = false,
+                    trailingIcon = {
 
+                        if (jshshr.isNotEmpty()) {
+                            Image(
+                                painter = painterResource(id = R.drawable.ic_cencel_cricl),
+                                contentDescription = "search",
+                                modifier = Modifier
+                                    .size(16.dp)
+                                    .clickable(interactionSource = MutableInteractionSource(),
+                                        indication = null,
+                                        enabled = true,
+                                        onClickLabel = null,
+                                        onClick = {
+                                            jshshr = ""
+                                        }),
+                            )
+                        }
+                    }
                 )
+
 
             }
 
@@ -201,7 +312,7 @@ class DataEntryScreen : Screen {
                         .fillMaxWidth()
                         .padding(16.dp)
                         .height(50.dp),
-                        enabled = pasportId.length == 16 && jshshr.length == 5,
+                        enabled = passportId.length == 9 && jshshr.length == 14,
                         shape = RoundedCornerShape(12.dp),
                         colors = ButtonDefaults.buttonColors(
                             containerColor = primaryColor,
@@ -210,7 +321,7 @@ class DataEntryScreen : Screen {
                             disabledContentColor = white
                         ),
                         onClick = {
-
+                            onEventDispatcher.invoke(DataEntryContract.Intent.SendPassportIdAndJshshir(passportId,jshshr))
                         }) {
                         Text(
                             text = stringResource(id = R.string.btn_continue),

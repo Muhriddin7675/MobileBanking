@@ -19,6 +19,10 @@ class DataEntryModel @Inject constructor(
             DataEntryContract.Intent.PopBackStack -> {
                 direction.popBackStack()
             }
+
+            is DataEntryContract.Intent.SendPassportIdAndJshshir -> {
+
+            }
         }
     }
 

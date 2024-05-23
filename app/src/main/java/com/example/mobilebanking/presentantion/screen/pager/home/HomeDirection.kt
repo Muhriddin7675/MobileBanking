@@ -1,6 +1,9 @@
 package com.example.mobilebanking.presentantion.screen.pager.home
 
+import com.example.mobilebanking.data.model.CardData
 import com.example.mobilebanking.presentantion.screen.addcard.AddCardScreen
+import com.example.mobilebanking.presentantion.screen.allcard.AllCardScreen
+import com.example.mobilebanking.presentantion.screen.card_details.CardDetailsScreen
 import com.example.mobilebanking.presentantion.screen.identity.IdentityVerificationScreen
 import com.example.mobilebanking.presentantion.screen.paymentcard.PaymentCardScreen
 import com.example.mobilebanking.presentantion.screen.profil.ProfilScreen
@@ -14,6 +17,9 @@ interface HomeDirection {
     suspend fun openPaymentCardScreen()
     suspend fun openWhatIsPaymentCard()
     suspend fun openIdentityVerificationScreen()
+    suspend fun openAllCardScreen()
+
+    suspend fun openCardDetailScreen(cardData: CardData)
 }
 
 class HomeDirectionImpl @Inject constructor(
@@ -37,6 +43,14 @@ class HomeDirectionImpl @Inject constructor(
 
     override suspend fun openIdentityVerificationScreen() {
         navigator.navigateTo(IdentityVerificationScreen())
+    }
+
+    override suspend fun openAllCardScreen() {
+        navigator.navigateTo(AllCardScreen())
+    }
+
+    override suspend fun openCardDetailScreen(cardData: CardData) {
+        navigator.navigateTo(CardDetailsScreen(cardData))
     }
 
 

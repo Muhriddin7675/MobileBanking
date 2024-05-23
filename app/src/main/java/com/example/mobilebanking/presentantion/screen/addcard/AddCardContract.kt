@@ -16,7 +16,7 @@ interface AddCardContract {
     }
 
     sealed interface Intent {
-        data class AddCard(val cardNumber: String, val expiryDate: String) : Intent
+        data class AddCard(val cardNumber: String, val expiryYear: String,val expiryMonth:String) : Intent
 
         data object PopBackStack : Intent
     }

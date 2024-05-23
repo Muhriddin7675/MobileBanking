@@ -1,10 +1,14 @@
 package com.example.mobilebanking.presentantion.screen.comfirmation
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import cafe.adriel.voyager.core.model.ScreenModel
 import com.example.mobilebanking.data.local.pref.MyShared
 import com.example.mobilebanking.domain.AppRepository
+import com.example.mobilebanking.util.myLog
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.postSideEffect
 import org.orbitmvi.orbit.viewmodel.container
@@ -29,7 +33,7 @@ class ConfirmationModel @Inject constructor(
 
             is ConfirmationContract.Intent.ClickButton -> {
                 val code = intent.code
-               /* if(myShared.getSignInSignUpState()){
+                if(myShared.getSignInSignUpState()){
                     repository.signInVerify(code)
                         .onEach {
                             it.onSuccess {
@@ -52,8 +56,7 @@ class ConfirmationModel @Inject constructor(
                             }
                         }
                         .launchIn(viewModelScope)
-                }*/
-                direction.openPinCodeScreen()
+                }
             }
 
             is ConfirmationContract.Intent.ShowToast -> {

@@ -68,7 +68,7 @@
     <string name="increasingPoverty">Xavsizlikni oshirish</string>
     <string name="do_you_want">Xoxlaysizmi</string>
     <string name="verify_your_identity">Shaxsingizni tasdiqlang</string>
-    <string name="my_cards">Mening kartalarim</string>
+    <string name="my_cards">Kartalarim</string>
     <string name="cashback_account">Kashbak-hisob</string>
     <string name="balance">Balans</string>
     <string name="today">Bugun</string>
@@ -114,7 +114,12 @@
     <string name="card_number">Karta raqami</string>
     <string name="ooYY">oo/yy</string>
     <string name="btn_continue">Davom etish</string>
-
+    <string name="cardIsPeriodIncorrect">Kartaning amal qilish muddati noto\'g\'ri</string>
+    <string name="style_and_name">Kartaning rangi va stili</string>
+    <string name="card_setting">Sozlamalar</string>
+    <string name="delete_card">Kartani o\'chirish</string>
+    <string name="card_name">Karta nomi</string>
+    <string name="limit_symbols">beligilar</string>
 
     <!--    create PIN code -->
 
@@ -240,13 +245,16 @@
     <string name="id_card_scan">ID-kartani skanerlash</string>
     <string name="manual_data_entry">Ma\'lumotlarni qo\'lda kiritish</string>
 
+    <!--    Data entry screen-->
+    <string name="manual_data_verification">Ma\'lumotlarni qo\'lda kiritish</string>
+    <string name="your_passport_number_id">Pasport raqamingizni (ID-karta)</string>
+    <string name="and_enter_jshshir">va JSHSHIRni kiriting</string>
+    <string name="passport_number_id_card">Paport raqami(ID-karta)</string>
+    <string name="jshshir">JSHSHIR</string>
 
 
 
 
-
-
-    
 
 
 </resources>

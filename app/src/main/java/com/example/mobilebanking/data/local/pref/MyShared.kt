@@ -58,4 +58,11 @@ class MyShared @Inject constructor(
     fun getLanguage(): Boolean =
         pref.getBoolean("LANGUAGE", true)
 
+    fun showBalance() : Boolean =
+        pref.getBoolean("showBalance", true)
+
+    fun changeShowBalanceState(showBalance: Boolean) {
+        pref.edit().putBoolean("showBalance", showBalance).apply()
+    }
+
 }

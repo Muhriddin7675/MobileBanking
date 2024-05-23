@@ -17,5 +17,6 @@ interface IdentityVerificationContract {
 
     sealed interface Intent {
         data object PopBackStack : Intent
+        data object OpenDataEntryScreen : Intent
     }
 }

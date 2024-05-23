@@ -90,5 +90,8 @@ val addCardStartColor = Color(0xFF0B5FAD)
 val addCardEndColor = Color(0xFF42E4C7)
 val btnInvisibleColor = Color(0xFF8AD6A1)
 val iconColor = Color(0xFF6E7279)
+val bgWithCards = Color(0xFFF3F4FA)
+val selectedItemColor = Color(0xFF17A53C)
+val colorInputBg = Color(0xFFECEDEE)
 
 
