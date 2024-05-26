@@ -36,10 +36,11 @@ import com.example.mobilebanking.R
 import com.example.mobilebanking.ui.theme.MobileBankingTheme
 import com.example.mobilebanking.ui.theme.gray
 import com.example.mobilebanking.ui.theme.white
+import com.example.mobilebanking.util.getCurrentLanguage
 
 class RuUzBottomDialog(
-    val onClickButton: (Boolean) -> Unit,
-    val bool: Boolean,
+    val clickUz: () -> Unit,
+    val clickRu: () -> Unit,
     val clickCancel: () -> Unit
 ) : Screen {
 
@@ -48,25 +49,20 @@ class RuUzBottomDialog(
 
     ) {
         RuUzBottomDialogContent(
-            onClickButton1 = {
-                onClickButton.invoke(it)
-            },
-            bool1 = bool,
-            clickCancel1 = {
-                clickCancel.invoke()
-            }
+            clickCancel = { clickCancel.invoke() },
+            clickRu = {clickRu.invoke()},
+            clickUz = {clickUz.invoke()}
         )
     }
 }
 
 @Composable
 fun RuUzBottomDialogContent(
-    onClickButton1: (Boolean) -> Unit,
-    bool1: Boolean,
-    clickCancel1: () -> Unit
+    clickUz: () -> Unit,
+    clickRu: () -> Unit,
+    clickCancel: () -> Unit
 ) {
-    var ruInUzState by remember { mutableStateOf(bool1) }
-
+    var ruInUzState by remember { mutableStateOf(getCurrentLanguage() == "uz") }
     Column(
         Modifier
             .fillMaxWidth()
@@ -96,7 +92,7 @@ fun RuUzBottomDialogContent(
                     .background(gray)
                     .padding(4.dp)
                     .clickable {
-                        clickCancel1.invoke()
+                        clickCancel.invoke()
                     },
             )
         }
@@ -122,16 +118,14 @@ fun RuUzBottomDialogContent(
                 modifierStateFalse
                     .background(white)
                     .clickable {
-                        onClickButton1.invoke(false)
                         ruInUzState = false
+                        clickRu.invoke()
+
                     }
             } else {
                 modifierStateTrue
                     .background(white)
-                    .clickable {
-                        onClickButton1.invoke(false)
-                        ruInUzState = false
-                    }
+                    .clickable {}
             }
 
 
@@ -150,14 +144,14 @@ fun RuUzBottomDialogContent(
                     .padding(top = 16.dp, bottom = 16.dp, start = 16.dp)
             )
             Spacer(modifier = Modifier.weight(1f))
-           if(!ruInUzState){
-               Image(
-                   painter = painterResource(id = R.drawable.ic_check), contentDescription = "",
-                   modifier = Modifier
-                       .align(Alignment.CenterVertically)
-                       .padding(end = 16.dp)
-               )
-           }
+            if (!ruInUzState) {
+                Image(
+                    painter = painterResource(id = R.drawable.ic_check), contentDescription = "",
+                    modifier = Modifier
+                        .align(Alignment.CenterVertically)
+                        .padding(end = 16.dp)
+                )
+            }
 
         }
         Spacer(modifier = Modifier.height(12.dp))
@@ -167,22 +161,19 @@ fun RuUzBottomDialogContent(
                 modifierStateFalse
                     .background(white)
                     .clickable {
-                        onClickButton1.invoke(false)
-                        ruInUzState = false
+                        ruInUzState = true
+                        clickUz.invoke()
                     }
             } else {
                 modifierStateTrue
                     .background(white)
-                    .clickable {
-                        onClickButton1.invoke(false)
-                        ruInUzState = false
-                    }
+
             }
 
 
         ) {
             Image(
-                painter = painterResource(id = R.drawable.uz), contentDescription = "ru",
+                painter = painterResource(id = R.drawable.uz), contentDescription = "uz",
                 modifier = Modifier
                     .padding(start = 16.dp, top = 16.dp, bottom = 16.dp)
                     .size(36.dp)
@@ -196,7 +187,7 @@ fun RuUzBottomDialogContent(
                     .padding(top = 16.dp, bottom = 16.dp, start = 16.dp)
             )
             Spacer(modifier = Modifier.weight(1f))
-            if(ruInUzState){
+            if (ruInUzState) {
                 Image(
                     painter = painterResource(id = R.drawable.ic_check), contentDescription = "",
                     modifier = Modifier
@@ -215,6 +206,6 @@ fun RuUzBottomDialogContent(
 @Composable
 fun BottomDialogPreview() {
     MobileBankingTheme {
-        RuUzBottomDialogContent({}, false, {})
+        RuUzBottomDialogContent({},{},{})
     }
 }

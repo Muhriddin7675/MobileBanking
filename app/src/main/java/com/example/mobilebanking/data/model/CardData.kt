@@ -5,7 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class CardData(
-    val id: Int = 0,
+    val id: Int= 0,
     val name: String = "Default owner",
     val amount: Long = 0,
     val owner: String = "Default owner",

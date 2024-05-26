@@ -45,6 +45,7 @@ import com.example.mobilebanking.util.PHONE_NUMBER_LENGTH
 
 @Composable
 fun PhoneInputComponent(
+    languageState: Boolean,
     text: String = "",
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
@@ -96,7 +97,7 @@ fun PhoneInputComponent(
                 ) {
                     Row(modifier = Modifier.padding()) {
                         Image(
-                            painter = painterResource(id = R.drawable.uz),
+                            painter =if(languageState) painterResource(id = R.drawable.uz)else painterResource(id = R.drawable.ru),
                             modifier = Modifier
                                 .padding(start = 16.dp)
                                 .height(24.dp)
@@ -168,7 +169,8 @@ private fun PhoneInputComponentPreview() {
             },
             enabled = true,
             isError = false,
-            error = ""
+            error = "",
+            languageState = true
         )
     }
 }

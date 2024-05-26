@@ -49,10 +49,10 @@ import cafe.adriel.voyager.navigator.tab.TabOptions
 import com.example.mobilebanking.R
 import com.example.mobilebanking.data.model.TemplateData
 import com.example.mobilebanking.ui.componnent.AddItem
-import com.example.mobilebanking.ui.componnent.CardAvia
-import com.example.mobilebanking.ui.componnent.CardStartTextEndImage
-import com.example.mobilebanking.ui.componnent.CardTextEndIcon
-import com.example.mobilebanking.ui.componnent.CardTopTextBottomImage
+import com.example.mobilebanking.ui.componnent.card.CardAvia
+import com.example.mobilebanking.ui.componnent.card.CardStartTextEndImage
+import com.example.mobilebanking.ui.componnent.card.CardTextEndIcon
+import com.example.mobilebanking.ui.componnent.card.CardTopTextBottomImage
 import com.example.mobilebanking.ui.componnent.TrainTicked
 import com.example.mobilebanking.ui.theme.MobileBankingTheme
 import com.example.mobilebanking.ui.theme.black
@@ -75,7 +75,7 @@ object PaymentPage : Tab {
     override val options: TabOptions
         @Composable
         get() {
-            val title = "Payment"
+            val title = stringResource(id = R.string.payment)
             val icon =
                 rememberVectorPainter(image = ImageVector.vectorResource(id = R.drawable.ic_operations_wallet))
 

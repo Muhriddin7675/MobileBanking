@@ -3,7 +3,7 @@ package com.example.mobilebanking.presentantion.screen.pincode
 import androidx.lifecycle.ViewModel
 import cafe.adriel.voyager.core.model.ScreenModel
 import com.example.mobilebanking.data.local.pref.MyShared
-import com.example.mobilebanking.domain.AppRepository
+import com.example.mobilebanking.domain.repositori.AppRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.postSideEffect

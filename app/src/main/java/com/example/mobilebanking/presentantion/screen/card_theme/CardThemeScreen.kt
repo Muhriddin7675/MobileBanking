@@ -46,9 +46,10 @@ import com.example.mobilebank.presentation.screens.card_theme.CardThemeContract
 import com.example.mobilebank.ui.components.CustomImageView
 import com.example.mobilebanking.R
 import com.example.mobilebanking.data.model.CardData
-import com.example.mobilebanking.ui.componnent.CustomTextView
+import com.example.mobilebanking.ui.componnent.text.CustomTextView
 import com.example.mobilebanking.ui.componnent.card.CustomAppBar
 import com.example.mobilebanking.ui.componnent.card.CustomButton
+import com.example.mobilebanking.ui.theme.appBackgroundColorWhite
 import com.example.mobilebanking.ui.theme.btnInvisibleColor
 import com.example.mobilebanking.ui.theme.colorInputBg
 import com.example.mobilebanking.ui.theme.primaryColor
@@ -98,7 +99,7 @@ fun CardThemeContent(
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(Color.White)
+                    .background(appBackgroundColorWhite)
             ) {
                 Box(
                     modifier = Modifier

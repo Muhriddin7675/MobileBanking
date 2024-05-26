@@ -1,22 +1,18 @@
 package com.example.mobilebanking.util
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.Font
-import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.navigator.tab.LocalTabNavigator
 import cafe.adriel.voyager.navigator.tab.Tab
-import com.example.mobilebanking.R
-import com.example.mobilebanking.ui.theme.selectItemColor
-import com.example.mobilebanking.ui.theme.unSelectedItemColor
+import com.example.mobilebanking.ui.componnent.text.TextBold
+import com.example.mobilebanking.ui.theme.black
+import com.example.mobilebanking.ui.theme.grayIcon
+import com.example.mobilebanking.ui.theme.primaryColor
 
 
 @Composable
@@ -26,16 +22,22 @@ fun RowScope.TabNavigatorItem(tab: Tab) {
 
 
     BottomNavigationItem(
-        modifier = Modifier.background(color = Color.White),
-        selectedContentColor = selectItemColor,
-        unselectedContentColor = unSelectedItemColor,
-        label = { Text(text = tab.options.title,
-            fontFamily = FontFamily(Font(R.font.pnfont_regular)))},
         selected = tabNavigator.current == tab,
         onClick = { tabNavigator.current = tab },
-        icon = { tab.options.icon?.let { Icon(painter = it, contentDescription = tab.options.title) } },
-        interactionSource = interactionSource,
-        alwaysShowLabel = true
+        icon = {
+            Icon(
+                tint = if (tabNavigator.current == tab) primaryColor else black,
+                painter = tab.options.icon!!,
+                contentDescription = tab.options.title
+            )
+        },
+        label = {
+            TextBold(
+                text = tab.options.title,
+                fontSize = 10.sp,
+                color = grayIcon
+            )
+        },
     )
 
 }

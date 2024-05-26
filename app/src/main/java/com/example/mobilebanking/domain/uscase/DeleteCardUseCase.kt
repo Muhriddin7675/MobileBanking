@@ -1,6 +1,6 @@
 package com.example.mobilebanking.domain.uscase
 
-import com.example.mobilebanking.domain.CardRepository
+import com.example.mobilebanking.domain.repositori.CardRepository
 import javax.inject.Inject
 
 class DeleteCardUseCase @Inject constructor(

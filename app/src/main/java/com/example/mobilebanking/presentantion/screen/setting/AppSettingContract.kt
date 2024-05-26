@@ -8,15 +8,19 @@ interface AppSettingContract {
         fun onEventDispatcher(intent: Intent)
     }
 
-    sealed interface UIState {
-        data object InitState : UIState
-    }
+    data class UIState(
+        val lang: Boolean,
+        val biometry: Boolean
+    )
 
-    sealed interface SideEffect {
-    }
+    sealed interface SideEffect
 
     sealed interface Intent {
         data object PopBackStack:Intent
+        data object LoadAppSettings : Intent
+        data class SetBiometryUnlock (
+            val biometry: Boolean
+        ) : Intent
 
     }
 }

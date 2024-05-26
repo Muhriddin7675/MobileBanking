@@ -6,8 +6,8 @@
     <string name="phone_prefix">+998</string>
     <string name="register_user_policy">Davom etish etish tugmasini bosish orqali men Xizmatlar korsatish haqidagi oferta shartlarini qabul qilaman va shaxsiy malumotlarni qayta ishlashga rozilik beraman</string>
     <string name="unknown_error">Unknown error</string>
-    <string name="register_phone_text_bottom">Mijoz bo\'lish yoki kirish uchun</string>
-    <string name="register_phone_text">Raqamingizni kiriting</string>
+    <string name="enter_phone">Raqamingizni kiriting</string>
+    <string name="for_client">Mijoz bo\'lish yoki kirish uchun</string>
     <string name="enter_sms_code">SMSdagi kodni kiriting</string>
     <string name="search_operation">Operatsiya Qidirish</string>
     <string name="search_hint_beeline">Masalan\, Beeline</string>
@@ -15,6 +15,7 @@
     <string name="yout_phone_number">Telefon raqamingiz</string>
     <string name="_2006">+998 95 917 9730</string>
     <string name="forget_pin">PIN-kodni\nunutdngiz\nmi?</string>
+Tarix
 
     <!--    Dialog text-->
     <string name="howToAddCard">Qanday  kartani qo\'shish kerak?</string>
@@ -119,7 +120,7 @@
     <string name="card_setting">Sozlamalar</string>
     <string name="delete_card">Kartani o\'chirish</string>
     <string name="card_name">Karta nomi</string>
-    <string name="limit_symbols">beligilar</string>
+    <string name="limit_symbols">4/15 beligilar</string>
 
     <!--    create PIN code -->
 
@@ -252,9 +253,58 @@
     <string name="passport_number_id_card">Paport raqami(ID-karta)</string>
     <string name="jshshir">JSHSHIR</string>
 
+    <string name="cards">Kartalar</string>
+    <string name="delete_user">Qabul giluvchini o\'chirib yuborish</string>
+    <string name="ac_delete">Hagiqatan ham barcha oxirgi gabul giluvchilarni o\'chirib tashlamoqchimisiz?</string>
+    <string name="delete_all">Tozalash</string>
+    <string name="to_my_card">O\'zimning kartamga</string>
+    <string name="to_paynet_card"> Paynet-kartamga</string>
+    <string name="to_ru">Rossiyaga</string>
+    <string name="to_uz">O\'zbekistonga</string>
+    <string name="last">So\'nggi</string>
+    <string name="we_cant_find">Biz bunday kartani topa olmadik</string>
+    <string name="card_number_wrong">Balki raqamda xatolik bordir</string>
 
+    <string name="transfer_to_card">Kartaga o\'kazish</string>
+    <string name="from">Qayerdan</string>
+    <string name="to">Qayerga</string>
+    <string name="you_transfer">Siz o\'tkazyapsiz</string>
+    <string name="paynet">Paynet</string>
+    <string name="_12444_sum">12444 sum</string>
+    <string name="_15_04_2025">15/04/2024</string>
+    <string name="_137_sum">137 sum</string>
+    <string name="_1757_sum">1757 sum</string>
+    <string name="moneys">Valyuta kurslari</string>
+    <string name="app_set">Ilova sozlamalari</string>
+    <string name="app_security">Xavfsizlik</string>
+    <string name="transfer_percent">Komissiya</string>
+    <string name="amount_is_less">Mablag\' yetari emas</string>
+    <string name="code_icnt_correct">Kod noto\'ri</string>
+    <string name="transfer_success">O\'tkazma yuborildi</string>
+    <string name="transferDetails">O\'tkazma tafsilotlari</string>
+    <string name="add_shablon">Shablonga go\'shish</string>
+    <string name="done">Bajarildi</string>
+    <string name="success">Tayyor</string>
+    <string name="enter_code">SMSdagi kodni kiriting</string>
+    <string name="sent_it_to"> raqamiga yubordik</string>
+    <string name="select_card">Kartani tanlang</string>
 
+    <string name="card_style">Kartaning rangi va stili</string>
 
-
-
+    <string name="delete_card_d">Kartani oʻchirib tashlamoqchimisiz?</string>
+    <string name="log_out_d">Hisobni tark etasizmi?</string>
+    <string name="log_out_">Chiqish</string>
+    <string name="error_to_my">O\'sha kartaning o\'ziga o\'tkaza olmaysiz</string>
+    <string name="not_connected">Internetga boglanish yo\'q!</string>
+    <string name="refresh">Yangilash</string>
+    <string name="no_con_desc">Ulanishda xatolik yuz berdi. \n Qayta urinib ko\'ring.</string>
+    <string name="add_my_datas">Ma\'lumotlarni qo\'lda kiriting</string>
+    <string name="enter_name">Ismizni kiriting</string>
+    <string name="enter_last">Familiyangizni kiriting</string>
+    <string name="enter_born_date">Tugilgan sanangizni kiriting</string>
+    <string name="enter_data">Tafsilotlarni to\'ldiring</string>
+    <string name="history">Tarix</string>
+    <string name="home">Asosiy</string>
+    <string name="incoming_transfer">Kiruvchi o\'tkazma</string>
+    <string name="outbound_transfer">Chiquvchi o\'tkazma</string>
 </resources>

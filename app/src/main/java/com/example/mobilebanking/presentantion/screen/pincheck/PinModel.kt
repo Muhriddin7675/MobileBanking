@@ -2,12 +2,11 @@ package com.example.mobilebanking.presentantion.screen.pincheck
 
 import androidx.lifecycle.ViewModel
 import com.example.mobilebanking.data.local.pref.MyShared
-import com.example.mobilebanking.domain.AppRepository
+import com.example.mobilebanking.domain.repositori.AppRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.viewmodel.container
 import uz.gita.mobilebanking.presentation.pin.PinContract
-import uz.gita.mobilebanking.presentation.pin.PinDirection
 import javax.inject.Inject
 
 @HiltViewModel
@@ -30,7 +29,8 @@ class PinModel @Inject constructor(
     override val container = container<PinContract.UIState, PinContract.SideEffect>(
         PinContract.UIState(
             pinCode = myShared.getPinCode(),
-            phoneNumber = myShared.getPassword()
+            phoneNumber = myShared.getPassword(),
+            biometricSt = myShared.getBiometryUnlock()
         )
     )
 }

@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import cafe.adriel.voyager.core.model.ScreenModel
 import com.example.mobilebanking.data.local.pref.MyShared
 import com.example.mobilebanking.data.remote.request.SignUpUserDataRequest
-import com.example.mobilebanking.domain.AppRepository
+import com.example.mobilebanking.domain.repositori.AppRepository
 import com.example.mobilebanking.util.myLog
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn

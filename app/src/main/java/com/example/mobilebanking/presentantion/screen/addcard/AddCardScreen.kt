@@ -29,12 +29,14 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
@@ -51,10 +53,11 @@ import com.example.mobilebanking.ui.theme.black
 import com.example.mobilebanking.ui.theme.btnInvisibleColor
 import com.example.mobilebanking.ui.theme.errorColorX
 import com.example.mobilebanking.ui.theme.primaryColor
+import com.example.mobilebanking.ui.theme.selectedItemColor
 import com.example.mobilebanking.ui.theme.textColor
 import com.example.mobilebanking.ui.theme.textInputColor
 import com.example.mobilebanking.ui.theme.white
-import com.example.mobilebanking.ui.transformation.CardYearTransformation
+import com.example.mobilebanking.ui.transformation.ExpiryDateTransformation
 import com.example.mobilebanking.util.checkExpirationDateValidation
 import com.example.mobilebanking.util.myLog
 
@@ -225,44 +228,32 @@ class AddCardScreen : Screen {
                     {
 
                         BasicTextField(
-                            value = cardYear,
-                            onValueChange = {
-                                if (cardYear.length < 4) {
+                            cardYear, {
+                                if (it.length <= 4) {
                                     cardYear = it
                                 }
                             },
-                            textStyle =
-                            if (!cardYear.checkExpirationDateValidation() && cardYear.length == 4) {
-                                TextStyle(
-                                    color = errorColorX,
-                                    fontSize = 18.sp,
-                                    fontFamily = FontFamily(Font(R.font.pnfont_regular))
-                                )
-                            } else {
-                                TextStyle(
-                                    color = black,
-                                    fontSize = 18.sp,
-                                    fontFamily = FontFamily(Font(R.font.pnfont_regular))
-                                )
-
-                            },
-                            singleLine = true,
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .background(
                                     color = textInputColor,
                                     shape = RoundedCornerShape(12.dp)
                                 )
-                                .padding(16.dp),
+                                .padding(16.dp)
+                                .padding(end = 24.dp),
                             keyboardOptions = KeyboardOptions(
                                 keyboardType = KeyboardType.Number,
                                 imeAction = ImeAction.Done
                             ),
-                            visualTransformation = CardYearTransformation,
-                            keyboardActions = KeyboardActions(
-                                onDone = {
-                                }
-                            ),
+                            maxLines = 1,
+                            visualTransformation = ExpiryDateTransformation(),
+                            keyboardActions = KeyboardActions.Default,
+                            cursorBrush = SolidColor(selectedItemColor),
+                            textStyle = TextStyle(
+                                fontSize = 16.sp,
+                                fontFamily = FontFamily(Font(R.font.pnfont_semibold)),
+                                fontWeight = FontWeight(600),
+                            )
                         )
                         if (!cardYear.checkExpirationDateValidation() && cardYear.length == 4) {
                             Image(
@@ -273,13 +264,6 @@ class AddCardScreen : Screen {
                                     .align(Alignment.CenterEnd)
                                     .padding(end = 16.dp)
                                     .size(16.dp)
-                                    .clickable(interactionSource = MutableInteractionSource(),
-                                        indication = null,
-                                        enabled = true,
-                                        onClickLabel = null,
-                                        onClick = {
-                                            cardYear = ""
-                                        }),
                             )}
                         else if (cardYear.isNotEmpty()) {
                             Image(

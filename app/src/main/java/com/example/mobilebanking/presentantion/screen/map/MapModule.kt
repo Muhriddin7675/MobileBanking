@@ -1,7 +1,7 @@
 package com.example.mobilebanking.presentantion.screen.map
 
 import androidx.lifecycle.ViewModel
-import com.example.mobilebanking.domain.AppRepository
+import com.example.mobilebanking.domain.repositori.AppRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.postSideEffect

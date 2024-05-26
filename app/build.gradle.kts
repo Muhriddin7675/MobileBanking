@@ -72,7 +72,7 @@ android {
 
 dependencies {
     implementation("androidx.core:core-ktx:1.13.1")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.0")
     implementation("androidx.activity:activity-compose:1.9.0")
     implementation(platform("androidx.compose:compose-bom:2023.08.00"))
     implementation("androidx.compose.ui:ui")
@@ -84,7 +84,7 @@ dependencies {
     implementation("com.google.android.gms:play-services-wallet:19.3.0")
     implementation("androidx.camera:camera-core:1.3.3")
     implementation("com.google.mlkit:barcode-scanning-common:17.0.0")
-    implementation("com.google.android.gms:play-services-mlkit-barcode-scanning:18.3.0")
+    implementation("androidx.paging:paging-common-android:3.3.0")
     implementation("com.google.android.gms:play-services-mlkit-text-recognition-common:19.0.0")
     implementation("com.google.android.gms:play-services-mlkit-text-recognition:19.0.0")
     testImplementation("junit:junit:4.13.2")
@@ -174,10 +174,10 @@ dependencies {
 
     //biometric
     implementation("androidx.biometric:biometric-ktx:1.2.0-alpha05")
-
-    //widgets
-    implementation("androidx.glance:glance:1.0.0")
-    implementation("androidx.glance:glance-appwidget-preview:1.0.0-alpha06")
+//
+//    //widgets
+//    implementation("androidx.glance:glance:1.0.0")
+//    implementation("androidx.glance:glance-appwidget-preview:1.0.0-alpha06")
 
 
     // CameraX
@@ -202,6 +202,13 @@ dependencies {
     annotationProcessor("androidx.room:room-compiler:$room_version")
     kapt("androidx.room:room-compiler:$room_version")
 
+    //paging
+    val paging_version = "3.3.0"
+    implementation("androidx.paging:paging-runtime:$paging_version")
+    implementation("androidx.paging:paging-compose:3.3.0")
 
+
+//    implementation ("org.jetbrains.kotlin:kotlin-stdlib:1.9.22")
+//    implementation ("com.android.tools.compose:compose-preview-renderer:0.0.1-alpha01")
 
 }

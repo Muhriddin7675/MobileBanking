@@ -17,7 +17,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.mobilebanking.R
-import com.example.mobilebanking.ui.componnent.CustomTextView
+import com.example.mobilebanking.ui.componnent.text.CustomTextView
 import com.example.mobilebanking.ui.theme.appBackgroundColorWhite
 import com.example.mobilebanking.ui.theme.black
 

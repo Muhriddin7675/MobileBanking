@@ -3,8 +3,8 @@ package com.example.mobilebanking.presentantion.screen.pager.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mobilebanking.data.local.pref.MyShared
-import com.example.mobilebanking.domain.AppRepository
-import com.example.mobilebanking.domain.CardRepository
+import com.example.mobilebanking.domain.repositori.AppRepository
+import com.example.mobilebanking.domain.repositori.CardRepository
 import com.example.mobilebanking.util.MyDataLoader
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn

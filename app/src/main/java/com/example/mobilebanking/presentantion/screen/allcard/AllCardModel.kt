@@ -2,7 +2,7 @@ package com.example.mobilebanking.presentantion.screen.allcard
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.mobilebanking.domain.CardRepository
+import com.example.mobilebanking.domain.repositori.CardRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach

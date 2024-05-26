@@ -35,6 +35,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -47,15 +48,15 @@ import com.example.mobilebanking.ui.componnent.ButtonComponent
 import com.example.mobilebanking.ui.componnent.PhoneInputComponent
 import com.example.mobilebanking.ui.theme.MobileBankingTheme
 import com.example.mobilebanking.ui.theme.disabledColors
-import com.example.mobilebanking.ui.theme.iconColorPaleBlack
 import com.example.mobilebanking.ui.theme.primaryColor
-import com.example.mobilebanking.ui.theme.textColorBlue
 import com.example.mobilebanking.ui.theme.textInputColor
 import com.example.mobilebanking.util.PHONE_NUMBER_LENGTH
-import com.example.mobilebanking.util.myLog
+import com.example.mobilebanking.util.builderAnnotatedString
+import com.example.mobilebanking.util.getCurrentLanguage
+import com.example.mobilebanking.util.openWebsite
+import com.example.mobilebanking.util.setLocale
 import org.orbitmvi.orbit.compose.collectAsState
 import org.orbitmvi.orbit.compose.collectSideEffect
-import org.orbitmvi.orbit.compose.collectState
 
 class RegisterScreen : Screen {
     @Composable
@@ -66,23 +67,25 @@ class RegisterScreen : Screen {
         val uiSate = model.collectAsState().value
         val context = LocalContext.current
 
+        var lang by remember { mutableStateOf(getCurrentLanguage()) }
+
         val bottomSheetNavigator = LocalBottomSheetNavigator.current
-        var languageState = true
-
-
 
         model.collectSideEffect { sideEffect ->
             when (sideEffect) {
                 is RegisterScreenContract.SideEffect.OpenLanguageDialog -> {
                     bottomSheetNavigator.show(
                         RuUzBottomDialog(
-                            onClickButton = {
-                                myLog("$it language st set ")
-                                RegisterScreenContract.Intent.SetLanguageState(it)
-                                RegisterScreenContract.Intent.SetUiLanguageState
+                            clickRu = {
+                                setLocale(context, "ru")
+                                lang = "ru"
                                 bottomSheetNavigator.hide()
                             },
-                            bool = sideEffect.ruInUz,
+                            clickUz = {
+                                setLocale(context, "uz")
+                                lang = "uz"
+                                bottomSheetNavigator.hide()
+                            },
                             clickCancel = { bottomSheetNavigator.hide() }
                         )
                     )
@@ -91,16 +94,10 @@ class RegisterScreen : Screen {
                 else -> {}
             }
         }
-        model.collectState { uiState ->
-            when (uiState) {
-                is RegisterScreenContract.UiState.LanguageState -> {
-                    myLog("${uiState.bool} collectState language st set ")
-                    languageState = uiState.bool
-                }
-            }
-        }
 
-        RegisterContent(model::onEventDispatcher, model.collectAsState().value)
+        if (lang != "") {
+            RegisterContent(model::onEventDispatcher, model.collectAsState().value)
+        }
 
 
     }
@@ -111,18 +108,26 @@ class RegisterScreen : Screen {
 @Composable
 fun RegisterContent(
     onEventDispatcher: (RegisterScreenContract.Intent) -> Unit = {},
-    uiState:RegisterScreenContract.UiState
-    ) {
-    var languageState by remember { mutableStateOf(true) }
+    uiState: RegisterScreenContract.UiState
+) {
+    val annotatedLinkRu = builderAnnotatedString(
+        value = "Нажимая кнопку \"Продолжить\", я принимаю условия оферты о предоставлении услуг и даю согласие на обработку персональных данных",
+        startWord = "оферты",
+        distance = 23
+    )
+
+    val annotatedLinkUz = builderAnnotatedString(
+        value = "\"Davom etish\" tugmasini bosish orgali men Xizmatlar ko'rsatish hagidagi oferta shartlarini qabul qilaman va shaxsiy malumotlarni qayta ishlashga rozilik bildiraman",
+        startWord = "Xizmatlar",
+        distance = 48
+    )
+
+    val url =
+        "https://assets-global.website-files.com/63a7038e6eb0c1f38cd4d11f/659e7e324fed06afd1dbacfb_%D0%BE%D1%84%D0%B5%D1%80%D1%82%D0%B0%20%D0%BC%D0%BE%D0%B1%D0%B8%D0%BB%D0%BA%D0%B0%202024.pdf"
+    val noRippleInteractionSource = remember { MutableInteractionSource() }
+    val context = LocalContext.current
     var buttonSt by remember { mutableStateOf(false) }
 
-    when(uiState){
-        is RegisterScreenContract.UiState.LanguageState -> {
-            myLog("${uiState.bool} collectState language st set ")
-            languageState = uiState.bool
-        }
-    }
-    onEventDispatcher.invoke(RegisterScreenContract.Intent.SetUiLanguageState)
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -146,41 +151,24 @@ fun RegisterContent(
             ) {
                 onEventDispatcher.invoke(RegisterScreenContract.Intent.SetUiLanguageState)
 
-                if (languageState) {
-                    Text(
-                        text = stringResource(id = R.string.language_uz),
-                        modifier = Modifier.align(Alignment.CenterVertically),
-                        fontSize = 20.sp,
-                        fontFamily = FontFamily(Font(R.font.pnfont_semibold))
-                    )
-                    Spacer(modifier = Modifier.width(4.dp))
-                    Image(
-                        painter = painterResource(id = R.drawable.uz),
-                        contentDescription = "flag",
-                        modifier = Modifier
-                            .height(24.dp)
-                            .width(36.dp)
-                            .clip(RoundedCornerShape(6.dp))
-                            .align(Alignment.CenterVertically)
-                    )
-                } else {
-                    Text(
-                        text = stringResource(id = R.string.language_ru),
-                        modifier = Modifier.align(Alignment.CenterVertically),
-                        fontSize = 20.sp,
-                        fontFamily = FontFamily(Font(R.font.pnfont_semibold))
-                    )
-                    Spacer(modifier = Modifier.width(4.dp))
-                    Image(
-                        painter = painterResource(id = R.drawable.ic_russian),
-                        contentDescription = "flag",
-                        modifier = Modifier
-                            .height(24.dp)
-                            .width(36.dp)
-                            .clip(RoundedCornerShape(6.dp))
-                            .align(Alignment.CenterVertically)
-                    )
-                }
+                Text(
+                    text = stringResource(id = R.string.language_uz),
+                    modifier = Modifier.align(Alignment.CenterVertically),
+                    fontSize = 20.sp,
+                    fontFamily = FontFamily(Font(R.font.pnfont_semibold))
+                )
+                Spacer(modifier = Modifier.width(4.dp))
+                Image(
+                    painter = if (getCurrentLanguage() == "uz") painterResource(id = R.drawable.uz) else painterResource(
+                        id = R.drawable.ru
+                    ),
+                    contentDescription = "flag",
+                    modifier = Modifier
+                        .height(24.dp)
+                        .width(36.dp)
+                        .clip(RoundedCornerShape(6.dp))
+                        .align(Alignment.CenterVertically)
+                )
             }
         }
 
@@ -196,14 +184,14 @@ fun RegisterContent(
         }
         Spacer(modifier = Modifier.height(20.dp))
         Text(
-            text = "Raqamingizni kiriting",
+            text = stringResource(id = R.string.enter_phone),
             fontSize = 24.sp,
             fontFamily = FontFamily(Font(R.font.pnfont_semibold)),
             modifier = Modifier.align(Alignment.CenterHorizontally),
             fontWeight = FontWeight.Bold
         )
         Text(
-            text = "Mijoz yoki kirish uchun",
+            text = stringResource(id = R.string.for_client),
             fontSize = 16.sp,
             fontFamily = FontFamily(Font(R.font.pnfont_regular)),
             modifier = Modifier.align(Alignment.CenterHorizontally),
@@ -214,6 +202,7 @@ fun RegisterContent(
         val focusManager = LocalFocusManager.current
 
         PhoneInputComponent(
+            languageState = getCurrentLanguage() == "uz",
             text = phoneSt,
             leadingIcon = {
                 Text(
@@ -245,7 +234,7 @@ fun RegisterContent(
                     .align(Alignment.BottomCenter)
             ) {
                 ButtonComponent(
-                    text = "Davom etish",
+                    text = stringResource(id = R.string.btn_continue),
                     onClicked = {
                         onEventDispatcher.invoke(
                             RegisterScreenContract.Intent.ClickNextButton(
@@ -259,35 +248,22 @@ fun RegisterContent(
                     modifier = Modifier.padding(horizontal = 16.dp)
                 )
 
-                Spacer(modifier = Modifier.height(16.dp))
                 Text(
-                    text = "Davome etish tumgasini bosih orqali men",
-                    modifier = Modifier.align(Alignment.CenterHorizontally),
-                    fontSize = 14.sp,
-                    color = iconColorPaleBlack
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 16.dp)
+                        .clickable(
+                            indication = null,
+                            interactionSource = noRippleInteractionSource
+                        ) { openWebsite(context, url) }
+                        .padding(horizontal = 16.dp),
+                    text = if (getCurrentLanguage() == "ru") annotatedLinkRu else annotatedLinkUz,
+                    fontSize = if (getCurrentLanguage() == "ru") 15.sp else 16.sp,
+                    fontFamily = FontFamily(Font(R.font.pnfont_semibold)),
+                    textAlign = TextAlign.Center,
+                    color = Color(0xFF8B8A8A),
+                    fontWeight = FontWeight(200),
                 )
-                Text(
-                    text = "Xizmatlar ko'rsatish haqidaig oferta shartlarini",
-                    modifier = Modifier.align(Alignment.CenterHorizontally),
-                    color = textColorBlue,
-                    fontSize = 14.sp,
-
-                    )
-                Text(
-                    text = "qabul qilaman va shaxsiy malumotlarni qayta",
-                    modifier = Modifier.align(Alignment.CenterHorizontally),
-                    fontSize = 14.sp,
-                    color = iconColorPaleBlack
-
-                )
-                Text(
-                    text = "ishlashga rozilik bildiraman",
-                    modifier = Modifier.align(Alignment.CenterHorizontally),
-                    fontSize = 14.sp,
-                    color = iconColorPaleBlack
-
-                )
-                Spacer(modifier = Modifier.height(16.dp))
 
 
             }
@@ -300,7 +276,7 @@ fun RegisterContent(
 @Composable
 fun PreviewLoginContent() {
     MobileBankingTheme {
-        RegisterContent({},RegisterScreenContract.UiState.LanguageState(true))
+        RegisterContent({}, RegisterScreenContract.UiState.LanguageState(true))
     }
 
 }

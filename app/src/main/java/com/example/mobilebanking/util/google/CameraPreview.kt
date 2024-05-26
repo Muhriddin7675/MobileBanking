@@ -1,3 +1,4 @@
+
 import android.Manifest
 import android.content.pm.PackageManager
 import android.graphics.Rect
@@ -10,11 +11,7 @@ import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -24,7 +21,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
 import com.example.mobilebanking.util.google.TextAnalyzer
@@ -203,7 +199,7 @@ fun CardScannerScreen(setCardYear: (String) -> Unit, setCardNumber: (String) -> 
         }
     }
 
-    Column(
+ /*   Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp)
@@ -213,5 +209,5 @@ fun CardScannerScreen(setCardYear: (String) -> Unit, setCardNumber: (String) -> 
         cardInfo.forEach { info ->
             Text(text = info.first, style = MaterialTheme.typography.bodyLarge)
         }
-    }
+    }*/
 }

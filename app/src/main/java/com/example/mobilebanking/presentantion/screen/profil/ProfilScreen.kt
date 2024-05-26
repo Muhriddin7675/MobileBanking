@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -21,6 +22,10 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -39,6 +44,7 @@ import cafe.adriel.voyager.hilt.getViewModel
 import cafe.adriel.voyager.navigator.bottomSheet.LocalBottomSheetNavigator
 import com.example.mobilebanking.R
 import com.example.mobilebanking.presentantion.dialog.AppRateBottomDialog
+import com.example.mobilebanking.presentantion.dialog.LogOutDialog
 import com.example.mobilebanking.presentantion.dialog.PaymentInfoBottomDialog
 import com.example.mobilebanking.presentantion.dialog.ReferenceBottomDialog
 import com.example.mobilebanking.ui.theme.MobileBankingTheme
@@ -46,7 +52,9 @@ import com.example.mobilebanking.ui.theme.appBackgroundColorWhite
 import com.example.mobilebanking.ui.theme.black
 import com.example.mobilebanking.ui.theme.errorColorX
 import com.example.mobilebanking.ui.theme.primaryColor
+import com.example.mobilebanking.ui.theme.textColor
 import com.example.mobilebanking.ui.theme.white
+import com.example.mobilebanking.util.formatPhoneNumber
 import com.example.mobilebanking.util.makePhoneCall
 import com.example.mobilebanking.util.openEmailIntent
 import com.example.mobilebanking.util.openWebsite
@@ -89,6 +97,20 @@ class ProfilScreen : Screen {
                                 clickGood = { bottomSheetNavigator.hide() })
                         )
                     }
+
+                    ProfilContract.SideEffect.OpenLogAut -> {
+                        bottomSheetNavigator.show(
+                            LogOutDialog(
+                                logOut = {
+                                    bottomSheetNavigator.hide()
+                                    ProfilContract.Intent.LogOut
+                                },
+                                dismiss = {
+                                    bottomSheetNavigator.hide()
+                                }
+                            )
+                        )
+                    }
                 }
             }
         }
@@ -100,6 +122,14 @@ class ProfilScreen : Screen {
         uiState: ProfilContract.UIState,
         onEventDispatcher: (ProfilContract.Intent) -> Unit
     ) {
+        var phoneNumber by remember { mutableStateOf("+998 90 657 76 75") }
+
+        onEventDispatcher.invoke(ProfilContract.Intent.InitUiState)
+        when (uiState) {
+            is ProfilContract.UIState.InitState -> {
+                phoneNumber = uiState.phoneNumber.formatPhoneNumber()
+            }
+        }
         val context = LocalContext.current
         Column(
             modifier = Modifier
@@ -147,21 +177,60 @@ class ProfilScreen : Screen {
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(200.dp)
                         .padding(horizontal = 16.dp)
                         .shadow(0.4.dp, shape = RoundedCornerShape(16.dp))
                         .clip(RoundedCornerShape(16.dp))
                         .background(white)
                 ) {
                     Text(
-                        text = "+998 94 657 76 75",
+                        text = phoneNumber,
                         fontSize = 20.sp,
                         fontFamily = FontFamily(Font(R.font.pnfont_semibold)),
                         modifier = Modifier.padding(start = 24.dp, top = 24.dp)
                     )
-                    Spacer(modifier = Modifier.weight(1f))
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 8.dp)
+                            .padding(vertical = 4.dp)
+                            .padding(horizontal = 16.dp)
+                            .shadow(1.dp, RoundedCornerShape(16.dp))
+                            .clip(RoundedCornerShape(16.dp))
+                            .background(white)
+                    ) {
+                        Image(
+                            painter = painterResource(R.drawable.sad_emoji),
+                            contentDescription = "support",
+                            modifier = Modifier
+                                .padding(start = 16.dp, end = 12.dp)
+                                .align(Alignment.CenterVertically)
+                                .size(36.dp),
+                        )
+
+                        Column(
+                            modifier = Modifier
+                                .align(Alignment.CenterVertically)
+                                .padding(vertical = 8.dp)
+                        ) {
+                            Text(
+                                text = stringResource(id = R.string.your_situation),
+                                modifier = Modifier,
+                                fontSize = 16.sp,
+                                color = textColor,
+                                fontFamily = FontFamily(Font(R.font.pnfont_semibold))
+                            )
+                            Text(
+                                text = stringResource(id = R.string.anonymous),
+                                fontSize = 18.sp,
+                                color = black,
+                                fontFamily = FontFamily(Font(R.font.pnfont_semibold)),
+                            )
+                        }
+                    }
                     Button(
-                        onClick = { /*TODO*/ },
+                        onClick = {
+                                  onEventDispatcher.invoke(ProfilContract.Intent.OpenIdentityVerificationScreen)
+                        },
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(horizontal = 12.dp, vertical = 12.dp)
@@ -295,7 +364,7 @@ class ProfilScreen : Screen {
                             enabled = true,
                             onClickLabel = null,
                             onClick = {
-                                onEventDispatcher.invoke(ProfilContract.Intent.LogOut)
+                                onEventDispatcher.invoke(ProfilContract.Intent.OpenLogAut)
                             }),
                 ) {
                     Row(modifier = Modifier.align(Alignment.Center)) {
@@ -322,7 +391,7 @@ class ProfilScreen : Screen {
     @Composable
     fun ProfilPreview() {
         MobileBankingTheme {
-            ProfilContent(uiState = ProfilContract.UIState.InitState) {}
+            ProfilContent(uiState = ProfilContract.UIState.InitState("")) {}
         }
 
     }

@@ -3,6 +3,7 @@ package com.example.mobilebanking.util
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.net.Uri
 import android.os.Build
 import android.os.VibrationEffect
@@ -11,6 +12,10 @@ import android.view.Window
 import androidx.biometric.BiometricPrompt
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.FragmentActivity
@@ -240,4 +245,44 @@ fun String.formatPhoneNumber(): String {
                 this.substring(11)
     }
     return ""
+}
+fun hideCardNumbers(cardNumbers: String) : String {
+    var newStr = ""
+    if (cardNumbers.length == 16) {
+        newStr += cardNumbers.substring(0, 4)
+        newStr += " "
+        newStr += cardNumbers.substring(4, 6)
+        newStr += "** "
+        newStr += "**** "
+        newStr += cardNumbers.substring(12)
+    }
+    return newStr
+}
+fun moneyAmountIsCorrect(amount: String) : Boolean =
+    amount.toInt() in 1000 .. 12400000
+
+fun getCurrentLanguage(): String {
+    return Locale.getDefault().language
+}
+
+fun setLocale(context: Context, languageCode: String) {
+    val locale = Locale(languageCode)
+    Locale.setDefault(locale)
+    val configuration = Configuration(context.resources.configuration)
+    configuration.setLocale(locale)
+    context.resources.updateConfiguration(configuration, context.resources.displayMetrics)
+}
+fun builderAnnotatedString(value: String, startWord: String, distance: Int) : AnnotatedString {
+    return buildAnnotatedString {
+        val startIndex = value.indexOf(startWord)
+        val endIndex = startIndex + distance
+
+        append(value)
+        addStyle(
+            style = SpanStyle(
+                color = Color(0xff64B5F6),
+                textDecoration = TextDecoration.Underline
+            ), start = startIndex, end = endIndex
+        )
+    }
 }

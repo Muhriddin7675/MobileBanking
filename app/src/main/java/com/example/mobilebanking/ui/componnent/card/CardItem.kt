@@ -25,7 +25,7 @@ import androidx.compose.ui.unit.dp
 import com.example.mobilebank.ui.components.CustomImageView
 import com.example.mobilebanking.R
 import com.example.mobilebanking.data.model.CardData
-import com.example.mobilebanking.ui.componnent.CustomTextView
+import com.example.mobilebanking.ui.componnent.text.CustomTextView
 import com.example.mobilebanking.ui.theme.MobileBankingTheme
 import com.example.mobilebanking.util.addSpacesEveryAmount
 import com.example.mobilebanking.util.getCardType

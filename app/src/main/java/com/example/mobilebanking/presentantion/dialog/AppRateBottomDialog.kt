@@ -106,7 +106,8 @@ fun AppRateDialogContent(
             }) {
             Text(
                 text = stringResource(id = R.string.btn_everything_is_fine),
-                fontFamily = FontFamily(Font(R.font.pnfont_medium))
+                fontFamily = FontFamily(Font(R.font.pnfont_medium)),
+                color = white
             )
         }
         Spacer(modifier = Modifier.height(12.dp))

@@ -29,9 +29,9 @@ import cafe.adriel.voyager.hilt.getViewModel
 import com.example.mobilebanking.R
 import com.example.mobilebanking.ui.componnent.CodeChecker
 import com.example.mobilebanking.ui.componnent.CodeCreator
-import com.example.mobilebanking.ui.text.PinCodeCircle
-import com.example.mobilebanking.ui.text.TextBoldBlack
-import com.example.mobilebanking.ui.text.TextNormalBlack
+import com.example.mobilebanking.ui.componnent.text.PinCodeCircle
+import com.example.mobilebanking.ui.componnent.text.TextBoldBlack
+import com.example.mobilebanking.ui.componnent.text.TextNormalBlack
 import com.example.mobilebanking.ui.theme.circleDefaultColor
 import com.example.mobilebanking.ui.theme.pinScreenBgLight
 import com.example.mobilebanking.ui.theme.textColor

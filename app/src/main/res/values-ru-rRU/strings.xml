@@ -1,2 +1,305 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+
+    <string name="app_name">Мобильный банк</string>
+    <string name="phone_number">Номер телефона</string>
+    <string name="empty"> </string>
+    <string name="phone_prefix">+998</string>
+    <string name="register_user_policy">Нажимая кнопку продолжить, я принимаю условия оферты об оказании услуг и даю согласие на обработку персональных данных</string>
+    <string name="unknown_error">Неизвестная ошибка</string>
+    <string name="enter_phone">Введите ваш номер</string>
+    <string name="for_client">чтобы войти или стать клиентом</string>
+    <string name="enter_sms_code">Введите код из SMS</string>
+    <string name="search_operation">Поиск операции</string>
+    <string name="search_hint_beeline">Например, Beeline</string>
+    <string name="enter_pin">Введите PIN-код</string>
+    <string name="yout_phone_number">Ваш номер телефона</string>
+    <string name="_2006">+998 95 917 9730</string>
+    <string name="forget_pin">Забыли PIN-код?</string>
+
+    <!--    Dialog text-->
+    <string name="howToAddCard">Как добавить карту?</string>
+    <string name="uzCard">Карта Узбекистана</string>
+    <string name="ruCard">Карта России</string>
+    <string name="paynetInfo">Компания "UZPAYNET" работает на рынке Узбекистана с 2005 года. За это время подключено более 1500 различных провайдеров услуг, оплату за услуги которых можно произвести через мобильное приложение "Paynet Qulay Pul" и в 24 000 пунктах приема платежей по всей стране.\n\nКомпания не останавливается на достигнутом и продолжает развивать и расширять спектр предоставляемых услуг.\n\nВерсия: 7.2.10.202404234</string>
+    <string name="paynetLink">www.paynet.uz</string>
+    <string name="publicOffering">Публичная оферта</string>
+    <string name="paymentBonusCard">Оферта бонусной карты Paynet</string>
+    <string name="paymentElectronMoneyOffering">Оферта по использованию электронной платежной системы Paynet</string>
+    <string name="paymentYouLove">Вам нравится Paynet?</string>
+    <string name="paymentYouLoveAbout">Мы внимательно читаем все отзывы, чтобы улучшить приложение.</string>
+    <string name="btn_everything_is_fine">Все хорошо</string>
+    <string name="btn_something">Что-то не так</string>
+
+    <!--    App Setting Screen-->
+    <string name="app_setting">Настройки приложения</string>
+    <string name="app_language">Язык приложения</string>
+    <string name="safety">Безопасность</string>
+    <string name="changePinCode">Изменить PIN-код</string>
+    <string name="FaceId">Face ID (Touch ID)</string>
+    <string name="devices">Устройства</string>
+    <string name="addition">Дополнительно</string>
+    <string name="services_directory">Обновить каталог услуг</string>
+    <string name="updated">Обновлено</string>
+
+    <!--     MAIN SCREEN  -->
+    <string name="my_money">Мои деньги</string>
+    <string name="som">сум</string>
+    <string name="what_is_it">Что это?</string>
+    <string name="pay_net_card">Карта Paynet</string>
+    <string name="fill">Пополнить</string>
+    <string name="transact">Перевести</string>
+    <string name="pay">Оплатить</string>
+    <string name="your_level">Ваш уровень:</string>
+    <string name="starter">Начальный</string>
+    <string name="coin">монета</string>
+    <string name="exchange">Обменять</string>
+    <string name="left_after_next_level">осталось до следующего уровня</string>
+    <string name="transfers">Переводы</string>
+    <string name="card_or_phone">Карта или телефон</string>
+    <string name="mine_card">Моя</string>
+    <string name="template">Шаблоны</string>
+    <string name="add">Добавить</string>
+    <string name="international_transfers">Международные переводы</string>
+    <string name="rus_to_uzb">Россия Узбекистан</string>
+    <string name="uzb_to_rus">Узбекистан Россия</string>
+    <string name="rust_to_uzb_description">Введите номер карты РФ получателя в России</string>
+    <string name="paymentSecurity">Безопасность Paynet</string>
+    <string name="increasingPoverty">Увеличение безопасности</string>
+    <string name="do_you_want">Хотите</string>
+    <string name="verify_your_identity">Подтвердите вашу личность</string>
+    <string name="my_cards">Мои карты</string>
+    <string name="cashback_account">Счет кэшбэка</string>
+    <string name="balance">Баланс</string>
+    <string name="today">Сегодня</string>
+
+    <!--    Payment Screen-->
+    <string name="qr_code">QR-код</string>
+    <string name="payment">Оплата</string>
+    <string name="search">Поиск</string>
+    <string name="quick_payment">Быстрые платежи</string>
+    <string name="train_ticket">Железнодорожный билет</string>
+    <string name="comfort_quick">удобно и быстро</string>
+    <string name="buy">Купить</string>
+    <string name="useful_and">Полезно и надежно</string>
+    <string name="buy_ticket">Купить билет</string>
+    <string name="payment_types">Типы платежей</string>
+    <string name="call">Связь</string>
+    <string name="request">Оплата по реквизитам</string>
+    <string name="communal">Коммунальные платежи</string>
+    <string name="InternetTV">Интернет и ТВ</string>
+    <string name="education">Образование</string>
+    <string name="public_Services">Государственные услуги и штрафы</string>
+    <string name="term_payment">Срочные платежи</string>
+    <string name="credit_payment">Платежи по кредиту</string>
+    <string name="mik_credit">Микрокредит ломбарды</string>
+    <string name="transport_taxi">Транспорт и такси</string>
+    <string name="medicine">Медицина</string>
+    <string name="another_payment">Другие платежи</string>
+    <string name="know_your_debt">Узнайте свою задолженность</string>
+    <string name="app_tax_mib">налог и МИБ в приложении</string>
+    <string name="paynet_carta">Карта Paynet</string>
+    <string name="useful_and_reliable">Полезно и надежно</string>
+    <string name="buy_a_ticket">Купить билет</string>
+    <string name="electric_gas_connection">Оплатите электроэнергию, газ и связь вовремя</string>
+    <string name="create_home">Создать дом</string>
+    <string name="cancellation">Отмена</string>
+    <string name="templates">Шаблоны</string>
+    <string name="payment_card">На карту Paynet</string>
+    <string name="uzbekistan">Узбекистан</string>
+
+    <!--    Add Card Screen-->
+    <string name="add_card">Добавить карту</string>
+    <string name="card_number">Номер карты</string>
+    <string name="ooYY">мм/гг</string>
+    <string name="btn_continue">Продолжить</string>
+    <string name="cardIsPeriodIncorrect">Неправильный срок действия карты</string>
+    <string name="style_and_name">Цвет и стиль карты</string>
+    <string name="card_setting">Настройки</string>
+    <string name="delete_card">Удалить карту</string>
+    <string name="card_name">Название карты</string>
+    <string name="limit_symbols">4/15 символов</string>
+
+    <!--    create PIN code -->
+
+    <string name="create_pin_code">Создать PIN-код</string>
+    <string name="create_pin_code_reset">Повторите PIN-код</string>
+    <string name="add_code_in_sms">Введите код из SMS</string>
+    <string name="sent_to_number">отправили на номер</string>
+    <string name="send_new_code">Отправить новый код</string>
+    <string name="sec">сек</string>
+    <string name="incorrect_code_error_text">Неправильный код.\nПолучите код снова или измените номер телефона</string>
+
+    <!--    PIN CODE SCREEN-->
+    <string name="enter_the_pin_code">Введите PIN-код</string>
+    <string name="your_phone_number">Ваш номер телефона</string>
+    <string name="forget_pin_code">Забыли PIN-код?</string>
+    <string name="incorrect_pin_code">Неправильный PIN-код</string>
+    <string name="count_attempt_left">попыток осталось</string>
+
+    <!--    Profil Screen-->
+    <string name="profil">Профиль</string>
+    <string name="buttonVerifyIdentity">Подтвердите личность</string>
+    <string name="support">Поддержка</string>
+    <string name="chat_Assistant">Чат-помощник</string>
+    <string name="toCall">Позвонить</string>
+    <string name="emailWrite">Написать Email</string>
+    <string name="usefulInformation">Полезная информация</string>
+    <string name="paynetAbaut">О Paynet</string>
+    <string name="reference">Справочник</string>
+    <string name="location">Местоположение</string>
+    <string name="appSetting">Настройки приложения</string>
+    <string name="appRate">Оцените приложение</string>
+    <string name="logAutProfil">Выйти из профиля</string>
+
+    <!--    Register Screen-->
+    <string name="appLanguage">Язык приложения</string>
+    <string name="russia">Русский</string>
+    <string name="uzbek">Узбекский</string>
+    <string name="language_ru">Язык</string>
+    <string name="language_uz">Язык</string>
+    <string name="appwidget_text">ПРИМЕР</string>
+    <string name="configure">Настроить</string>
+    <string name="add_widget">Добавить виджет</string>
+    <string name="app_widget_description">Это описание виджета приложения</string>
+    <string name="_1_eur">€1 EUR</string>
+    <string name="_1_usd">$1 USD</string>
+    <string name="_1_rub">₽1 RUB</string>
+
+    <!--    Payment card screen-->
+    <string name="paymentCard">Карта Paynet</string>
+    <string name="wallet">Кошелек</string>
+    <string name="spending_more_money_on_paynet_card">Тратить больше денег на карте Paynet</string>
+    <string name="spending_more_money_on_paynet_card2">и для хранения</string>
+    <string name="cash_withdrawal">Снятие наличных</string>
+    <string name="payment_agent">Через агента Paynet</string>
+    <string name="for_transfer_qrCod">Для переводов QR-код</string>
+    <string name="there_is_no_payment_yet">Платежей пока нет</string>
+    <string name="offer">Оферта</string>
+    <string name="conditions_and_restrictions">Условия и ограничения</string>
+    <string name="payments">Платежи</string>
+
+    <!--    What is payment Card Screen-->
+    <string name="what_is_payment_card">Что такое карта Paynet?</string>
+    <string name="the_funds">Средства</string>
+    <string name="without_commission">без комиссии</string>
+    <string name="fill_and_transfer">пополните и переведите</string>
+    <string name="toFill">Для пополнения 0%</string>
+    <string name="payment_agent_infokiosk">У агента Paynet, в инфокиоске или в приложении</string>
+    <string name="on_a_bank_card">на банковской карте</string>
+    <string name="toTransfer">Для переводов 0%</string>
+    <string name="to_other_paynet_cards">На другие карты Paynet</string>
+    <string name="inPaymentAgent">У агента Paynet</string>
+    <string name="card_payments">Платежи с карты</string>
+    <string name="services_of_paynet_1000">Для любой из 1000 услуг Paynet</string>
+    <string name="using_a_paynet_card">Оплата с помощью карты Paynet</string>
+    <string name="up_to_22_cashback">До 2.2% кешбэк</string>
+    <string name="pay_by_paynet_card">Оплатить картой Paynet</string>
+    <string name="cashback_to_your">и получите кешбэк на ваш счет</string>
+    <string name="fillWith">пополните с помощью</string>
+    <string name="btn_restrictions_and_conditions">Узнать условия и ограничения</string>
+
+    <!--    Conditions Screen-->
+    <string name="confirm_your_identity_paynet_card">Для траты и хранения средств на карте Paynet</string>
+    <string name="verifyYourIdentity">подтвердите свою личность</string>
+    <string name="your_situation">Ваш статус</string>
+    <string name="anonymous">Аноним</string>
+    <string name="improve_the_situation">Улучшить статус</string>
+    <string name="confirmed">Подтвержден</string>
+    <string name="how_much_can_stored">Сколько можно хранить</string>
+    <string name="sum_1700_000">1 700 000</string>
+    <string name="sum_170_000_000">170 000 000</string>
+    <string name="sum_340_000">340 000</string>
+    <string name="sum_34_000_000">34 000 000</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+    <string name="how_much_spend_month">Сколько можно тратить в месяц</string>
+    <string name="payments_transfers_and_cash">(платежи, переводы и наличные)</string>
+    <string name="how_much_you_spend">Сколько вы можете потратить за один раз</string>
+    <string name="possible">возможно</string>
+    <string name="maximum_amount_for_payment">(максимальная сумма для платежей и переводов)</string>
+    <string name="cash_can_withdrawn">Можно снять наличные</string>
+    <string name="transferToUzCard_HUMO">Можно ли перевести на карты Uzcard, HUMO</string>
+    <string name="can_transferred_Paynet_cards">Можно перевести на карты Paynet</string>
+    <string name="detailed_conditions">Подробные условия</string>
+    <string name="commission09">Комиссия 0.9%</string>
+    <string name="no_commission">Без комиссии</string>
+    <string name="useful">Полезно</string>
+
+    <!--    IdentityVerificationScreen-->
+    <string name="identityVerification">Подтверждение личности</string>
+    <string name="your_document">Ваш документ</string>
+    <string name="scan">сканируйте</string>
+    <string name="increase_these_limits">Для увеличения этих лимитов и снятия наличных с карты Paynet</string>
+    <string name="required_for_unlocking">необходимо.</string>
+    <string name="you_few_minutes">Это займет несколько минут.</string>
+    <string name="you_are_document_selfie">Вам нужно будет отсканировать документ и сделать селфи</string>
+    <string name="will_be_needed">вам потребуется.</string>
+    <string name="passport_scan">Скан паспорта</string>
+    <string name="id_card_scan">Скан ID-карты</string>
+    <string name="manual_data_entry">Ввод данных вручную</string>
+
+    <!--    Data entry screen-->
+    <string name="manual_data_verification">Ввод данных вручную</string>
+    <string name="your_passport_number_id">Введите номер паспорта (ID-карты)</string>
+    <string name="and_enter_jshshir">и введите JSHSHIR</string>
+    <string name="passport_number_id_card">Номер паспорта (ID-карты)</string>
+    <string name="jshshir">JSHSHIR</string>
+
+    <string name="cards">Карты</string>
+    <string name="delete_user">Удалить получателя</string>
+    <string name="ac_delete">Вы действительно хотите удалить всех последних получателей?</string>
+    <string name="delete_all">Очистить</string>
+    <string name="to_my_card">На мою карту</string>
+    <string name="to_paynet_card">На карту Paynet</string>
+    <string name="to_ru">В Россию</string>
+    <string name="to_uz">В Узбекистан</string>
+    <string name="last">Последние</string>
+    <string name="we_cant_find">Мы не смогли найти такую карту</string>
+    <string name="card_number_wrong">Возможно, ошибка в номере</string>
+
+    <string name="transfer_to_card">Перевод на карту</string>
+    <string name="from">Откуда</string>
+    <string name="to">Куда</string>
+    <string name="you_transfer">Вы переводите</string>
+    <string name="paynet">Paynet</string>
+    <string name="_12444_sum">12444 сум</string>
+    <string name="_15_04_2025">15/04/2024</string>
+    <string name="_137_sum">137 сум</string>
+    <string name="_1757_sum">1757 сум</string>
+    <string name="moneys">Валютные курсы</string>
+    <string name="app_set">Настройки приложения</string>
+    <string name="app_security">Безопасность</string>
+    <string name="transfer_percent">Комиссия</string>
+    <string name="amount_is_less">Недостаточно средств</string>
+    <string name="code_icnt_correct">Код неверен</string>
+    <string name="transfer_success">Перевод отправлен</string>
+    <string name="transferDetails">Детали перевода</string>
+    <string name="add_shablon">Добавить в шаблон</string>
+    <string name="done">Готово</string>
+    <string name="success">Успешно</string>
+    <string name="enter_code">Введите код из SMS</string>
+    <string name="sent_it_to"> отправили на номер</string>
+    <string name="select_card">Выберите карту</string>
+
+    <string name="card_style">Цвет и стиль карты</string>
+    <string name="delete_card_d">Вы уверены, что хотите удалить карту?</string>
+    <string name="log_out_d">Вы хотите выйти из учетной записи?</string>
+    <string name="log_out_">Выход</string>
+    <string name="error_to_my">Нельзя переводить на ту же карту</string>
+    <string name="not_connected">Нет соединения с Интернетом!</string>
+    <string name="refresh">Обновить</string>
+    <string name="no_con_desc">Произошла ошибка соединения.\n Попробуйте снова.</string>
+    <string name="add_my_datas">Ввести данные вручную</string>
+    <string name="enter_name">Введите ваше имя</string>
+    <string name="enter_last">Введите вашу фамилию</string>
+    <string name="enter_born_date">Введите вашу дату рождения</string>
+    <string name="enter_data">Заполните данные</string>
+    <string name="history">История</string>
+    <string name="home">Главный</string>
+    <string name="incoming_transfer">Входящий перевод</string>
+    <string name="outbound_transfer">Исходящий перевод</string>
+
+
+</resources>
+
+

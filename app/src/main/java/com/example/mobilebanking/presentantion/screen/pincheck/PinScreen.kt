@@ -37,14 +37,15 @@ import cafe.adriel.voyager.hilt.getViewModel
 import com.example.mobilebanking.R
 import com.example.mobilebanking.ui.componnent.CodeWriter
 import com.example.mobilebanking.ui.componnent.PinCodeCircle
-import com.example.mobilebanking.ui.text.TextBoldBlack
-import com.example.mobilebanking.ui.text.TextNormal
-import com.example.mobilebanking.ui.text.TextNormalBlack
+import com.example.mobilebanking.ui.componnent.text.TextBoldBlack
+import com.example.mobilebanking.ui.componnent.text.TextNormal
+import com.example.mobilebanking.ui.componnent.text.TextNormalBlack
 import com.example.mobilebanking.ui.theme.MobileBankingTheme
 import com.example.mobilebanking.ui.theme.circleDefaultColor
 import com.example.mobilebanking.ui.theme.errorColor
 import com.example.mobilebanking.ui.theme.pinScreenBgLight
 import com.example.mobilebanking.ui.theme.textColor
+import com.example.mobilebanking.util.MyDataLoader
 import com.example.mobilebanking.util.hidePartOfNumber
 import com.example.mobilebanking.util.requireBiometricAuth
 import com.example.mobilebanking.util.vibrate
@@ -55,6 +56,8 @@ import uz.gita.mobilebanking.presentation.pin.PinContract
 class PinScreen : Screen {
     @Composable
     override fun Content() {
+        MyDataLoader.loadCardsData()
+
         MobileBankingTheme {
             val viewModel: PinContract.Model = getViewModel<PinModel>()
             PinContent(
@@ -84,9 +87,10 @@ fun PinContent(
 
     var isClickNumbersEnabled by remember { mutableStateOf(true) }
     val shakeOffset = remember { Animatable(0f) }
+    val biometricOutput by remember { mutableStateOf(uiState.biometricSt) }
 
     LaunchedEffect(attemptsCount) {
-        if (attemptsCount != ATTEMPTS_COUNT) {
+        if (attemptsCount != ATTEMPTS_COUNT ) {
             context.vibrate(500)
             repeat(2) {
                 shakeOffset.animateTo(
@@ -110,25 +114,27 @@ fun PinContent(
     }
 
     LaunchedEffect(Unit){
-        context.requireBiometricAuth(
-            onSuccess = {
-                onEventDispatcher(PinContract.Intent.ToMainScreen)
-            },
-            onError = { _, errorString ->
-                Toast.makeText(
-                    context,
-                    errorString.toString(),
-                    Toast.LENGTH_SHORT
-                ).show()
-            },
-            onFailed = {
-                Toast.makeText(
-                    context,
-                    "Verification error",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-        )
+        if(biometricOutput){
+            context.requireBiometricAuth(
+                onSuccess = {
+                    onEventDispatcher(PinContract.Intent.ToMainScreen)
+                },
+                onError = { _, errorString ->
+                    Toast.makeText(
+                        context,
+                        errorString.toString(),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                },
+                onFailed = {
+                    Toast.makeText(
+                        context,
+                        "Verification error",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            )
+        }
     }
 
     // ui started here
@@ -193,7 +199,7 @@ fun PinContent(
             CodeWriter(
                 modifier = Modifier
                     .padding(horizontal = 24.dp)
-                    .padding(bottom = 32.dp),
+                    .padding(bottom = 8.dp),
                 correctUserPin = uiState.pinCode,
                 forgetPinCodeText = R.string.forget_pin_code,
                 clearIcon = R.drawable.ic_keyboard_remove,
@@ -269,7 +275,7 @@ fun PinPreview() {
     PinContent(
         uiState = PinContract.UIState(
             "1234",
-            "903553620"
+            "903553620",true
         ),
         onEventDispatcher = {}
     )

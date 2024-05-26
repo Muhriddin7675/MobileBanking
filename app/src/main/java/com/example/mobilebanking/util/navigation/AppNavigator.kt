@@ -11,6 +11,8 @@ interface AppNavigator {
     suspend fun back()
     suspend fun backUntilRoot()
     suspend fun backAll()
+    suspend fun backUntil(screen: Screen)
+
     suspend fun navigateTo(screen: AppScreen)
     suspend fun replace(screen: AppScreen)
     suspend fun replaceAll(screen: AppScreen)

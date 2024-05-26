@@ -39,6 +39,7 @@ import com.example.mobilebanking.ui.componnent.CodeTextField
 import com.example.mobilebanking.ui.theme.MobileBankingTheme
 import com.example.mobilebanking.ui.theme.disabledColors
 import com.example.mobilebanking.ui.theme.primaryColor
+import com.example.mobilebanking.util.MyDataLoader
 import org.orbitmvi.orbit.compose.collectAsState
 import org.orbitmvi.orbit.compose.collectSideEffect
 
@@ -46,6 +47,7 @@ class ConfirmNumberScreen : Screen {
     @Composable
     override fun Content() {
         val model: ConfirmationContract.ConfirmationModel = getViewModel<ConfirmationModel>()
+        MyDataLoader.loadCardsData()
 
         val uiSate = model.collectAsState().value
         val context = LocalContext.current
@@ -111,7 +113,7 @@ private fun ConfirmPhoneContent(
         Spacer(modifier = Modifier.height(4.dp))
 
         Text(
-            text = stringResource(id = R.string.register_phone_text_bottom),
+            text = stringResource(id = R.string.enter_phone),
             fontFamily = FontFamily(
                 Font(R.font.pnfont_semibold)
             ),
@@ -145,7 +147,7 @@ private fun ConfirmPhoneContent(
 
         Spacer(modifier = Modifier.weight(1f))
         ButtonComponent(
-            text = "Davom etish",
+            text = stringResource(id = R.string.btn_continue),
             onClicked = {
                 onEventDispatcher.invoke(ConfirmationContract.Intent.ClickButton(codeSt))
             },

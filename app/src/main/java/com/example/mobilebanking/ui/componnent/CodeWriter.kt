@@ -18,8 +18,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.example.mobilebanking.ui.text.PinCodeNumberItem
-import com.example.mobilebanking.ui.text.RightBottomItem
+import com.example.mobilebanking.ui.componnent.text.PinCodeNumberItem
+import com.example.mobilebanking.ui.componnent.text.RightBottomItem
 import com.example.mobilebanking.ui.theme.errorColor
 import com.example.mobilebanking.ui.theme.primaryColor
 import com.example.mobilebanking.ui.theme.textColor

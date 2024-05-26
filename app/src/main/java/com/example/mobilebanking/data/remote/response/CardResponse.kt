@@ -1,6 +1,5 @@
 package com.example.mobilebanking.data.remote.response
 
-import com.example.mobilebanking.data.model.CardData
 import com.google.gson.annotations.SerializedName
 
 class CardResponse(
@@ -19,18 +18,6 @@ class CardResponse(
     val isVisible: String
 )
 
-fun CardResponse.toCardData(): CardData {
-    return CardData(
-        id = id,
-        name = name,
-        amount = amount,
-        owner = owner,
-        pan = pan,
-        expiredYear = expiredYear,
-        expiredMonth = expiredMonth.toInt(),
-        isVisible = isVisible.toBoolean()
-    )
-}
 
 /*"id": 21,
 "name": "Personal",

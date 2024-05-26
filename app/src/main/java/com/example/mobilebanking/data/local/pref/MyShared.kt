@@ -64,5 +64,10 @@ class MyShared @Inject constructor(
     fun changeShowBalanceState(showBalance: Boolean) {
         pref.edit().putBoolean("showBalance", showBalance).apply()
     }
+    fun setBiometryUnlock(biometric:Boolean){
+        pref.edit().putBoolean("BIOMETRY",biometric).apply()
+    }
+    fun getBiometryUnlock():Boolean =
+        pref.getBoolean("BIOMETRY",true)
 
 }

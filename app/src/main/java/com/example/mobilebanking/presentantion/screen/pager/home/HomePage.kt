@@ -56,11 +56,11 @@ import cafe.adriel.voyager.navigator.tab.TabOptions
 import com.example.mobilebanking.R
 import com.example.mobilebanking.data.model.CardData
 import com.example.mobilebanking.presentantion.dialog.AddCardBottomDialog
-import com.example.mobilebanking.ui.componnent.CardAvia
-import com.example.mobilebanking.ui.componnent.CardMIB
-import com.example.mobilebanking.ui.componnent.CardMyHouse
-import com.example.mobilebanking.ui.componnent.OneAddCardComponent
-import com.example.mobilebanking.ui.componnent.TwoAddCardComponent
+import com.example.mobilebanking.ui.componnent.card.CardAvia
+import com.example.mobilebanking.ui.componnent.card.CardMIB
+import com.example.mobilebanking.ui.componnent.card.CardMyHouse
+import com.example.mobilebanking.ui.componnent.card.OneAddCardComponent
+import com.example.mobilebanking.ui.componnent.card.TwoAddCardComponent
 import com.example.mobilebanking.ui.theme.MobileBankingTheme
 import com.example.mobilebanking.ui.theme.appBackgroundColorWhite
 import com.example.mobilebanking.ui.theme.black
@@ -79,7 +79,7 @@ import org.orbitmvi.orbit.compose.collectSideEffect
 object HomePage : Tab {
     override val options: TabOptions
         @Composable get() {
-            val title = "Asosiy"
+            val title = stringResource(id = R.string.home)
             val icon =
                 rememberVectorPainter(image = ImageVector.vectorResource(id = R.drawable.ic_operations_home))
 
@@ -130,13 +130,11 @@ object HomePage : Tab {
         var totalBalance by remember { mutableStateOf("0") }
 
         onEventDispatcher.invoke(HomeContract.Intent.GetData)
-
-//        LaunchedEffect(Unit) {
         onEventDispatcher.invoke(HomeContract.Intent.GetAllCard)
-//        }
+
         when (uiState) {
             is HomeContract.UIState.GetUIState -> {
-                phoneNumber = uiState.phone
+                phoneNumber = "+998${uiState.phone}"
                 showBalans = uiState.showBalance
             }
 
@@ -344,7 +342,7 @@ object HomePage : Tab {
                                 modifier = Modifier.fillMaxWidth()
                             ) {
                                 Text(
-                                    text = if (showBalans) "0" else "• •••",
+                                    text = if (showBalans) "100 000 000" else "• •••",
                                     fontSize = 20.sp,
                                     fontFamily = FontFamily(Font(R.font.pnfont_semibold)),
                                     color = black
@@ -725,25 +723,33 @@ object HomePage : Tab {
                                     fontFamily = FontFamily(Font(R.font.pnfont_regular)),
                                     color = black
                                 )
+                                Spacer(modifier = Modifier.weight(1f))
                                 Box(
                                     modifier = Modifier
-                                        .fillMaxWidth()
-                                        .align(Alignment.CenterVertically)
+                                        .padding(
+                                            start = 4.dp,
+                                            end = 4.dp,
+                                            top = 3.dp,
+                                            bottom = 3.dp
+                                        )
+                                        .clip(RoundedCornerShape(2.dp))
+                                        .background(circleStartColorGreen)
                                 ) {
-                                    Text(
-                                        text = "0 so'm",
-                                        fontSize = 10.sp,
-                                        fontFamily = FontFamily(Font(R.font.pnfont_regular)),
-                                        color = white,
-                                        modifier = Modifier
-                                            .padding(
-                                                start = 4.dp, end = 4.dp, top = 3.dp, bottom = 3.dp
-                                            )
-                                            .clip(RoundedCornerShape(2.dp))
-                                            .background(circleStartColorGreen)
-                                            .align(Alignment.CenterEnd)
-
-                                    )
+                                    Row() {
+                                        Text(
+                                            text = if (showBalans) "0" else "• •••",
+                                            fontSize = 10.sp,
+                                            fontFamily = FontFamily(Font(R.font.pnfont_regular)),
+                                            color = white,
+                                        )
+                                        Text(
+                                            text = stringResource(id = R.string.som),
+                                            fontSize = 10.sp,
+                                            fontFamily = FontFamily(Font(R.font.pnfont_regular)),
+                                            color = white,
+                                            modifier = Modifier.padding(start = 4.dp)
+                                        )
+                                    }
                                 }
                             }
                         }

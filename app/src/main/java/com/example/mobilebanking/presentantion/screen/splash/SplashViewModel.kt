@@ -3,7 +3,7 @@ package com.example.mobilebanking.presentantion.screen.splash
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mobilebanking.data.local.pref.MyShared
-import com.example.mobilebanking.domain.AppRepository
+import com.example.mobilebanking.domain.repositori.AppRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

@@ -35,7 +35,7 @@ import androidx.compose.ui.unit.sp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.hilt.getViewModel
 import com.example.mobilebanking.R
-import com.example.mobilebanking.ui.componnent.CardIconTwoText
+import com.example.mobilebanking.ui.componnent.card.CardIconTwoText
 import com.example.mobilebanking.ui.theme.MobileBankingTheme
 import com.example.mobilebanking.ui.theme.appBackgroundColorWhite
 import com.example.mobilebanking.ui.theme.black

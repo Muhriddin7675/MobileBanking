@@ -16,8 +16,6 @@ import com.example.mobilebanking.presentantion.screen.dataentry.DataEntryDirecti
 import com.example.mobilebanking.presentantion.screen.dataentry.DataEntryDirectionImpl
 import com.example.mobilebanking.presentantion.screen.identity.IdentityVerificationDirection
 import com.example.mobilebanking.presentantion.screen.identity.IdentityVerificationDirectionImpl
-import com.example.mobilebanking.presentantion.screen.main.MainDirection
-import com.example.mobilebanking.presentantion.screen.main.MainDirectionImpl
 import com.example.mobilebanking.presentantion.screen.map.MapDirection
 import com.example.mobilebanking.presentantion.screen.map.MapDirectionImpl
 import com.example.mobilebanking.presentantion.screen.pager.history.HistoryDirection
@@ -26,8 +24,8 @@ import com.example.mobilebanking.presentantion.screen.pager.home.HomeDirection
 import com.example.mobilebanking.presentantion.screen.pager.home.HomeDirectionImpl
 import com.example.mobilebanking.presentantion.screen.pager.payment.PaymentDirection
 import com.example.mobilebanking.presentantion.screen.pager.payment.PaymentDirectionImpl
-import com.example.mobilebanking.presentantion.screen.pager.transfer.TransferDirection
-import com.example.mobilebanking.presentantion.screen.pager.transfer.TransferDirectionImpl
+import com.example.mobilebanking.presentantion.screen.pager.transfer.TransferDirections
+import com.example.mobilebanking.presentantion.screen.pager.transfer.TransferDirectionsImp
 import com.example.mobilebanking.presentantion.screen.paymentcard.PaymentCardDirection
 import com.example.mobilebanking.presentantion.screen.paymentcard.PaymentCardDirectionImpl
 import com.example.mobilebanking.presentantion.screen.pincode.PinCheckDirection
@@ -40,14 +38,22 @@ import com.example.mobilebanking.presentantion.screen.setting.AppSettingDirectio
 import com.example.mobilebanking.presentantion.screen.setting.AppSettingDirectionImpl
 import com.example.mobilebanking.presentantion.screen.splash.SplashDirection
 import com.example.mobilebanking.presentantion.screen.splash.SplashDirectionImpl
+import com.example.mobilebanking.presentantion.screen.to_mycard.TransferMyCardDirections
+import com.example.mobilebanking.presentantion.screen.to_mycard.TransferMyCardDirectionsImp
+import com.example.mobilebanking.presentantion.screen.transfer_card.TransferCardDirections
+import com.example.mobilebanking.presentantion.screen.transfer_card.TransferCardDirectionsImp
+import com.example.mobilebanking.presentantion.screen.transfer_success.TransferSuccessDirections
+import com.example.mobilebanking.presentantion.screen.transfer_success.TransferSuccessDirectionsImp
+import com.example.mobilebanking.presentantion.screen.transfer_verify.TransferVerifyDirections
+import com.example.mobilebanking.presentantion.screen.transfer_verify.TransferVerifyDirectionsImp
 import com.example.mobilebanking.presentantion.screen.whatis.WhatIsPaymentCardDirection
 import com.example.mobilebanking.presentantion.screen.whatis.WhatIsPaymentCardDirectionImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import uz.gita.mobilebanking.presentation.pin.PinDirection
-import uz.gita.mobilebanking.presentation.pin.PinDirectionImpl
+import com.example.mobilebanking.presentantion.screen.pincheck.PinDirection
+import com.example.mobilebanking.presentantion.screen.pincheck.PinDirectionImpl
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -69,16 +75,13 @@ interface DirectionModule {
     fun homePageDirection(impl: HomeDirectionImpl): HomeDirection
 
     @Binds
-    fun mainScreenDirection(impl: MainDirectionImpl): MainDirection
-
-    @Binds
     fun paymentPageDirection(impl: PaymentDirectionImpl): PaymentDirection
 
     @Binds
     fun historyPageDirection(impl: HistoryDirectionImpl): HistoryDirection
 
     @Binds
-    fun transferPageDirection(impl: TransferDirectionImpl): TransferDirection
+    fun transferPageDirection(impl: TransferDirectionsImp): TransferDirections
 
     @Binds
     fun profilDirection(impl: ProfilDirectionImpl): ProfilDirection
@@ -118,6 +121,18 @@ interface DirectionModule {
 
     @Binds
     fun allCardDirection(impl: AllCardDirectionImpl): AllCardDirection
+
+    @Binds
+    fun transferCardDirections(impl: TransferCardDirectionsImp):TransferCardDirections
+
+    @Binds
+    fun transferSuccessDirections(impl:TransferSuccessDirectionsImp): TransferSuccessDirections
+
+    @Binds
+    fun transferVerifyDirections(impl: TransferVerifyDirectionsImp): TransferVerifyDirections
+
+    @Binds
+    fun transferMyCardDirections(impl: TransferMyCardDirectionsImp): TransferMyCardDirections
 
 
 }

@@ -5,6 +5,8 @@ import com.example.mobilebanking.data.remote.request.UpdateCardRequest
 import com.example.mobilebanking.data.remote.request.UpdateTokenRequest
 import com.example.mobilebanking.data.remote.request.UpdateTokenResponse
 import com.example.mobilebanking.data.remote.response.CardResponse
+import com.example.mobilebanking.data.remote.response.GetCardOwnerRequest
+import com.example.mobilebanking.data.remote.response.GetCardOwnerResponse
 import com.example.mobilebanking.data.remote.response.MessageResponse
 import retrofit2.Call
 import retrofit2.Response
@@ -31,6 +33,9 @@ interface AddCardApi {
 
     @DELETE("mobile-bank/v1/card/{id}")
     suspend fun deleteCard(@Path("id") id: String): Response<MessageResponse>
+
+    @POST("mobile-bank/v1/transfer/card-owner")
+    suspend fun getCardOwner(@Body request: GetCardOwnerRequest) : Response<GetCardOwnerResponse>
 
 
 }

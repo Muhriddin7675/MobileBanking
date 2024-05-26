@@ -1,6 +1,6 @@
-package uz.gita.mobilebanking.presentation.pin
+package com.example.mobilebanking.presentantion.screen.pincheck
 
-import com.example.mobilebanking.presentantion.screen.main.MainScreen
+import com.example.mobilebanking.presentantion.screen.pager.MainScreen
 import com.example.mobilebanking.util.navigation.AppNavigator
 import javax.inject.Inject
 import javax.inject.Singleton

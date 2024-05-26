@@ -2,7 +2,7 @@ package com.example.mobilebanking.presentantion.screen.addcard
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.mobilebanking.domain.AppRepository
+import com.example.mobilebanking.domain.repositori.AppRepository
 import com.example.mobilebanking.domain.uscase.AddCardUseCase
 import com.example.mobilebanking.util.myLog
 import dagger.hilt.android.lifecycle.HiltViewModel

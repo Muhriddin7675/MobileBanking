@@ -9,7 +9,8 @@ interface PinContract {
 
     data class UIState(
         val pinCode : String,
-        val phoneNumber : String
+        val phoneNumber : String,
+        val biometricSt:Boolean
     )
     sealed interface Intent {
         data object ToMainScreen  : Intent

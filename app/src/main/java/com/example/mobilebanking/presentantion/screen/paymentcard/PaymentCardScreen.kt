@@ -42,7 +42,7 @@ import cafe.adriel.voyager.hilt.getViewModel
 import com.example.mobilebanking.R
 import com.example.mobilebanking.presentantion.screen.pager.home.Card
 import com.example.mobilebanking.presentantion.screen.profil.CartTextComponent
-import com.example.mobilebanking.ui.componnent.CardIconTwoText
+import com.example.mobilebanking.ui.componnent.card.CardIconTwoText
 import com.example.mobilebanking.ui.theme.MobileBankingTheme
 import com.example.mobilebanking.ui.theme.appBackgroundColorWhite
 import com.example.mobilebanking.ui.theme.black
@@ -66,8 +66,8 @@ class PaymentCardScreen : Screen {
     @Composable
     fun PaymentCardContent(onEventDispatcher: (PaymentCardContract.Intent) -> Unit) {
 
-        val cardNumber by remember { mutableStateOf("9999 9999 9999 9999") }
-        val cardSumma by remember { mutableStateOf("10 000 000") }
+        val cardNumber by remember { mutableStateOf("9860 7777 7777 7675") }
+        val cardSumma by remember { mutableStateOf("100 000 000") }
         Column(
             Modifier
                 .fillMaxSize()

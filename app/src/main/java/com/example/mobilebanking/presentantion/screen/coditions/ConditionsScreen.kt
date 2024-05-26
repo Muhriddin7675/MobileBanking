@@ -142,7 +142,7 @@ class ConditionsScreen : Screen {
                                 .background(appBackgroundColorWhite)
                         ) {
                             Image(
-                                painter = painterResource(id = R.drawable.emoje_glas),
+                                painter = painterResource(id = R.drawable.sad_emoji),
                                 contentDescription = "uz",
                                 modifier = Modifier
                                     .padding(start = 12.dp, top = 18.dp)

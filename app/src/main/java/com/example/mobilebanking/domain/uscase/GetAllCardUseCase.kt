@@ -1,7 +1,7 @@
 package com.example.mobilebanking.domain.uscase
 
 import com.example.mobilebanking.data.model.CardData
-import com.example.mobilebanking.domain.CardRepository
+import com.example.mobilebanking.domain.repositori.CardRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

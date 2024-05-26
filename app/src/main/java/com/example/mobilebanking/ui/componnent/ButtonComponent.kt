@@ -23,6 +23,7 @@ import com.example.mobilebanking.ui.theme.MobileBankingTheme
 import com.example.mobilebanking.ui.theme.disableContentColor
 import com.example.mobilebanking.ui.theme.disabledColors
 import com.example.mobilebanking.ui.theme.primaryColor
+import com.example.mobilebanking.ui.theme.white
 
 @Composable
 fun ButtonComponent(
@@ -45,7 +46,9 @@ fun ButtonComponent(
         colors = ButtonDefaults.buttonColors(
             containerColor = enabledColor,
             disabledContainerColor = disabledColor,
-            disabledContentColor = disableContentColor
+            disabledContentColor = disableContentColor,
+            contentColor = white
+
         )
     ) {
         if (isLoading) {

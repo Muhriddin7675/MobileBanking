@@ -1,5 +1,6 @@
 package com.example.mobilebanking.presentantion.screen.profil
 
+import com.example.mobilebanking.presentantion.screen.identity.IdentityVerificationScreen
 import com.example.mobilebanking.presentantion.screen.map.MapScreen
 import com.example.mobilebanking.presentantion.screen.register.RegisterScreen
 import com.example.mobilebanking.presentantion.screen.setting.AppSettingScreen
@@ -11,6 +12,8 @@ suspend fun openMapScreen()
 suspend fun popBackStack()
 suspend fun logOut()
 suspend fun openSettingScreen()
+
+suspend fun openIdentityVerificationScreen()
 }
 class ProfilDirectionImpl @Inject constructor(
     private val navigator: AppNavigator
@@ -28,6 +31,10 @@ class ProfilDirectionImpl @Inject constructor(
 
     override suspend fun openSettingScreen() {
         navigator.navigateTo(AppSettingScreen())
+    }
+
+    override suspend fun openIdentityVerificationScreen() {
+        navigator.navigateTo(IdentityVerificationScreen())
     }
 
 }

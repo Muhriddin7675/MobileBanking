@@ -29,6 +29,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.Font
@@ -48,12 +49,16 @@ import com.example.mobilebanking.ui.theme.primaryColor
 import com.example.mobilebanking.ui.theme.securityCardStartColor
 import com.example.mobilebanking.ui.theme.textColor
 import com.example.mobilebanking.ui.theme.white
+import com.example.mobilebanking.util.getCurrentLanguage
+import com.example.mobilebanking.util.myLog
+import com.example.mobilebanking.util.setLocale
 import org.orbitmvi.orbit.compose.collectAsState
 
 class AppSettingScreen : Screen {
     @Composable
     override fun Content() {
         val model: AppSettingContract.Model = getViewModel<AppSettingModule>()
+        model.onEventDispatcher(AppSettingContract.Intent.LoadAppSettings)
 
         MobileBankingTheme {
             AppSettingContent(model.collectAsState().value, model::onEventDispatcher)
@@ -66,240 +71,257 @@ class AppSettingScreen : Screen {
         uiState: AppSettingContract.UIState,
         onEventDispatcher: (AppSettingContract.Intent) -> Unit
     ) {
-        var languageSt by remember { mutableStateOf(true) }
-        var touchIdSwitchSt by remember { mutableStateOf(false) }
+        var lang by remember { mutableStateOf(getCurrentLanguage()) }
+        var languageSt by remember { mutableStateOf(lang == "uz") }
+        var touchIdSwitchSt by remember { mutableStateOf(uiState.biometry) }
         var textServicesSt by remember { mutableStateOf("11.05.2024, 11:37:35") }
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(appBackgroundColorWhite)
-        ) {
+        val context = LocalContext.current
 
-            Row(
-                Modifier
-                    .padding(horizontal = 16.dp)
-                    .height(56.dp)
-            ) {
-                Image(
-                    painter = painterResource(id = R.drawable.ic_navigation_arrow_left_x24),
-                    contentDescription = "back",
-                    modifier = Modifier
-                        .align(Alignment.CenterVertically)
-                        .clickable(interactionSource = MutableInteractionSource(),
-                            indication = null,
-                            enabled = true,
-                            onClickLabel = null,
-                            onClick = {
-                                onEventDispatcher.invoke(AppSettingContract.Intent.PopBackStack)
-                            }),
+        myLog(touchIdSwitchSt.toString() + " biometrick state2")
 
-                    )
-                Spacer(modifier = Modifier.width(16.dp))
-
-                Text(
-                    text = stringResource(id = R.string.appSetting),
-                    fontFamily = FontFamily(Font(R.font.pnfont_semibold)),
-                    color = black,
-                    fontSize = 24.sp,
-                    modifier = Modifier.align(Alignment.CenterVertically)
-                )
-            }
-
-            Spacer(modifier = Modifier.height(12.dp))
-            Column(
-                Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp)
-                    .shadow(elevation = 1.dp, shape = RoundedCornerShape(16.dp))
-                    .clip(shape = RoundedCornerShape(16.dp))
-                    .background(white)
-            ) {
-                Text(
-                    text = stringResource(id = R.string.appLanguage),
-                    fontFamily = FontFamily(Font(R.font.pnfont_semibold)),
-                    fontSize = 18.sp,
-                    modifier = Modifier.padding(start = 12.dp, top = 12.dp)
-                )
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(136.dp)
-                        .padding(horizontal = 16.dp)
-                ) {
-                    Column(
-                        modifier = if (languageSt) {
-                            Modifier
-                                .fillMaxHeight()
-                                .weight(1f)
-                                .padding(bottom = 16.dp, top = 8.dp)
-                                .shadow(elevation = 1.dp, shape = RoundedCornerShape(16.dp))
-                                .clip(shape = RoundedCornerShape(16.dp))
-                                .border(
-                                    width = 1.2.dp,
-                                    color = primaryColor,
-                                    shape = RoundedCornerShape(16.dp)
-                                )
-                                .background(white)
-                        } else {
-                            Modifier
-                                .fillMaxHeight()
-                                .weight(1f)
-                                .padding(bottom = 16.dp, top = 8.dp)
-                                .shadow(elevation = 1.dp, shape = RoundedCornerShape(16.dp))
-                                .clip(shape = RoundedCornerShape(16.dp))
-                                .background(white)
-                                .clickable(
-                                    indication = null,
-                                    interactionSource = MutableInteractionSource(),
-                                    enabled = true,
-                                    onClickLabel = "",
-                                    onClick = {
-                                        languageSt = true
-                                    })
-                        }
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.uz),
-                            contentDescription = "uz",
-                            modifier = Modifier.padding(12.dp)
-                        )
-                        Spacer(modifier = Modifier.weight(1f))
-                        Text(
-                            text = stringResource(id = R.string.uzbek),
-                            modifier = Modifier.padding(12.dp),
-                            fontFamily = FontFamily(Font(R.font.pnfont_regular))
-                        )
-                    }
-                    Spacer(modifier = Modifier.width(12.dp))
-                    Column(
-                        modifier = if (!languageSt) {
-                            Modifier
-                                .fillMaxHeight()
-                                .weight(1f)
-                                .padding(bottom = 16.dp, top = 8.dp)
-                                .shadow(elevation = 1.dp, shape = RoundedCornerShape(16.dp))
-                                .clip(shape = RoundedCornerShape(16.dp))
-                                .border(
-                                    width = 1.2.dp,
-                                    color = primaryColor,
-                                    shape = RoundedCornerShape(16.dp)
-                                )
-                                .background(white)
-                        } else {
-                            Modifier
-                                .fillMaxHeight()
-                                .weight(1f)
-                                .padding(bottom = 16.dp, top = 8.dp)
-                                .shadow(elevation = 1.dp, shape = RoundedCornerShape(16.dp))
-                                .clip(shape = RoundedCornerShape(16.dp))
-                                .background(white)
-                                .clickable(
-                                    indication = null,
-                                    interactionSource = MutableInteractionSource(),
-                                    enabled = true,
-                                    onClickLabel = "",
-                                    onClick = {
-                                        languageSt = false
-                                    })
-                        }
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.ru),
-                            contentDescription = "uz",
-                            modifier = Modifier.padding(12.dp)
-                        )
-                        Spacer(modifier = Modifier.weight(1f))
-                        Text(
-                            text = stringResource(id = R.string.russia),
-                            modifier = Modifier.padding(12.dp),
-                            fontFamily = FontFamily(Font(R.font.pnfont_regular))
-                        )
-                    }
-                }
-            }
-
-
+        myLog("Language state $lang $languageSt")
+        if (lang != "") {
             Column(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp)
-                    .padding(top = 16.dp)
-                    .shadow(0.4.dp, shape = RoundedCornerShape(16.dp))
-                    .clip(RoundedCornerShape(16.dp))
-                    .background(white)
+                    .fillMaxSize()
+                    .background(appBackgroundColorWhite)
             ) {
-                Text(
-                    text = stringResource(id = R.string.safety),
-                    fontSize = 16.sp,
-                    fontFamily = FontFamily(Font(R.font.pnfont_semibold)),
-                    modifier = Modifier.padding(start = 16.dp, top = 12.dp)
-                )
-                CartTextComponent(
-                    icon = R.drawable.ic_lock,
-                    text = stringResource(id = R.string.changePinCode),
-                    onClick = {
-                    })
+
                 Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(48.dp)
+                    Modifier
+                        .padding(horizontal = 16.dp)
+                        .height(56.dp)
                 ) {
                     Image(
-                        painter = painterResource(R.drawable.ic_operations_fingerprint),
-                        contentDescription = "support",
+                        painter = painterResource(id = R.drawable.ic_navigation_arrow_left_x24),
+                        contentDescription = "back",
                         modifier = Modifier
-                            .padding(start = 16.dp, end = 12.dp)
                             .align(Alignment.CenterVertically)
-                    )
-                    Text(
-                        text = stringResource(id = R.string.FaceId),
-                        modifier = Modifier
-                            .weight(1f)
-                            .align(Alignment.CenterVertically)
-                            .padding(end = 24.dp),
-                        fontSize = 16.sp,
-                        fontFamily = FontFamily(Font(R.font.pnfont_regular))
-                    )
+                            .clickable(interactionSource = MutableInteractionSource(),
+                                indication = null,
+                                enabled = true,
+                                onClickLabel = null,
+                                onClick = {
+                                    onEventDispatcher.invoke(AppSettingContract.Intent.PopBackStack)
+                                }),
 
-                    Switch(
-                        checked = touchIdSwitchSt,
-                        onCheckedChange = {
-                            touchIdSwitchSt = it
-                        },
-                        modifier = Modifier.padding(end = 8.dp),
-                        colors = SwitchDefaults.colors(
-                            checkedThumbColor = primaryColor,
-                            checkedTrackColor = securityCardStartColor,
-                            uncheckedTrackColor = gray,
-                            uncheckedBorderColor = white,
-                            uncheckedThumbColor = white
-                        ),
-                        interactionSource = MutableInteractionSource()
+                        )
+                    Spacer(modifier = Modifier.width(16.dp))
+
+                    Text(
+                        text = stringResource(id = R.string.appSetting),
+                        fontFamily = FontFamily(Font(R.font.pnfont_semibold)),
+                        color = black,
+                        fontSize = 24.sp,
+                        modifier = Modifier.align(Alignment.CenterVertically)
                     )
+                }
+
+                Spacer(modifier = Modifier.height(12.dp))
+                Column(
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp)
+                        .shadow(elevation = 1.dp, shape = RoundedCornerShape(16.dp))
+                        .clip(shape = RoundedCornerShape(16.dp))
+                        .background(white)
+                ) {
+                    Text(
+                        text = stringResource(id = R.string.appLanguage),
+                        fontFamily = FontFamily(Font(R.font.pnfont_semibold)),
+                        fontSize = 18.sp,
+                        modifier = Modifier.padding(start = 12.dp, top = 12.dp)
+                    )
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(136.dp)
+                            .padding(horizontal = 16.dp)
+                    ) {
+                        Column(
+                            modifier = if (languageSt) {
+                                Modifier
+                                    .fillMaxHeight()
+                                    .weight(1f)
+                                    .padding(bottom = 16.dp, top = 8.dp)
+                                    .shadow(elevation = 1.dp, shape = RoundedCornerShape(16.dp))
+                                    .clip(shape = RoundedCornerShape(16.dp))
+                                    .border(
+                                        width = 1.2.dp,
+                                        color = primaryColor,
+                                        shape = RoundedCornerShape(16.dp)
+                                    )
+                                    .background(white)
+                            } else {
+                                Modifier
+                                    .fillMaxHeight()
+                                    .weight(1f)
+                                    .padding(bottom = 16.dp, top = 8.dp)
+                                    .shadow(elevation = 1.dp, shape = RoundedCornerShape(16.dp))
+                                    .clip(shape = RoundedCornerShape(16.dp))
+                                    .background(white)
+                                    .clickable(
+                                        interactionSource = remember {
+                                            MutableInteractionSource()
+                                        },
+                                        indication = null
+                                    ) {
+                                        languageSt = true
+                                        lang = "uz"
+                                        setLocale(context, "uz")
+                                    }
+                            }
+                        ) {
+                            Image(
+                                painter = painterResource(id = R.drawable.uz),
+                                contentDescription = "uz",
+                                modifier = Modifier.padding(12.dp)
+                            )
+                            Spacer(modifier = Modifier.weight(1f))
+                            Text(
+                                text = stringResource(id = R.string.uzbek),
+                                modifier = Modifier.padding(12.dp),
+                                fontFamily = FontFamily(Font(R.font.pnfont_regular))
+                            )
+                        }
+                        Spacer(modifier = Modifier.width(12.dp))
+                        Column(
+                            modifier = if (!languageSt) {
+                                Modifier
+                                    .fillMaxHeight()
+                                    .weight(1f)
+                                    .padding(bottom = 16.dp, top = 8.dp)
+                                    .shadow(elevation = 1.dp, shape = RoundedCornerShape(16.dp))
+                                    .clip(shape = RoundedCornerShape(16.dp))
+                                    .border(
+                                        width = 1.2.dp,
+                                        color = primaryColor,
+                                        shape = RoundedCornerShape(16.dp)
+                                    )
+                                    .background(white)
+                            } else {
+                                Modifier
+                                    .fillMaxHeight()
+                                    .weight(1f)
+                                    .padding(bottom = 16.dp, top = 8.dp)
+                                    .shadow(elevation = 1.dp, shape = RoundedCornerShape(16.dp))
+                                    .clip(shape = RoundedCornerShape(16.dp))
+                                    .background(white)
+                                    .clickable(
+                                        interactionSource = remember {
+                                            MutableInteractionSource()
+                                        },
+                                        indication = null
+                                    ) {
+                                        languageSt = false
+                                        lang = "ru"
+                                        setLocale(context, "ru")
+                                    }
+                            }
+                        ) {
+                            Image(
+                                painter = painterResource(id = R.drawable.ru),
+                                contentDescription = "uz",
+                                modifier = Modifier.padding(12.dp)
+                            )
+                            Spacer(modifier = Modifier.weight(1f))
+                            Text(
+                                text = stringResource(id = R.string.russia),
+                                modifier = Modifier.padding(12.dp),
+                                fontFamily = FontFamily(Font(R.font.pnfont_regular))
+                            )
+                        }
+                    }
+                }
+
+
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp)
+                        .padding(top = 16.dp)
+                        .shadow(0.4.dp, shape = RoundedCornerShape(16.dp))
+                        .clip(RoundedCornerShape(16.dp))
+                        .background(white)
+                ) {
+                    Text(
+                        text = stringResource(id = R.string.safety),
+                        fontSize = 16.sp,
+                        fontFamily = FontFamily(Font(R.font.pnfont_semibold)),
+                        modifier = Modifier.padding(start = 16.dp, top = 12.dp)
+                    )
+                    CartTextComponent(
+                        icon = R.drawable.ic_lock,
+                        text = stringResource(id = R.string.changePinCode),
+                        onClick = {
+                        })
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(48.dp)
+                    ) {
+                        Image(
+                            painter = painterResource(R.drawable.ic_operations_fingerprint),
+                            contentDescription = "support",
+                            modifier = Modifier
+                                .padding(start = 16.dp, end = 12.dp)
+                                .align(Alignment.CenterVertically)
+                        )
+                        Text(
+                            text = stringResource(id = R.string.FaceId),
+                            modifier = Modifier
+                                .weight(1f)
+                                .align(Alignment.CenterVertically)
+                                .padding(end = 24.dp),
+                            fontSize = 16.sp,
+                            fontFamily = FontFamily(Font(R.font.pnfont_regular))
+                        )
+
+                        Switch(
+                            checked = touchIdSwitchSt,
+                            onCheckedChange = {
+                                touchIdSwitchSt = it
+                                onEventDispatcher(
+                                    AppSettingContract.Intent.SetBiometryUnlock(
+                                        touchIdSwitchSt
+                                    )
+                                )
+
+                            },
+                            modifier = Modifier.padding(end = 8.dp),
+                            colors = SwitchDefaults.colors(
+                                checkedThumbColor = primaryColor,
+                                checkedTrackColor = securityCardStartColor,
+                                uncheckedTrackColor = gray,
+                                uncheckedBorderColor = white,
+                                uncheckedThumbColor = white
+                            ),
+                            interactionSource = MutableInteractionSource()
+                        )
+
+                    }
+                    CartTextComponent(
+                        icon = R.drawable.ic_smart_phone,
+                        text = stringResource(id = R.string.devices),
+                        onClick = {
+                        })
 
                 }
-                CartTextComponent(
-                    icon = R.drawable.ic_smart_phone,
-                    text = stringResource(id = R.string.devices),
-                    onClick = {
-                    })
-
-            }
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp)
-                    .padding(top = 16.dp)
-                    .shadow(0.4.dp, shape = RoundedCornerShape(16.dp))
-                    .clip(RoundedCornerShape(16.dp))
-                    .background(white)
-            ) {
-                Text(
-                    text = stringResource(id = R.string.addition),
-                    fontSize = 16.sp,
-                    fontFamily = FontFamily(Font(R.font.pnfont_semibold)),
-                    modifier = Modifier.padding(start = 16.dp, top = 12.dp)
-                )
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp)
+                        .padding(top = 16.dp)
+                        .shadow(0.4.dp, shape = RoundedCornerShape(16.dp))
+                        .clip(RoundedCornerShape(16.dp))
+                        .background(white)
+                ) {
+                    Text(
+                        text = stringResource(id = R.string.addition),
+                        fontSize = 16.sp,
+                        fontFamily = FontFamily(Font(R.font.pnfont_semibold)),
+                        modifier = Modifier.padding(start = 16.dp, top = 12.dp)
+                    )
 
 
                     Row(
@@ -350,8 +372,9 @@ class AppSettingScreen : Screen {
                         }
 
                     }
-            }
+                }
 
+            }
         }
     }
 
@@ -360,7 +383,7 @@ class AppSettingScreen : Screen {
     @Composable
     fun AppSettingPreview() {
         MobileBankingTheme {
-            AppSettingContent(AppSettingContract.UIState.InitState, {})
+            AppSettingContent(AppSettingContract.UIState(true,true), {})
         }
 
     }
