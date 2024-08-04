@@ -15,6 +15,7 @@ import com.example.mobilebanking.presentantion.screen.pager.home.HomePage
 import com.example.mobilebanking.presentantion.screen.pager.payment.PaymentPage
 import com.example.mobilebanking.presentantion.screen.pager.transfer.TransfersPage
 import com.example.mobilebanking.ui.theme.MobileBankingTheme
+import com.example.mobilebanking.ui.theme.textColor
 import com.example.mobilebanking.util.TabNavigatorItem
 
 class MainScreen : Screen {
@@ -44,7 +45,7 @@ private fun MainContent() {
             bottomBar = {
                 BottomNavigation(
                     backgroundColor = Color.White,
-                    contentColor = Color.Black,
+                    contentColor = textColor,
                 ) {
                     TabNavigatorItem(tab = HomePage)
                     TabNavigatorItem(tab = TransfersPage)

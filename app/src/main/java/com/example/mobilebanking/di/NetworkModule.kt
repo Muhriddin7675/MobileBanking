@@ -17,12 +17,11 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
+//@InstallIn(ActivityComponent::class)
 class NetworkModule {
 
     @[Provides Singleton]
     fun provideGson(): Gson = Gson()
-
-
 
     @[Provides Singleton]
     fun provideOkHttp(

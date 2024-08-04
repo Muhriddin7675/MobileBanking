@@ -17,12 +17,15 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.hilt.getViewModel
@@ -218,6 +221,7 @@ private fun TransferSuccessContent(
                     CustomTextView(
                         modifier = Modifier
                             .width(68.dp),
+                        maxLines = 2,
                         text = stringResource(id = R.string.add_shablon),
                         textAlign = TextAlign.Center,
                         fontSize = 14
@@ -240,6 +244,7 @@ private fun TransferSuccessContent(
                     CustomTextView(
                         modifier = Modifier
                             .width(68.dp),
+                        maxLines = 2,
                         text = stringResource(id = R.string.transferDetails),
                         textAlign = TextAlign.Center,
                         fontSize = 14
@@ -264,15 +269,15 @@ private fun TransferSuccessContent(
 }
 
 
-//@Preview
-//@Composable
-//fun Preview() {
-//    TransferSuccessContent(
-//        uiState = remember {
-//            mutableStateOf(TransferSuccessContract.UIState())
-//        },
-//        onEventDispatcher = {},
-//        data = UserCardData(0, "0238409809090909", "Ibodullaev Akbarshoh"),
-//        amount = 100000
-//    )
-//}
+@Preview
+@Composable
+fun Preview() {
+    TransferSuccessContent(
+        uiState = remember {
+            mutableStateOf(TransferSuccessContract.UIState())
+        },
+        onEventDispatcher = {},
+        data = UserCardData(0, "9999 9999 9999 9999", "Valiyev Muhriddin"),
+        amount = 100000
+    )
+}

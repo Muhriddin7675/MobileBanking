@@ -11,6 +11,6 @@ class RegisterDirectionImpl @Inject constructor(
     private val navigator: AppNavigator
 ): RegisterDirection {
     override suspend fun openConfirmationScreen() {
-        navigator.replace(ConfirmNumberScreen())
+        navigator.navigateTo(ConfirmNumberScreen())
     }
 }

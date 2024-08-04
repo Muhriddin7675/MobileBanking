@@ -277,7 +277,7 @@ fun TransferVerifyContentPrev() {
         uiState = TransferVerifyContract.UIState.UserPhoneNumber(""),
         onEventDispatcher = {},
         amount = "10000",
-        data = UserCardData(id = 1,pan="1122","Muhriddin"),
+        data = UserCardData(id = 1,pan="1122","Muhriddin Valiyev"),
         token = ""
 
     )

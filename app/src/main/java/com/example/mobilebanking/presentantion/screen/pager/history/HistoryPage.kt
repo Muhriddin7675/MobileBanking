@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
@@ -39,6 +40,7 @@ import cafe.adriel.voyager.navigator.tab.TabOptions
 import com.example.mobilebanking.R
 import com.example.mobilebanking.data.remote.response.Child
 import com.example.mobilebanking.ui.componnent.text.CustomTextView
+import com.example.mobilebanking.ui.theme.appBackgroundColorWhite
 import com.example.mobilebanking.ui.theme.textColor
 import com.example.mobilebanking.util.myLog
 
@@ -74,9 +76,9 @@ private fun HistoryContent(
     ls: LazyPagingItems<Child>
 ) {
     myLog("size -> ${ls.itemCount}")
-    Box(
+    Column(
         modifier = Modifier
-            .background(color = Color.White)
+            .background(appBackgroundColorWhite)
             .fillMaxSize()
     ) {
         Box(
@@ -94,7 +96,8 @@ private fun HistoryContent(
         }
         LazyColumn(
             modifier = Modifier
-                .padding(top = 56.dp, bottom = 56.dp)
+                .background(appBackgroundColorWhite)
+                .padding(bottom = 56.dp)
         ) {
             items(ls.itemCount) {
                 ls[it]?.let { data ->
@@ -158,6 +161,7 @@ fun HistoryOutcomeTransactionItem(
                         CustomTextView(
                             text = data.to,
                             fontSize = 16,
+                            modifier = Modifier.width(100.dp),
                             color = Color.Black
                         )
                         Spacer(modifier = Modifier.weight(1f))
@@ -240,15 +244,16 @@ fun HistoryIncomeTransactionItem(
                 ) {
                     Row(modifier = Modifier.padding(horizontal = 8.dp)) {
                         CustomTextView(
-                            text = data.from,
+                            text = "${data.from} ",
                             fontSize = 16,
+                            modifier = Modifier.width(100.dp),
                             color = Color.Black
                         )
                         Spacer(modifier = Modifier.weight(1f))
                         CustomTextView(
-                            text = "${data.amount} ${stringResource(id = R.string.som)}",
+                            text = "+${data.amount} ${stringResource(id = R.string.som)}",
                             fontSize = 16,
-                            color = Color.Black
+                            color = Color(0xFF18AF1E)
                         )
                     }
 

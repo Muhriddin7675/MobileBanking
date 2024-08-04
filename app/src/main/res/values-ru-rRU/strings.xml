@@ -1,6 +1,6 @@
 <resources>
 
-    <string name="app_name">Мобильный банк</string>
+    <string name="app_name">Пейнет</string>
     <string name="phone_number">Номер телефона</string>
     <string name="empty"> </string>
     <string name="phone_prefix">+998</string>
@@ -66,7 +66,7 @@
     <string name="paymentSecurity">Безопасность Paynet</string>
     <string name="increasingPoverty">Увеличение безопасности</string>
     <string name="do_you_want">Хотите</string>
-    <string name="verify_your_identity">Подтвердите вашу личность</string>
+    <string name="verify_your_identity">Подтвердите сейчас</string>
     <string name="my_cards">Мои карты</string>
     <string name="cashback_account">Счет кэшбэка</string>
     <string name="balance">Баланс</string>

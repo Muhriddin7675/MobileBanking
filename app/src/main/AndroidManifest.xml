@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.mobilebanking">
 
+
+
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />

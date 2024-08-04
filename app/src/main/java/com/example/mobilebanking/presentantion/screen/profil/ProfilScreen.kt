@@ -56,6 +56,7 @@ import com.example.mobilebanking.ui.theme.textColor
 import com.example.mobilebanking.ui.theme.white
 import com.example.mobilebanking.util.formatPhoneNumber
 import com.example.mobilebanking.util.makePhoneCall
+import com.example.mobilebanking.util.myLog
 import com.example.mobilebanking.util.openEmailIntent
 import com.example.mobilebanking.util.openWebsite
 import org.orbitmvi.orbit.compose.collectAsState
@@ -102,10 +103,12 @@ class ProfilScreen : Screen {
                         bottomSheetNavigator.show(
                             LogOutDialog(
                                 logOut = {
+                                    myLog("Log out screen")
                                     bottomSheetNavigator.hide()
-                                    ProfilContract.Intent.LogOut
+                                    model::onEventDispatcher.invoke(ProfilContract.Intent.LogOut)
                                 },
                                 dismiss = {
+                                    myLog("Dismiss out screen")
                                     bottomSheetNavigator.hide()
                                 }
                             )
@@ -229,7 +232,7 @@ class ProfilScreen : Screen {
                     }
                     Button(
                         onClick = {
-                                  onEventDispatcher.invoke(ProfilContract.Intent.OpenIdentityVerificationScreen)
+                            onEventDispatcher.invoke(ProfilContract.Intent.OpenIdentityVerificationScreen)
                         },
                         modifier = Modifier
                             .fillMaxWidth()

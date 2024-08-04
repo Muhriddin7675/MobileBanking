@@ -8,6 +8,7 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.sp
 import com.example.mobilebanking.R
@@ -18,6 +19,7 @@ fun CustomTextView(
     modifier: Modifier = Modifier,
     fontWeight: Int = 400,
     fontSize: Int = 16,
+    maxLines:Int = 1,
     color: Color = Color.Black,
     textAlign: TextAlign = TextAlign.Center,
     lineHeight: Float? = null
@@ -29,6 +31,8 @@ fun CustomTextView(
         fontFamily = FontFamily(Font(R.font.pnfont_semibold)),
         fontSize = fontSize.sp,
         color = color,
+        maxLines = maxLines,
+        overflow = TextOverflow.Ellipsis,
         textAlign = textAlign,
         lineHeight = lineHeight?.sp ?: TextUnit.Unspecified
     )

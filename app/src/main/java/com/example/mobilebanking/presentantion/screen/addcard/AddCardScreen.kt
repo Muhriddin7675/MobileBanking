@@ -81,7 +81,8 @@ class AddCardScreen : Screen {
         var showCamera by remember { mutableStateOf(false) }
 
         if (showCamera) {
-            CardScannerScreen(setCardNumber = {
+            CardScannerScreen(
+                setCardNumber = {
                 cardNumber = it
             }, setCardYear = {
                 cardYear = it.replace("/", "")

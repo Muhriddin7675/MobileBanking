@@ -1,6 +1,6 @@
 <resources>
 
-    <string name="app_name">Mobile-Banking</string>
+    <string name="app_name">Paynet</string>
     <string name="phone_number">Phone number</string>
     <string name="empty"> </string>
     <string name="phone_prefix">+998</string>
@@ -255,7 +255,7 @@ Tarix
 
     <string name="cards">Kartalar</string>
     <string name="delete_user">Qabul giluvchini o\'chirib yuborish</string>
-    <string name="ac_delete">Hagiqatan ham barcha oxirgi gabul giluvchilarni o\'chirib tashlamoqchimisiz?</string>
+    <string name="ac_delete">Haqiqatdan ham barcha oxirgi gabul qiluvchilarni o\'chirib tashlamoqchimisiz?</string>
     <string name="delete_all">Tozalash</string>
     <string name="to_my_card">O\'zimning kartamga</string>
     <string name="to_paynet_card"> Paynet-kartamga</string>

@@ -127,7 +127,6 @@ dependencies {
 
 
     implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
-
     implementation("androidx.compose.material:material:1.6.6")
 
     implementation ("com.google.accompanist:accompanist-coil:0.11.1")
@@ -174,10 +173,6 @@ dependencies {
 
     //biometric
     implementation("androidx.biometric:biometric-ktx:1.2.0-alpha05")
-//
-//    //widgets
-//    implementation("androidx.glance:glance:1.0.0")
-//    implementation("androidx.glance:glance-appwidget-preview:1.0.0-alpha06")
 
 
     // CameraX

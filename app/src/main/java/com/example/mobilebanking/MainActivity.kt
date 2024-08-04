@@ -1,5 +1,8 @@
 package com.example.mobilebanking
 
+import android.content.Context
+import android.database.sqlite.SQLiteDatabase
+import android.database.sqlite.SQLiteOpenHelper
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -36,7 +39,6 @@ class MainActivity : FragmentActivity() {
     lateinit var useCase: GetAllCardUseCase
     @Inject
     lateinit var handler: NavigationHandler
-
     @Inject
     lateinit var dispatcher: AppNavigator
 
@@ -56,7 +58,6 @@ class MainActivity : FragmentActivity() {
         )
         setContent {
             MobileBankingTheme {
-                // A surface container using the 'background' color from the theme
                 BottomSheetNavigator(
                     sheetShape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp)
                 ) {
@@ -95,5 +96,24 @@ class MainActivity : FragmentActivity() {
         super.onPause()
 //        pref.changeLanguage(getCurrentLanguage())
         time = System.currentTimeMillis()
+    }
+}
+
+private const val DATABASE_NAME = "mydatabase.db"
+private const val DATABASE_VERSION = 1
+private const val TABLE_NAME = "mytable"
+private const val COLUMN_ID = "id"
+private const val COLUMN_NAME = "name"
+
+class Database(context : Context ) : SQLiteOpenHelper(context, "tohir", null, 1) {
+    override fun onCreate(db: SQLiteDatabase?) {
+        val createTable = "CREATE TABLE $TABLE_NAME" + " (" +
+                COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                COLUMN_NAME + " TEXT)"
+        db!!.execSQL(createTable)
+    }
+
+    override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
+
     }
 }

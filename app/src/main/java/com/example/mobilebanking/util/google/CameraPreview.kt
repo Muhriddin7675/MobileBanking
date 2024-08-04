@@ -108,7 +108,8 @@ fun CameraPreview(onBarcodeDetected: (Barcode) -> Unit) {
 */
 @ExperimentalGetImage
 @Composable
-fun CardScannerScreen(setCardYear: (String) -> Unit, setCardNumber: (String) -> Unit) {
+fun CardScannerScreen(
+    setCardYear: (String) -> Unit, setCardNumber: (String) -> Unit) {
     val context = LocalContext.current
     var cardInfo by remember { mutableStateOf<List<Pair<String, Rect>>>(emptyList()) }
     var scale by remember { mutableStateOf(1.0) }

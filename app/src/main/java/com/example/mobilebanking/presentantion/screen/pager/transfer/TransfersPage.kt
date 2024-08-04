@@ -67,9 +67,10 @@ import com.example.mobilebanking.data.model.UserCardData
 import com.example.mobilebanking.presentantion.dialog.DeleteAllUsersDialog
 import com.example.mobilebanking.presentantion.dialog.SelectMyCardDialog
 import com.example.mobilebanking.ui.componnent.AddItem
-import com.example.mobilebanking.ui.componnent.text.CustomTextView
 import com.example.mobilebanking.ui.componnent.card.UserCardItem
+import com.example.mobilebanking.ui.componnent.text.CustomTextView
 import com.example.mobilebanking.ui.theme.MobileBankingTheme
+import com.example.mobilebanking.ui.theme.appBackgroundColorWhite
 import com.example.mobilebanking.ui.theme.colorInputBg
 import com.example.mobilebanking.ui.theme.selectedItemColor
 import com.example.mobilebanking.ui.theme.unSelectedItemColor
@@ -92,8 +93,6 @@ object TransfersPage : Tab {
                 )
             }
         }
-
-
 
     @Composable
     override fun Content() {
@@ -188,277 +187,175 @@ private fun TransferContent(
             mycards = (uiState as TransferContract.UIState.MyCardsData).ls
         }
     }
+    Column(
+        modifier = Modifier.fillMaxSize()
+            .background(appBackgroundColorWhite)
 
-    Box(
-        modifier = Modifier
-            .background(color = Color.White)
-            .fillMaxSize()
     ) {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 8.dp)
-                .height(56.dp)
         ) {
-            CustomTextView(
-                modifier = Modifier
-                    .padding(start = 16.dp)
-                    .align(Alignment.CenterStart),
-                text = stringResource(id = R.string.transfers),
-                fontSize = 28
-            )
-            AnimatedVisibility(
-                modifier = Modifier
-                    .padding(end = 16.dp)
-                    .align(Alignment.CenterEnd),
-                visible = visibility,
-                enter = slideInVertically(initialOffsetY = { it }) + fadeIn(),
-                exit = slideOutVertically(targetOffsetY = { it }) + fadeOut(),
-            ) {
-                Button(
-                    onClick = {
-                        visibility = false
-                        focusManager.clearFocus()
-                    },
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = Color.White,
-                        contentColor = Color.Black
-                    ),
-                    elevation = ButtonDefaults.elevatedButtonElevation(3.dp)
-                ) {
-                    CustomTextView(
-                        text = "Bekor qilish",
-                        fontSize = 14
-                    )
-                }
-            }
-        }
-
-    }
-
-    LazyColumn(
-        modifier = Modifier
-            .padding(top = 56.dp, bottom = 56.dp)
-    ) {
-
-        item {
             Box(
                 modifier = Modifier
-                    .padding(horizontal = 16.dp)
-                    .padding(top = 16.dp, bottom = 16.dp)
                     .fillMaxWidth()
+                    .padding(top = 8.dp)
                     .height(56.dp)
-                    .background(color = colorInputBg, shape = RoundedCornerShape(16.dp))
             ) {
-                BasicTextField(
-                    value = cardNumber,
-                    onValueChange = {
-                        if (it.all { char -> char.isDigit() } && it.length <= 16) {
-                            cardNumber = it
-                            onEventDispatcher(TransferContract.Intent.SearchFromLocal(cardNumber))
-                            if (it.length == 16) {
-                                onEventDispatcher(TransferContract.Intent.GetCardOwner(cardNumber))
-                            }
-                        }
-                    },
+                CustomTextView(
                     modifier = Modifier
-                        .align(Alignment.CenterStart)
-                        .onFocusChanged { focusState ->
-                            focusedTextField = focusState.isFocused
-                            if (focusState.hasFocus) {
-                                visibility = true
-                            }
-                        }
                         .padding(start = 16.dp)
-                        .width(280.dp),
-                    keyboardOptions = KeyboardOptions(
-                        keyboardType = KeyboardType.Number,
-                        imeAction = ImeAction.Done
-                    ),
-                    visualTransformation = CardNumberTransformation,
-                    keyboardActions = KeyboardActions.Default,
-                    cursorBrush = SolidColor(selectedItemColor),
-                    textStyle = TextStyle(
-                        fontSize = 18.sp,
-                        fontFamily = FontFamily(Font(R.font.pnfont_semibold)),
-                        fontWeight = FontWeight(600),
-                    )
+                        .align(Alignment.CenterStart),
+                    text = stringResource(id = R.string.transfers),
+                    fontSize = 28,
+                    color = Color.Black,
                 )
-
-                if (cardNumber.isEmpty()) {
-                    CustomTextView(
-                        modifier = Modifier
-                            .padding(start = 16.dp)
-                            .align(Alignment.CenterStart),
-                        text = stringResource(id = R.string.card_or_phone),
-                        color = unSelectedItemColor,
-                        fontSize = 18,
-                        fontWeight = 600,
-                    )
-                }
-
-                CustomImageView(
+                this@Column.AnimatedVisibility(
                     modifier = Modifier
-                        .align(Alignment.CenterEnd)
                         .padding(end = 16.dp)
-                        .size(25.dp),
-                    src = R.drawable.ic_action_scan_card,
-                )
+                        .align(Alignment.CenterEnd),
+                    visible = visibility,
+                    enter = slideInVertically(initialOffsetY = { it }) + fadeIn(),
+                    exit = slideOutVertically(targetOffsetY = { it }) + fadeOut(),
+                ) {
+                    Button(
+                        onClick = {
+                            visibility = false
+                            focusManager.clearFocus()
+                        },
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = Color.White,
+                            contentColor = Color.Black
+                        ),
+                        elevation = ButtonDefaults.elevatedButtonElevation(3.dp)
+                    ) {
+                        CustomTextView(
+                            text = "Bekor qilish",
+                            fontSize = 14
+                        )
+                    }
+                }
             }
+
         }
 
-        if (!focusedTextField) {
-
+        LazyColumn(
+            modifier = Modifier
+                .padding(bottom = 56.dp)
+        ) {
             item {
-                Column(
+                Box(
                     modifier = Modifier
-                        .padding(top = 24.dp)
-                ) {
-                    CustomTextView(
-                        text = stringResource(id = R.string.templates),
-                        fontSize = 20,
-                        modifier = Modifier.padding(start = 16.dp)
-                    )
-
-                    LazyRow {
-                        items(ls.size) {
-                            AddItem(
-                                modifier = Modifier
-                                    .height(116.dp)
-                                    .width(90.dp),
-                                text = ls[it].text,
-                                icon = ls[it].icon
-                            )
-                        }
-                    }
-                }
-            }
-
-            item {
-                Row(
-                    modifier = Modifier
-                        .padding(top = 16.dp)
                         .padding(horizontal = 16.dp)
+                        .padding(top = 16.dp, bottom = 16.dp)
                         .fillMaxWidth()
-                        .height(100.dp)
+                        .height(56.dp)
+                        .background(color = colorInputBg, shape = RoundedCornerShape(16.dp))
                 ) {
-                    Card(
+                    BasicTextField(
+                        value = cardNumber,
+                        onValueChange = {
+                            if (it.all { char -> char.isDigit() } && it.length <= 16) {
+                                cardNumber = it
+                                onEventDispatcher(TransferContract.Intent.SearchFromLocal(cardNumber))
+                                if (it.length == 16) {
+                                    onEventDispatcher(TransferContract.Intent.GetCardOwner(cardNumber))
+                                }
+                            }
+                        },
                         modifier = Modifier
-                            .padding(end = 8.dp)
-                            .fillMaxHeight()
-                            .weight(0.5F)
-                            .clickable(
-                                interactionSource = remember {
-                                    MutableInteractionSource()
-                                },
-                                indication = null
-                            ) { onEventDispatcher(TransferContract.Intent.OpenMyCardsDialog) },
-                        colors = CardDefaults.cardColors(containerColor = Color(0xFFFFDCF4)),
-                        elevation = CardDefaults.elevatedCardElevation(defaultElevation = 1.dp)
-                    ) {
-                        Box(
+                            .align(Alignment.CenterStart)
+                            .onFocusChanged { focusState ->
+                                focusedTextField = focusState.isFocused
+                                if (focusState.hasFocus) {
+                                    visibility = true
+                                }
+                            }
+                            .padding(start = 16.dp)
+                            .width(280.dp),
+                        keyboardOptions = KeyboardOptions(
+                            keyboardType = KeyboardType.Number,
+                            imeAction = ImeAction.Done
+                        ),
+                        visualTransformation = CardNumberTransformation,
+                        keyboardActions = KeyboardActions.Default,
+                        cursorBrush = SolidColor(selectedItemColor),
+                        textStyle = TextStyle(
+                            fontSize = 18.sp,
+                            fontFamily = FontFamily(Font(R.font.pnfont_semibold)),
+                            fontWeight = FontWeight(600),
+                        )
+                    )
+
+                    if (cardNumber.isEmpty()) {
+                        CustomTextView(
                             modifier = Modifier
-                                .fillMaxSize()
-                        ) {
-                            CustomImageView(
-                                modifier = Modifier
-                                    .align(Alignment.CenterEnd)
-                                    .size(100.dp),
-                                src = R.drawable.self_transfer_to_card
-                            )
-                            CustomTextView(
-                                modifier = Modifier
-                                    .padding(start = 16.dp)
-                                    .align(Alignment.CenterStart)
-                                    .width(84.dp),
-                                text = stringResource(id = R.string.to_my_card),
-                                fontSize = 14,
-                                textAlign = TextAlign.Left,
-                                lineHeight = 17F
-                            )
-                        }
+                                .padding(start = 16.dp)
+                                .align(Alignment.CenterStart),
+                            text = stringResource(id = R.string.card_or_phone),
+                            color = unSelectedItemColor,
+                            fontSize = 18,
+                            fontWeight = 600,
+                        )
                     }
 
-                    Card(
+                    CustomImageView(
                         modifier = Modifier
-                            .padding(start = 8.dp)
-                            .fillMaxHeight()
-                            .weight(0.5F),
-                        colors = CardDefaults.cardColors(containerColor = Color(0xFF90FFE2)),
-                        elevation = CardDefaults.elevatedCardElevation(defaultElevation = 1.dp)
-                    ) {
-                        Box(
-                            modifier = Modifier
-                                .fillMaxSize()
-                        ) {
-                            CustomImageView(
-                                modifier = Modifier
-                                    .align(Alignment.CenterEnd)
-                                    .size(120.dp),
-                                src = R.drawable.self_transfer_to_wallet
-                            )
-                            CustomTextView(
-                                modifier = Modifier
-                                    .padding(start = 16.dp)
-                                    .align(Alignment.CenterStart)
-                                    .width(84.dp),
-                                text = stringResource(id = R.string.to_paynet_card),
-                                textAlign = TextAlign.Left,
-                                fontSize = 14,
-                                lineHeight = 17F
-                            )
-                        }
-                    }
+                            .align(Alignment.CenterEnd)
+                            .padding(end = 16.dp)
+                            .size(25.dp),
+                        src = R.drawable.ic_action_scan_card,
+                    )
                 }
             }
 
-            item {
-                Column(
-                    modifier = Modifier
-                        .padding(top = 24.dp)
-                ) {
-                    CustomTextView(
-                        text = stringResource(id = R.string.templates),
-                        fontSize = 20,
-                        modifier = Modifier.padding(start = 16.dp)
-                    )
+            if (!focusedTextField) {
 
-                    LazyRow {
-                        items(ls.size) {
-                            AddItem(
-                                modifier = Modifier
-                                    .height(116.dp)
-                                    .width(90.dp),
-                                text = ls[it].text,
-                                icon = ls[it].icon
-                            )
+                item {
+                    Column(
+                        modifier = Modifier
+                            .padding(top = 24.dp)
+                    ) {
+                        CustomTextView(
+                            text = stringResource(id = R.string.templates),
+                            fontSize = 20,
+                            modifier = Modifier.padding(start = 16.dp)
+                        )
+
+                        LazyRow {
+                            items(ls.size) {
+                                AddItem(
+                                    modifier = Modifier
+                                        .height(116.dp)
+                                        .width(90.dp),
+                                    text = ls[it].text,
+                                    icon = ls[it].icon
+                                )
+                            }
                         }
                     }
                 }
-            }
 
-            item {
-                Column(
-                    modifier = Modifier
-                        .padding(horizontal = 16.dp)
-                        .padding(top = 24.dp)
-                ) {
-                    CustomTextView(
-                        text = stringResource(id = R.string.international_transfers),
-                        fontSize = 20
-                    )
+                item {
                     Row(
                         modifier = Modifier
-                            .padding(top = 16.dp, bottom = 16.dp)
+                            .padding(top = 16.dp)
+                            .padding(horizontal = 16.dp)
                             .fillMaxWidth()
-                            .height(140.dp)
+                            .height(100.dp)
                     ) {
                         Card(
                             modifier = Modifier
                                 .padding(end = 8.dp)
                                 .fillMaxHeight()
-                                .weight(0.5F),
-                            colors = CardDefaults.cardColors(containerColor = Color(0xFFCBF5FE)),
+                                .weight(0.5F)
+                                .clickable(
+                                    interactionSource = remember {
+                                        MutableInteractionSource()
+                                    },
+                                    indication = null
+                                ) { onEventDispatcher(TransferContract.Intent.OpenMyCardsDialog) },
+                            colors = CardDefaults.cardColors(containerColor = Color(0xFFFFDCF4)),
                             elevation = CardDefaults.elevatedCardElevation(defaultElevation = 1.dp)
                         ) {
                             Box(
@@ -467,16 +364,18 @@ private fun TransferContent(
                             ) {
                                 CustomImageView(
                                     modifier = Modifier
-                                        .align(Alignment.BottomCenter)
-                                        .padding(top = 32.dp)
-                                        .size(130.dp),
-                                    src = R.drawable.uzb_to_ru
+                                        .align(Alignment.CenterEnd)
+                                        .size(100.dp),
+                                    src = R.drawable.self_transfer_to_card
                                 )
                                 CustomTextView(
                                     modifier = Modifier
-                                        .padding(start = 16.dp, top = 12.dp),
-                                    text = stringResource(id = R.string.to_ru),
-                                    fontSize = 18,
+                                        .padding(start = 16.dp)
+                                        .align(Alignment.CenterStart)
+                                        .width(84.dp),
+                                    text = stringResource(id = R.string.to_my_card),
+                                    fontSize = 14,
+                                    maxLines = 2,
                                     textAlign = TextAlign.Left,
                                     lineHeight = 17F
                                 )
@@ -488,7 +387,7 @@ private fun TransferContent(
                                 .padding(start = 8.dp)
                                 .fillMaxHeight()
                                 .weight(0.5F),
-                            colors = CardDefaults.cardColors(containerColor = Color(0xFFF4EFFF)),
+                            colors = CardDefaults.cardColors(containerColor = Color(0xFF90FFE2)),
                             elevation = CardDefaults.elevatedCardElevation(defaultElevation = 1.dp)
                         ) {
                             Box(
@@ -497,147 +396,256 @@ private fun TransferContent(
                             ) {
                                 CustomImageView(
                                     modifier = Modifier
-                                        .align(Alignment.BottomCenter)
-                                        .padding(top = 32.dp)
-                                        .size(130.dp),
-                                    src = R.drawable.ru_to_uzb
+                                        .align(Alignment.CenterEnd)
+                                        .size(120.dp),
+                                    src = R.drawable.self_transfer_to_wallet
                                 )
                                 CustomTextView(
                                     modifier = Modifier
-                                        .padding(start = 16.dp, top = 12.dp),
-                                    text = stringResource(id = R.string.to_uz),
-                                    fontSize = 18,
+                                        .padding(start = 16.dp)
+                                        .align(Alignment.CenterStart)
+                                        .width(84.dp),
+                                    maxLines = 2,
+                                    text = stringResource(id = R.string.to_paynet_card),
                                     textAlign = TextAlign.Left,
+                                    fontSize = 14,
                                     lineHeight = 17F
                                 )
                             }
                         }
                     }
-                    Spacer(modifier = Modifier.padding(bottom = 64.dp))
                 }
-            }
-        } else {
-            if (cardNumber.length < 16 && !errorMes) {
-                if (searchedItems.isNotEmpty()) {
-                    item {
-                        Box(
-                            modifier = Modifier
-                                .padding(horizontal = 16.dp)
-                                .padding(bottom = 8.dp)
-                                .fillMaxWidth()
-                        ) {
-                            CustomTextView(
-                                modifier = Modifier
-                                    .align(Alignment.CenterStart),
-                                text = stringResource(id = R.string.last),
-                                fontSize = 16,
-                                fontWeight = 600
-                            )
 
-                            Row(
-                                modifier = Modifier
-                                    .align(Alignment.CenterEnd)
-                                    .clickable(
-                                        interactionSource = remember {
-                                            MutableInteractionSource()
-                                        },
-                                        indication = null
-                                    ) { onEventDispatcher(TransferContract.Intent.OpenDeleteAllUsersDialog) },
-                                verticalAlignment = Alignment.CenterVertically
-                            ) {
-                                CustomTextView(
-                                    text = stringResource(id = R.string.delete_all),
-                                    fontSize = 16,
-                                )
+                item {
+                    Column(
+                        modifier = Modifier
+                            .padding(top = 24.dp)
+                    ) {
+                        CustomTextView(
+                            text = stringResource(id = R.string.templates),
+                            fontSize = 20,
+                            modifier = Modifier.padding(start = 16.dp)
+                        )
 
-                                CustomImageView(
+                        LazyRow {
+                            items(ls.size) {
+                                AddItem(
                                     modifier = Modifier
-                                        .padding(start = 4.dp)
-                                        .size(18.dp),
-                                    src = R.drawable.ic_action_trash
+                                        .height(116.dp)
+                                        .width(90.dp),
+                                    text = ls[it].text,
+                                    icon = ls[it].icon
                                 )
                             }
                         }
                     }
                 }
-                items(searchedItems.size) {
-                    UserCardItem(
-                        modifier = Modifier
-                            .padding(bottom = 6.dp, top = 4.dp)
-                            .clickable(
-                                interactionSource = remember {
-                                    MutableInteractionSource()
-                                },
-                                indication = null
-                            ) {
-                                onEventDispatcher(
-                                    TransferContract.Intent.NavigateTransferCardScreen(
-                                        userCardData = searchedItems[it]
-                                    )
-                                )
-                            },
-                        data = searchedItems[it]
-                    )
-                }
-            } else if (cardNumber.length == 16 && !errorMes) {
+
                 item {
-                    UserCardItem(
-                        modifier = Modifier
-                            .padding(bottom = 6.dp, top = 4.dp)
-                            .clickable(
-                                interactionSource = remember {
-                                    MutableInteractionSource()
-                                },
-                                indication = null
-                            ) {
-                                onEventDispatcher(
-                                    TransferContract.Intent.NavigateTransferCardScreen(
-                                        userCardData = searchedUser
-                                    )
-                                )
-                            },
-                        data = searchedUser
-                    )
-                }
-            } else if (errorMes) {
-                item {
-                    Card(
+                    Column(
                         modifier = Modifier
                             .padding(horizontal = 16.dp)
-                            .padding(bottom = 8.dp, top = 4.dp)
-                            .fillMaxWidth()
-                            .height(200.dp),
-                        colors = CardDefaults
-                            .cardColors(Color.White),
-                        elevation = CardDefaults
-                            .elevatedCardElevation(3.dp)
+                            .padding(top = 24.dp)
                     ) {
-                        CustomImageView(
-                            modifier = Modifier
-                                .padding(top = 20.dp)
-                                .align(Alignment.CenterHorizontally)
-                                .size(80.dp),
-                            src = R.drawable.provider_not_found
-                        )
                         CustomTextView(
-                            modifier = Modifier
-                                .padding(top = 24.dp)
-                                .align(Alignment.CenterHorizontally),
-                            text = stringResource(id = R.string.we_cant_find),
-                            fontSize = 20,
-                            fontWeight = 600
+                            text = stringResource(id = R.string.international_transfers),
+                            fontSize = 20
                         )
-                        CustomTextView(
+                        Row(
                             modifier = Modifier
-                                .align(Alignment.CenterHorizontally),
-                            text = stringResource(id = R.string.card_number_wrong),
-                            fontSize = 16
+                                .padding(top = 16.dp, bottom = 16.dp)
+                                .fillMaxWidth()
+                                .height(140.dp)
+                        ) {
+                            Card(
+                                modifier = Modifier
+                                    .padding(end = 8.dp)
+                                    .fillMaxHeight()
+                                    .weight(0.5F),
+                                colors = CardDefaults.cardColors(containerColor = Color(0xFFCBF5FE)),
+                                elevation = CardDefaults.elevatedCardElevation(defaultElevation = 1.dp)
+                            ) {
+                                Box(
+                                    modifier = Modifier
+                                        .fillMaxSize()
+                                ) {
+                                    CustomImageView(
+                                        modifier = Modifier
+                                            .align(Alignment.BottomCenter)
+                                            .padding(top = 32.dp)
+                                            .size(130.dp),
+                                        src = R.drawable.uzb_to_ru
+                                    )
+                                    CustomTextView(
+                                        modifier = Modifier
+                                            .padding(start = 16.dp, top = 12.dp),
+                                        text = stringResource(id = R.string.to_ru),
+                                        fontSize = 18,
+                                        textAlign = TextAlign.Left,
+                                        lineHeight = 17F
+                                    )
+                                }
+                            }
+
+                            Card(
+                                modifier = Modifier
+                                    .padding(start = 8.dp)
+                                    .fillMaxHeight()
+                                    .weight(0.5F),
+                                colors = CardDefaults.cardColors(containerColor = Color(0xFFF4EFFF)),
+                                elevation = CardDefaults.elevatedCardElevation(defaultElevation = 1.dp)
+                            ) {
+                                Box(
+                                    modifier = Modifier
+                                        .fillMaxSize()
+                                ) {
+                                    CustomImageView(
+                                        modifier = Modifier
+                                            .align(Alignment.BottomCenter)
+                                            .padding(top = 32.dp)
+                                            .size(130.dp),
+                                        src = R.drawable.ru_to_uzb
+                                    )
+                                    CustomTextView(
+                                        modifier = Modifier
+                                            .padding(start = 16.dp, top = 12.dp),
+                                        text = stringResource(id = R.string.to_uz),
+                                        fontSize = 18,
+                                        textAlign = TextAlign.Left,
+                                        lineHeight = 17F
+                                    )
+                                }
+                            }
+                        }
+                        Spacer(modifier = Modifier.padding(bottom = 64.dp))
+                    }
+                }
+            } else {
+                if (cardNumber.length < 16 && !errorMes) {
+                    if (searchedItems.isNotEmpty()) {
+                        item {
+                            Box(
+                                modifier = Modifier
+                                    .padding(horizontal = 16.dp)
+                                    .padding(bottom = 8.dp)
+                                    .fillMaxWidth()
+                            ) {
+                                CustomTextView(
+                                    modifier = Modifier
+                                        .align(Alignment.CenterStart),
+                                    text = stringResource(id = R.string.last),
+                                    fontSize = 16,
+                                    fontWeight = 600
+                                )
+
+                                Row(
+                                    modifier = Modifier
+                                        .align(Alignment.CenterEnd)
+                                        .clickable(
+                                            interactionSource = remember {
+                                                MutableInteractionSource()
+                                            },
+                                            indication = null
+                                        ) { onEventDispatcher(TransferContract.Intent.OpenDeleteAllUsersDialog) },
+                                    verticalAlignment = Alignment.CenterVertically
+                                ) {
+                                    CustomTextView(
+                                        text = stringResource(id = R.string.delete_all),
+                                        fontSize = 16,
+                                    )
+
+                                    CustomImageView(
+                                        modifier = Modifier
+                                            .padding(start = 4.dp)
+                                            .size(18.dp),
+                                        src = R.drawable.ic_action_trash
+                                    )
+                                }
+                            }
+                        }
+                    }
+                    items(searchedItems.size) {
+                        UserCardItem(
+                            modifier = Modifier
+                                .padding(bottom = 6.dp, top = 4.dp)
+                                .clickable(
+                                    interactionSource = remember {
+                                        MutableInteractionSource()
+                                    },
+                                    indication = null
+                                ) {
+                                    onEventDispatcher(
+                                        TransferContract.Intent.NavigateTransferCardScreen(
+                                            userCardData = searchedItems[it]
+                                        )
+                                    )
+                                },
+                            data = searchedItems[it]
                         )
+                    }
+                } else if (cardNumber.length == 16 && !errorMes) {
+                    item {
+                        UserCardItem(
+                            modifier = Modifier
+                                .padding(bottom = 6.dp, top = 4.dp)
+                                .clickable(
+                                    interactionSource = remember {
+                                        MutableInteractionSource()
+                                    },
+                                    indication = null
+                                ) {
+                                    onEventDispatcher(
+                                        TransferContract.Intent.NavigateTransferCardScreen(
+                                            userCardData = searchedUser
+                                        )
+                                    )
+                                },
+                            data = searchedUser
+                        )
+                    }
+                } else if (errorMes) {
+                    item {
+                        Card(
+                            modifier = Modifier
+                                .padding(horizontal = 16.dp)
+                                .padding(bottom = 8.dp, top = 4.dp)
+                                .fillMaxWidth()
+                                .height(200.dp),
+                            colors = CardDefaults
+                                .cardColors(Color.White),
+                            elevation = CardDefaults
+                                .elevatedCardElevation(3.dp)
+                        ) {
+                            CustomImageView(
+                                modifier = Modifier
+                                    .padding(top = 20.dp)
+                                    .align(Alignment.CenterHorizontally)
+                                    .size(80.dp),
+                                src = R.drawable.provider_not_found
+                            )
+                            CustomTextView(
+                                modifier = Modifier
+                                    .padding(top = 24.dp)
+                                    .align(Alignment.CenterHorizontally),
+                                text = stringResource(id = R.string.we_cant_find),
+                                fontSize = 20,
+                                fontWeight = 600
+                            )
+                            CustomTextView(
+                                modifier = Modifier
+                                    .align(Alignment.CenterHorizontally),
+                                text = stringResource(id = R.string.card_number_wrong),
+                                fontSize = 16
+                            )
+                        }
                     }
                 }
             }
         }
+
     }
+
+
 }
 
 

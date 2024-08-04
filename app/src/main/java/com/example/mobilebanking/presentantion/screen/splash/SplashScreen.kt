@@ -46,8 +46,7 @@ private fun SplashPreview() {
 @Composable
 fun AnimatedPreloader() {
     val preloaderLottieComposition by rememberLottieComposition(
-        LottieCompositionSpec.RawRes(
-            R.raw.splash
+        LottieCompositionSpec.RawRes(R.raw.splash
         )
     )
 

@@ -8,7 +8,9 @@ import com.example.mobilebanking.data.local.entity.LastTransferUserEntity
 import com.example.mobilebanking.data.local.pref.MyShared
 import com.example.mobilebanking.data.model.CardData
 import com.example.mobilebanking.domain.repositori.LocalRepository
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -21,6 +23,11 @@ class LocalRepositoryImp @Inject constructor(
 ) : LocalRepository {
 
     //room
+    init {
+        CoroutineScope(Dispatchers.IO).launch {
+
+        }
+    }
     override fun getAllCardsLocal(): List<CardData> =
         cardDao.getAllCards().map { it.toUIData() }
 

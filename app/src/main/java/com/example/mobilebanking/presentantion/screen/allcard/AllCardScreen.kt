@@ -84,7 +84,6 @@ class AllCardScreen : Screen {
             is AllCardContract.UIState.SetCardList -> {
                 cardList = uiState.cardList
             }
-
             else -> {}
         }
         Column(

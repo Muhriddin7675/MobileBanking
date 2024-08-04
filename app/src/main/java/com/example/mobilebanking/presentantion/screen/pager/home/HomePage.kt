@@ -28,6 +28,7 @@ import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -80,8 +81,7 @@ object HomePage : Tab {
     override val options: TabOptions
         @Composable get() {
             val title = stringResource(id = R.string.home)
-            val icon =
-                rememberVectorPainter(image = ImageVector.vectorResource(id = R.drawable.ic_operations_home))
+            val icon = rememberVectorPainter(image = ImageVector.vectorResource(id = R.drawable.ic_operations_home))
 
             return remember {
                 TabOptions(
@@ -123,17 +123,23 @@ object HomePage : Tab {
         uiState: HomeContract.UIState, onEventDispatcher: (HomeContract.Intent) -> Unit
     ) {
 
+        val context = LocalContext.current
+
 
         var cardList by remember { mutableStateOf(listOf<CardData>()) }
         var phoneNumber by remember { mutableStateOf("") }
         var showBalans by remember { mutableStateOf(true) }
         var totalBalance by remember { mutableStateOf("0") }
 
-        onEventDispatcher.invoke(HomeContract.Intent.GetData)
-        onEventDispatcher.invoke(HomeContract.Intent.GetAllCard)
+
+        LaunchedEffect(Unit) {
+            onEventDispatcher.invoke(HomeContract.Intent.GetData)
+            onEventDispatcher.invoke(HomeContract.Intent.GetAllCard)
+        }
 
         when (uiState) {
             is HomeContract.UIState.GetUIState -> {
+
                 phoneNumber = "+998${uiState.phone}"
                 showBalans = uiState.showBalance
             }
@@ -141,11 +147,10 @@ object HomePage : Tab {
             is HomeContract.UIState.LoadCardData -> {
                 totalBalance = uiState.totalAmount.toString().addSpacesEveryAmount()
                 cardList = uiState.cardList
+
             }
         }
-        val context = LocalContext.current
         Column(modifier = Modifier.fillMaxSize()) {
-
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -534,6 +539,7 @@ object HomePage : Tab {
                                     text = stringResource(id = R.string.verify_your_identity),
                                     color = Color.Black,
                                     fontSize = 12.sp,
+                                    maxLines = 1,
                                     fontFamily = FontFamily(Font(R.font.pnfont_regular))
                                 )
                             }
@@ -614,7 +620,7 @@ object HomePage : Tab {
                                         contentDescription = "",
                                         modifier = Modifier
                                             .padding(top = 12.dp, end = 12.dp)
-                                            .size(16.dp)
+                                            .size(18.dp)
                                             .align(Alignment.CenterVertically)
                                             .clip(
                                                 CircleShape

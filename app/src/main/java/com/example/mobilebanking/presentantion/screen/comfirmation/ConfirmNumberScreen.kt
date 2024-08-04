@@ -1,5 +1,6 @@
 package com.example.mobilebanking.presentantion.screen.comfirmation
 
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -53,11 +54,11 @@ class ConfirmNumberScreen : Screen {
         val context = LocalContext.current
 
         model.collectSideEffect {
-//            when (it) {
-//                is ConfirmationContract.SideEffect.ShowToast -> {
-//                    Toast.makeText(context, it.msg, Toast.LENGTH_SHORT).show()
-//                }
-//            }
+            when (it) {
+                is ConfirmationContract.SideEffect.ShowToast -> {
+                    Toast.makeText(context, it.msg, Toast.LENGTH_SHORT).show()
+                }
+            }
         }
         ConfirmPhoneContent(uiState = uiSate, model::onEventDispatcher)
     }

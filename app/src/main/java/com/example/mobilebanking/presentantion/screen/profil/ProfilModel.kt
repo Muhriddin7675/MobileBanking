@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.example.mobilebanking.data.local.pref.MyShared
 import com.example.mobilebanking.domain.repositori.AppRepository
 import com.example.mobilebanking.domain.repositori.LocalRepository
+import com.example.mobilebanking.util.myLog
 import dagger.hilt.android.lifecycle.HiltViewModel
 import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.postSideEffect
@@ -31,6 +32,7 @@ class ProfilModel @Inject constructor(
             ProfilContract.Intent.LogOut -> {
                 repo.deleteAllItems()
                 myShared.setPassword("password")
+                myLog("Log aut")
                 direction.logOut()
             }
 
@@ -40,12 +42,10 @@ class ProfilModel @Inject constructor(
 
             ProfilContract.Intent.OpenReference -> {
                 postSideEffect(ProfilContract.SideEffect.OpenReference)
-
             }
 
             ProfilContract.Intent.OpenRite -> {
                 postSideEffect(ProfilContract.SideEffect.OpenRite)
-
             }
 
             ProfilContract.Intent.OpenSettingScreen -> {
@@ -54,7 +54,6 @@ class ProfilModel @Inject constructor(
 
             ProfilContract.Intent.OpenLogAut -> {
                 postSideEffect(ProfilContract.SideEffect.OpenLogAut)
-
             }
 
             ProfilContract.Intent.InitUiState -> {

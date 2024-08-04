@@ -11,7 +11,7 @@ interface HomeContract {
 
     sealed interface UIState {
         data class GetUIState(
-            val phone: String = "+998900993936",
+            val phone: String = "",
             val showBalance: Boolean = true,
         ) : UIState
         data class LoadCardData(

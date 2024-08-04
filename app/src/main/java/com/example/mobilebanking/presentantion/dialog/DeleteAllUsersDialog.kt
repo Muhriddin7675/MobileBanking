@@ -26,8 +26,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
 import com.example.mobilebanking.R
-import com.example.mobilebanking.ui.componnent.text.CustomTextView
 import com.example.mobilebanking.ui.componnent.card.CustomButton
+import com.example.mobilebanking.ui.componnent.text.CustomTextView
 
 class DeleteAllUsersDialog (
     val delete: () -> Unit = {},
@@ -107,6 +107,7 @@ private fun DeleteAllUsersDialogContent(
                 .padding(top = 16.dp, start = 16.dp, end = 16.dp),
             text = stringResource(id = R.string.ac_delete),
             fontSize = 16,
+            maxLines = 2,
             textAlign = TextAlign.Left
         )
 

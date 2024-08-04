@@ -62,9 +62,11 @@ class HomeModel @Inject constructor(
                 myShared.changeShowBalanceState(intent.showBalance)
             }
             HomeContract.Intent.GetData -> {
+                MyDataLoader.loadCardsData()
                 reduce { HomeContract.UIState.GetUIState(myShared.getPassword(), myShared.showBalance()) }
             }
             HomeContract.Intent.GetAllCard -> {
+                MyDataLoader.loadCardsData()
                 MyDataLoader.listStateFlow.onEach { list ->
                     MyDataLoader.totalAmountStateFlow.onEach { amount ->
                         intent {

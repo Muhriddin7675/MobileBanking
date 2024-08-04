@@ -21,6 +21,7 @@ import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -59,6 +60,9 @@ class AppSettingScreen : Screen {
     override fun Content() {
         val model: AppSettingContract.Model = getViewModel<AppSettingModule>()
         model.onEventDispatcher(AppSettingContract.Intent.LoadAppSettings)
+        LaunchedEffect(Unit) {
+
+        }
 
         MobileBankingTheme {
             AppSettingContent(model.collectAsState().value, model::onEventDispatcher)

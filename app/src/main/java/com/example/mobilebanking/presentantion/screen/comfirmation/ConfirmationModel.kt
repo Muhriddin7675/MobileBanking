@@ -40,6 +40,7 @@ class ConfirmationModel @Inject constructor(
                                 direction.openPinCodeScreen()
                             }
                             it.onFailure {
+                                postSideEffect(ConfirmationContract.SideEffect.ShowToast("Error"))
                                 myLog("ConfirmationContract.Intent.ClickButton signInVerify onFailure")
                             }
                         }
@@ -52,6 +53,7 @@ class ConfirmationModel @Inject constructor(
                                 direction.openPinCodeScreen()
                             }
                             it.onFailure {
+                                postSideEffect(ConfirmationContract.SideEffect.ShowToast("Error"))
                                 myLog("ConfirmationContract.Intent.ClickButton signUpVerify  onFailure")
                             }
                         }

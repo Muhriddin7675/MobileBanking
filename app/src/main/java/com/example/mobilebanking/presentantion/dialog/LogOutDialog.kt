@@ -90,7 +90,7 @@ private fun DeleteCardDialogContent(
                 textColor = Color.White,
                 colors = ButtonDefaults
                     .buttonColors(selectedItemColor)
-            ) { logOut() }
+            ) { logOut.invoke() }
             CustomButton(
                 modifier = Modifier
                     .padding(top = 8.dp)
@@ -102,7 +102,7 @@ private fun DeleteCardDialogContent(
                 textColor = selectedItemColor,
                 colors = ButtonDefaults
                     .buttonColors(Color.White)
-            ) { dismiss() }
+            ) { dismiss.invoke()}
         }
 
     }
